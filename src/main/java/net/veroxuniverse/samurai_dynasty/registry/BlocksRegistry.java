@@ -95,7 +95,7 @@ public class BlocksRegistry {
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)
                     .strength(4f).requiresCorrectToolForDrops()));
     public static final DeferredBlock<Block> SPIRIT_STONE_STAIRS = registerBlock("spirit_stone_stairs",
-            () -> new StairBlock(BlocksRegistry.SPIRIT_STONE.get().defaultBlockState(),
+            () -> new StairBlock(Blocks.STONE.defaultBlockState(),
                     BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_STAIRS)
                             .strength(4f).requiresCorrectToolForDrops()));
     public static final DeferredBlock<Block> SPIRIT_STONE_SLAB = registerBlock("spirit_stone_slab",
@@ -107,7 +107,7 @@ public class BlocksRegistry {
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)
                     .strength(4f).requiresCorrectToolForDrops()));
     public static final DeferredBlock<Block> MOSSY_SPIRIT_STONE_BRICK_STAIRS = registerBlock("mossy_spirit_stone_brick_stairs",
-            () -> new StairBlock(BlocksRegistry.MOSSY_SPIRIT_STONE_BRICKS.get().defaultBlockState(),
+            () -> new StairBlock(Blocks.STONE.defaultBlockState(),
                     BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_STAIRS)
                             .strength(4f).requiresCorrectToolForDrops()));
     public static final DeferredBlock<Block> MOSSY_SPIRIT_STONE_BRICK_SLAB = registerBlock("mossy_spirit_stone_brick_slab",
@@ -122,7 +122,7 @@ public class BlocksRegistry {
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)
                     .strength(4f).requiresCorrectToolForDrops()));
     public static final DeferredBlock<Block> POLISHED_SPIRIT_STONE_STAIRS = registerBlock("polished_spirit_stone_stairs",
-            () -> new StairBlock(BlocksRegistry.POLISHED_SPIRIT_STONE.get().defaultBlockState(),
+            () -> new StairBlock(Blocks.STONE.defaultBlockState(),
                     BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_STAIRS)
                             .strength(4f).requiresCorrectToolForDrops()));
     public static final DeferredBlock<Block> POLISHED_SPIRIT_STONE_SLAB = registerBlock("polished_spirit_stone_slab",
