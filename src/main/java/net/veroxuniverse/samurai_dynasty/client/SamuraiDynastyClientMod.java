@@ -25,11 +25,15 @@ public class SamuraiDynastyClientMod {
         Minecraft.getInstance().particleEngine.register(ParticlesInit.BLUE_FLAME.get(), BlueFlame.Provider::new);
     }
 
+    // Commented out - RegisterColorHandlersEvent is abstract in 1.21.8
+    // TODO: Use RegisterColorHandlersEvent.ItemTintSources when needed
+    /*
     @SubscribeEvent
-    public static void initItemColors(final RegisterColorHandlersEvent event) {
+    public static void initItemColors(final RegisterColorHandlersEvent.ItemTintSources event) {
         // TODO: Re-enable when Ars Nouveau is available for NeoForge 1.21
         // Item color handlers registration - currently disabled
     }
+    */
 
     @SubscribeEvent
     public static void registerRenderers(final EntityRenderersEvent.RegisterRenderers event) {

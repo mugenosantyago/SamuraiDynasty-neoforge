@@ -118,10 +118,9 @@ dependencies {
     // compileOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}:api"
     // runtimeOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}"
 
-    // JEI - version 19.0.0.0 not yet available for 1.21.8
-    // compileOnly "mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}"
-    // runtimeOnly "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"
-    // TODO: Update jei_version in gradle.properties when 1.21.8 version is released
+    // JEI for 1.21.8
+    compileOnly "mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}"
+    runtimeOnly "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"
 
     // Patchouli
     // compileOnly "vazkii.patchouli:Patchouli:${patchouli_version}:api"
