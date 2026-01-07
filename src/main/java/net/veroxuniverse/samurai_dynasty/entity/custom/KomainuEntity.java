@@ -2,6 +2,7 @@ package net.veroxuniverse.samurai_dynasty.entity.custom;
 
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -105,14 +106,14 @@ public class KomainuEntity extends TamableAnimal {
     }
 
     @Override
-    public void readAdditionalSaveData(CompoundTag compound) {
-        super.readAdditionalSaveData(compound);
-        this.entityData.set(DATA_ID_TYPE_VARIANT, compound.getInt("Variant"));
+    public void readAdditionalSaveData(CompoundTag compound, HolderLookup.Provider registries) {
+        super.readAdditionalSaveData(compound, registries);
+        compound.getInt("Variant").ifPresent(value -> this.entityData.set(DATA_ID_TYPE_VARIANT, value));
     }
 
     @Override
-    public void addAdditionalSaveData(CompoundTag compound) {
-        super.addAdditionalSaveData(compound);
+    public void addAdditionalSaveData(CompoundTag compound, HolderLookup.Provider registries) {
+        super.addAdditionalSaveData(compound, registries);
         compound.putInt("Variant", this.getTypeVariant());
     }
 

@@ -1,6 +1,7 @@
 package net.veroxuniverse.samurai_dynasty.entity.custom;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -73,14 +74,14 @@ public class TanukiEntity extends TamableAnimal {
     }
 
     @Override
-    public void readAdditionalSaveData(@NotNull CompoundTag compound) {
-        super.readAdditionalSaveData(compound);
-        this.entityData.set(HEALING, compound.getInt("HealCooldown"));
+    public void readAdditionalSaveData(@NotNull CompoundTag compound, HolderLookup.Provider registries) {
+        super.readAdditionalSaveData(compound, registries);
+        compound.getInt("HealCooldown").ifPresent(value -> this.entityData.set(HEALING, value));
     }
 
     @Override
-    public void addAdditionalSaveData(@NotNull CompoundTag compound) {
-        super.addAdditionalSaveData(compound);
+    public void addAdditionalSaveData(@NotNull CompoundTag compound, HolderLookup.Provider registries) {
+        super.addAdditionalSaveData(compound, registries);
         compound.putInt("HealCooldown", this.getHealCooldown());
     }
 
