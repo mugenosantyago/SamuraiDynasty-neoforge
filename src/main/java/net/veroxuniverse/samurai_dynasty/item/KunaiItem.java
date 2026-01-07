@@ -19,7 +19,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class KunaiItem extends SwordItem {
+public class KunaiItem extends ESWeaponItem {
     public static final float BASE_DAMAGE = 8.0F;
 
     public KunaiItem(ToolMaterial toolMaterial, float attackDamage, float attackSpeed, Item.Properties settings) {
@@ -43,7 +43,6 @@ public class KunaiItem extends SwordItem {
 
         pPlayer.awardStat(Stats.ITEM_USED.get(this));
         if (!pPlayer.getAbilities().instabuild) {
-            // In 1.21.4, hurtAndBreak takes (amount, entity, slot)
             itemstack.hurtAndBreak(1, pPlayer, EquipmentSlot.MAINHAND);
         }
 
