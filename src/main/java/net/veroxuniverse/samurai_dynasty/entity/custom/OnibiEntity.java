@@ -1,6 +1,5 @@
 package net.veroxuniverse.samurai_dynasty.entity.custom;
 
-import mod.azure.azurelib.util.MoveAnalysis;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvent;
@@ -25,17 +24,12 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.phys.Vec3;
-import net.veroxuniverse.samurai_dynasty.client.entities.OnibiDispatcher;
 import net.veroxuniverse.samurai_dynasty.registry.ParticlesInit;
 import org.jetbrains.annotations.NotNull;
 
 public class OnibiEntity extends Monster {
-
-    public final OnibiDispatcher dispatcher;
-
-    public final MoveAnalysis moveAnalysis;
 
     public float flap;
     public float flapSpeed;
@@ -44,29 +38,28 @@ public class OnibiEntity extends Monster {
     private float flapping = 1.0F;
     private float nextFlap = 1.0F;
 
-    public OnibiEntity(EntityType<? extends Monster> pEntityType, Level pLevel) {
-        super(pEntityType, pLevel);
+    public OnibiEntity(EntityType<? extends Monster> entityType, Level level) {
+        super(entityType, level);
         this.moveControl = new FlyingMoveControl(this, 10, false);
-        this.setPathfindingMalus(BlockPathTypes.WATER, -1.0F);
-        this.setPathfindingMalus(BlockPathTypes.LAVA, 8.0F);
-        this.setPathfindingMalus(BlockPathTypes.DANGER_FIRE, 0.0F);
-        this.setPathfindingMalus(BlockPathTypes.DAMAGE_FIRE, 0.0F);
+        this.setPathfindingMalus(PathType.WATER, -1.0F);
+        this.setPathfindingMalus(PathType.LAVA, 8.0F);
+        this.setPathfindingMalus(PathType.DANGER_FIRE, 0.0F);
+        this.setPathfindingMalus(PathType.DAMAGE_FIRE, 0.0F);
         this.xpReward = 10;
-        this.dispatcher = new OnibiDispatcher(this);
-        this.moveAnalysis = new MoveAnalysis(this);
     }
 
-    public static AttributeSupplier setAttributes() {
+    public static AttributeSupplier.Builder createAttributes() {
         return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 8.0D)
                 .add(Attributes.FLYING_SPEED, 0.4F)
                 .add(Attributes.MOVEMENT_SPEED, 0.2F)
                 .add(Attributes.ATTACK_DAMAGE, 4.0D)
-                .add(Attributes.FOLLOW_RANGE, 48.0D).build();
+                .add(Attributes.FOLLOW_RANGE, 48.0D);
     }
 
-    protected @NotNull PathNavigation createNavigation(@NotNull Level pLevel) {
-        FlyingPathNavigation flyingpathnavigation = new FlyingPathNavigation(this, pLevel);
+    @Override
+    protected @NotNull PathNavigation createNavigation(@NotNull Level level) {
+        FlyingPathNavigation flyingpathnavigation = new FlyingPathNavigation(this, level);
         flyingpathnavigation.setCanOpenDoors(false);
         flyingpathnavigation.setCanFloat(true);
         flyingpathnavigation.setCanPassDoors(true);
@@ -76,7 +69,7 @@ public class OnibiEntity extends Monster {
     private void calculateFlapping() {
         this.oFlap = this.flap;
         this.oFlapSpeed = this.flapSpeed;
-        this.flapSpeed += (float)(!this.onGround() && !this.isPassenger() ? 4 : -1) * 0.3F;
+        this.flapSpeed += (float) (!this.onGround() && !this.isPassenger() ? 4 : -1) * 0.3F;
         this.flapSpeed = Mth.clamp(this.flapSpeed, 0.0F, 1.0F);
         if (!this.onGround() && this.flapping < 1.0F) {
             this.flapping = 1.0F;
@@ -107,83 +100,75 @@ public class OnibiEntity extends Monster {
     }
 
     @Override
-    public void tick() {
-        super.tick();
-        moveAnalysis.update();
-
-        if (this.level().isClientSide) {
-            var isMoving = moveAnalysis.isMoving();
-            Runnable animationRunner;
-            if (isMoving) {
-                animationRunner = dispatcher::walk;
-            } else {
-                animationRunner = dispatcher::idle;
-            }
-            animationRunner.run();
-        }
-    }
-
-    public boolean causeFallDamage(float pFallDistance, float pMultiplier, @NotNull DamageSource pSource) {
+    public boolean causeFallDamage(float fallDistance, float multiplier, @NotNull DamageSource source) {
         return false;
     }
 
-    protected void checkFallDamage(double pY, boolean pOnGround, @NotNull BlockState pState, @NotNull BlockPos pPos) {
+    @Override
+    protected void checkFallDamage(double y, boolean onGround, @NotNull BlockState state, @NotNull BlockPos pos) {
     }
 
+    @Override
     public boolean isSensitiveToWater() {
         return true;
     }
 
-
-
-    public boolean doHurtTarget(@NotNull Entity pEntity) {
-        if (!super.doHurtTarget(pEntity)) {
+    @Override
+    public boolean doHurtTarget(@NotNull Entity entity) {
+        if (!super.doHurtTarget(entity)) {
             return false;
         } else {
-            if (pEntity instanceof LivingEntity) {
-                pEntity.setSecondsOnFire(20);
+            if (entity instanceof LivingEntity) {
+                entity.igniteForSeconds(20);
             }
             return true;
         }
     }
 
+    @Override
     protected SoundEvent getAmbientSound() {
         return SoundEvents.ALLAY_AMBIENT_WITHOUT_ITEM;
     }
 
-    protected SoundEvent getHurtSound(@NotNull DamageSource damageSourceIn) {
+    @Override
+    protected SoundEvent getHurtSound(@NotNull DamageSource damageSource) {
         return SoundEvents.ALLAY_HURT;
     }
 
+    @Override
     protected SoundEvent getDeathSound() {
         return SoundEvents.ALLAY_DEATH;
     }
 
+    @Override
     protected float getSoundVolume() {
         return 0.2F;
     }
 
+    @Override
     protected boolean isFlapping() {
         return this.flyDist > this.nextFlap;
     }
 
+    @Override
     public boolean isPushable() {
         return true;
     }
 
-    protected void doPush(@NotNull Entity pEntity) {
-        if (!(pEntity instanceof Player)) {
-            super.doPush(pEntity);
+    @Override
+    protected void doPush(@NotNull Entity entity) {
+        if (!(entity instanceof Player)) {
+            super.doPush(entity);
         }
     }
 
+    @Override
     public void aiStep() {
         if (this.level().isClientSide) {
-            for(int i = 0; i < 2; ++i) {
+            for (int i = 0; i < 2; ++i) {
                 this.level().addParticle(ParticlesInit.BLUE_FLAME.get(), this.getRandomX(0.25D), this.getRandomY(), this.getRandomZ(0.25D), 0.0D, 0.0D, 0.0D);
             }
         }
-
         super.aiStep();
     }
 
@@ -191,20 +176,23 @@ public class OnibiEntity extends Monster {
         return !this.onGround();
     }
 
+    @Override
     public @NotNull Vec3 getLeashOffset() {
         return new Vec3(0.0D, 0.5F * this.getEyeHeight(), this.getBbWidth() * 0.4F);
     }
 
+    @Override
     protected void onFlap() {
         this.nextFlap = this.flyDist + this.flapSpeed / 2.0F;
     }
 
     static class SpiritFloatGoal extends WaterAvoidingRandomFlyingGoal {
-        public SpiritFloatGoal(PathfinderMob pMob, double pSpeed) {
-            super(pMob, pSpeed);
+        public SpiritFloatGoal(PathfinderMob mob, double speed) {
+            super(mob, speed);
         }
 
         @javax.annotation.Nullable
+        @Override
         protected Vec3 getPosition() {
             Vec3 vec3 = null;
             if (this.mob.isInWater()) {
@@ -225,21 +213,19 @@ public class OnibiEntity extends Monster {
         @javax.annotation.Nullable
         private Vec3 getTreePos() {
             BlockPos blockpos = this.mob.blockPosition();
-            BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
-            BlockPos.MutableBlockPos blockpos$mutableblockpos1 = new BlockPos.MutableBlockPos();
+            BlockPos.MutableBlockPos mutableBlockPos = new BlockPos.MutableBlockPos();
+            BlockPos.MutableBlockPos mutableBlockPos1 = new BlockPos.MutableBlockPos();
 
-            for(BlockPos blockpos1 : BlockPos.betweenClosed(Mth.floor(this.mob.getX() - 3.0D), Mth.floor(this.mob.getY() - 6.0D), Mth.floor(this.mob.getZ() - 3.0D), Mth.floor(this.mob.getX() + 3.0D), Mth.floor(this.mob.getY() + 6.0D), Mth.floor(this.mob.getZ() + 3.0D))) {
+            for (BlockPos blockpos1 : BlockPos.betweenClosed(Mth.floor(this.mob.getX() - 3.0D), Mth.floor(this.mob.getY() - 6.0D), Mth.floor(this.mob.getZ() - 3.0D), Mth.floor(this.mob.getX() + 3.0D), Mth.floor(this.mob.getY() + 6.0D), Mth.floor(this.mob.getZ() + 3.0D))) {
                 if (!blockpos.equals(blockpos1)) {
-                    BlockState blockstate = this.mob.level().getBlockState(blockpos$mutableblockpos1.setWithOffset(blockpos1, Direction.DOWN));
+                    BlockState blockstate = this.mob.level().getBlockState(mutableBlockPos1.setWithOffset(blockpos1, Direction.DOWN));
                     boolean flag = blockstate.getBlock() instanceof LeavesBlock || blockstate.is(BlockTags.LOGS);
-                    if (flag && this.mob.level().isEmptyBlock(blockpos1) && this.mob.level().isEmptyBlock(blockpos$mutableblockpos.setWithOffset(blockpos1, Direction.UP))) {
+                    if (flag && this.mob.level().isEmptyBlock(blockpos1) && this.mob.level().isEmptyBlock(mutableBlockPos.setWithOffset(blockpos1, Direction.UP))) {
                         return Vec3.atBottomCenterOf(blockpos1);
                     }
                 }
             }
-
             return null;
         }
     }
-
 }

@@ -1,6 +1,5 @@
 package net.veroxuniverse.samurai_dynasty.entity.custom;
 
-import mod.azure.azurelib.util.MoveAnalysis;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -18,35 +17,27 @@ import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.veroxuniverse.samurai_dynasty.client.entities.OniDispatcher;
-import net.veroxuniverse.samurai_dynasty.entity.custom.goals.AnimatedMeleeAttackGoal;
 
-public class OniEntity extends Monster{
+public class OniEntity extends Monster {
 
-    public final OniDispatcher dispatcher;
-
-    public final MoveAnalysis moveAnalysis;
-
-    public OniEntity(EntityType<? extends Monster> pEntityType, Level pLevel) {
-        super(pEntityType, pLevel);
-        this.dispatcher = new OniDispatcher(this);
-        this.moveAnalysis = new MoveAnalysis(this);
+    public OniEntity(EntityType<? extends Monster> entityType, Level level) {
+        super(entityType, level);
     }
 
-    public static AttributeSupplier setAttributes() {
+    public static AttributeSupplier.Builder createAttributes() {
         return Monster.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 100.0D)
                 .add(Attributes.ATTACK_DAMAGE, 7.0f)
                 .add(Attributes.ATTACK_SPEED, 1.6f)
                 .add(Attributes.FOLLOW_RANGE, 16.0D)
                 .add(Attributes.ATTACK_KNOCKBACK, 1D)
-                .add(Attributes.MOVEMENT_SPEED, 0.20f).build();
+                .add(Attributes.MOVEMENT_SPEED, 0.20f);
     }
 
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new FloatGoal(this));
-        this.goalSelector.addGoal(2, new AnimatedMeleeAttackGoal<>(this, 1.2D, false, (oni, target) -> oni.dispatcher.attack()));
+        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.2D, false));
         this.goalSelector.addGoal(4, new WaterAvoidingRandomStrollGoal(this, 1.0D));
         this.goalSelector.addGoal(5, new LookAtPlayerGoal(this, Player.class, 6.0F));
         this.goalSelector.addGoal(6, new RandomLookAroundGoal(this));
@@ -59,45 +50,27 @@ public class OniEntity extends Monster{
     }
 
     @Override
-    public void tick() {
-        super.tick();
-        moveAnalysis.update();
-
-        if (this.level().isClientSide) {
-            var isMovingOnGround = moveAnalysis.isMovingHorizontally() && onGround();
-            Runnable animationRunner;
-            if (isMovingOnGround) {
-                animationRunner = dispatcher::walk;
-            } else {
-                animationRunner = dispatcher::idle;
-            }
-            animationRunner.run();
-        }
-    }
-
-    @Override
-    public int getCurrentSwingDuration() {
-        return 10;
-    }
-
-    protected void playStepSound(BlockPos pos, BlockState blockIn) {
+    protected void playStepSound(BlockPos pos, BlockState block) {
         this.playSound(SoundEvents.RAVAGER_STEP, 0.15F, 1.0F);
     }
 
+    @Override
     protected SoundEvent getAmbientSound() {
         return SoundEvents.RAVAGER_AMBIENT;
     }
 
-    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
+    @Override
+    protected SoundEvent getHurtSound(DamageSource damageSource) {
         return SoundEvents.RAVAGER_HURT;
     }
 
+    @Override
     protected SoundEvent getDeathSound() {
         return SoundEvents.RAVAGER_DEATH;
     }
 
+    @Override
     protected float getSoundVolume() {
         return 0.2F;
     }
-
 }

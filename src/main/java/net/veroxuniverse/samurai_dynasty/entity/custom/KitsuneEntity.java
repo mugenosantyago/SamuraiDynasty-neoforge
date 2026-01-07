@@ -1,6 +1,5 @@
 package net.veroxuniverse.samurai_dynasty.entity.custom;
 
-import mod.azure.azurelib.util.MoveAnalysis;
 import net.minecraft.Util;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -20,49 +19,37 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraft.world.level.pathfinder.BlockPathTypes;
-import net.veroxuniverse.samurai_dynasty.client.entities.KitsuneDispatcher;
-import net.veroxuniverse.samurai_dynasty.entity.custom.goals.KitsuneAttackGoal;
+import net.minecraft.world.level.pathfinder.PathType;
 import net.veroxuniverse.samurai_dynasty.entity.variant.KitsuneVariant;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import static net.minecraft.world.entity.monster.hoglin.HoglinBase.throwTarget;
+
 public class KitsuneEntity extends Monster {
-
-    public final KitsuneDispatcher dispatcher;
-
-    public final MoveAnalysis moveAnalysis;
 
     private static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT =
             SynchedEntityData.defineId(KitsuneEntity.class, EntityDataSerializers.INT);
 
-    public KitsuneEntity(EntityType<? extends Monster> pEntityType, Level pLevel) {
-        super(pEntityType, pLevel);
-        this.setPathfindingMalus(BlockPathTypes.POWDER_SNOW, -1.0F);
-        this.setPathfindingMalus(BlockPathTypes.DANGER_POWDER_SNOW, -1.0F);
-        this.dispatcher = new KitsuneDispatcher(this);
-        this.moveAnalysis = new MoveAnalysis(this);
+    public KitsuneEntity(EntityType<? extends Monster> entityType, Level level) {
+        super(entityType, level);
+        this.setPathfindingMalus(PathType.POWDER_SNOW, -1.0F);
+        this.setPathfindingMalus(PathType.DANGER_POWDER_SNOW, -1.0F);
     }
 
-    public static AttributeSupplier setAttributes() {return Monster.createMobAttributes()
+    public static AttributeSupplier.Builder createAttributes() {
+        return Monster.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 100.0D)
                 .add(Attributes.ATTACK_DAMAGE, 8.0f)
                 .add(Attributes.ATTACK_SPEED, 0.3f)
                 .add(Attributes.FOLLOW_RANGE, 25.0f)
-                .add(Attributes.MOVEMENT_SPEED, 0.3F).build();
+                .add(Attributes.MOVEMENT_SPEED, 0.3F);
     }
 
     @Override
     protected void registerGoals() {
-
         this.goalSelector.addGoal(1, new FloatGoal(this));
-        this.goalSelector.addGoal(2, new KitsuneAttackGoal(this, 1.0D, true,
-                () -> this.dispatcher.attack(),
-                () -> this.dispatcher.attack() ));
-        //this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.2D, true)); Not needed > KitsuneAttackGoal
-        //this.goalSelector.addGoal(3, new MoveTowardsTargetGoal(this, 1.2D, 25.0F)); Not needed > KitsuneAttackGoal
-
+        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0D, true));
         this.goalSelector.addGoal(4, new LeapAtTargetGoal(this, 0.4F));
         this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0D));
         this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 6.0F));
@@ -70,31 +57,12 @@ public class KitsuneEntity extends Monster {
 
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, false));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolem.class, false));
-        //this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, true)); Villager Attack
-
     }
 
     @Override
-    public void tick() {
-        super.tick();
-        moveAnalysis.update();
-
-        if (this.level().isClientSide) {
-            var isMovingOnGround = moveAnalysis.isMovingHorizontally() && onGround();
-            Runnable animationRunner;
-            if (isMovingOnGround) {
-                animationRunner = dispatcher::walk;
-            } else {
-                animationRunner = dispatcher::idle;
-            }
-            animationRunner.run();
-        }
-    }
-
-    @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(DATA_ID_TYPE_VARIANT, 0);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(DATA_ID_TYPE_VARIANT, 0);
     }
 
     public KitsuneVariant getVariant() {
@@ -110,78 +78,79 @@ public class KitsuneEntity extends Monster {
     }
 
     @Override
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor pLevel, DifficultyInstance pDifficulty, MobSpawnType pReason,
-                                        @Nullable SpawnGroupData pSpawnData, @Nullable CompoundTag pDataTag) {
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, EntitySpawnReason reason,
+                                        @Nullable SpawnGroupData spawnData) {
         KitsuneVariant variant = Util.getRandom(KitsuneVariant.values(), this.random);
         this.setVariant(variant);
-        return super.finalizeSpawn(pLevel, pDifficulty, pReason, pSpawnData, pDataTag);
+        return super.finalizeSpawn(level, difficulty, reason, spawnData);
     }
 
     @Override
-    public void readAdditionalSaveData(CompoundTag pCompound) {
-        super.readAdditionalSaveData(pCompound);
-        this.entityData.set(DATA_ID_TYPE_VARIANT, pCompound.getInt("Variant"));
+    public void readAdditionalSaveData(CompoundTag compound) {
+        super.readAdditionalSaveData(compound);
+        this.entityData.set(DATA_ID_TYPE_VARIANT, compound.getInt("Variant"));
     }
 
     @Override
-    public void addAdditionalSaveData(CompoundTag pCompound) {
-        super.addAdditionalSaveData(pCompound);
-        pCompound.putInt("Variant", this.getTypeVariant());
+    public void addAdditionalSaveData(CompoundTag compound) {
+        super.addAdditionalSaveData(compound);
+        compound.putInt("Variant", this.getTypeVariant());
     }
 
-    @Override
-    public int getCurrentSwingDuration() {
-        return 18;
-    }
-
-    static boolean hurtAndThrowTarget(LivingEntity pKitsune, LivingEntity pTarget) {
-        float f1 = (float)pKitsune.getAttributeValue(Attributes.ATTACK_DAMAGE);
+    static boolean hurtAndThrowTarget(LivingEntity kitsune, LivingEntity target) {
+        float f1 = (float) kitsune.getAttributeValue(Attributes.ATTACK_DAMAGE);
         float f;
-        if ((int)f1 > 0) {
-            f = f1 / 2.0F + (float)pKitsune.level().random.nextInt((int)f1);
+        if ((int) f1 > 0) {
+            f = f1 / 2.0F + (float) kitsune.level().random.nextInt((int) f1);
         } else {
             f = f1;
         }
 
-        boolean flag = pTarget.hurt(pTarget.damageSources().mobAttack(pKitsune), f);
+        boolean flag = target.hurt(target.damageSources().mobAttack(kitsune), f);
         if (flag) {
-            pKitsune.doEnchantDamageEffects(pKitsune, pTarget);
-            throwTarget(pKitsune, pTarget);
+            kitsune.doEnchantDamageEffects(kitsune, target);
+            throwTarget(kitsune, target);
         }
 
         return flag;
     }
 
     @Override
-    public boolean doHurtTarget(@NotNull Entity pEntity) {
-        if (!(pEntity instanceof LivingEntity)) {
+    public boolean doHurtTarget(@NotNull Entity entity) {
+        if (!(entity instanceof LivingEntity)) {
             return false;
         } else {
             this.playSound(SoundEvents.FOX_BITE, 1.0F, 0.4F);
-            return hurtAndThrowTarget(this, (LivingEntity)pEntity);
+            return hurtAndThrowTarget(this, (LivingEntity) entity);
         }
     }
 
+    @Override
     public int getMaxSpawnClusterSize() {
         return 6;
     }
 
+    @Override
     protected SoundEvent getAmbientSound() {
         return SoundEvents.FOX_AMBIENT;
     }
 
-    protected SoundEvent getHurtSound(@NotNull DamageSource damageSourceIn) {
+    @Override
+    protected SoundEvent getHurtSound(@NotNull DamageSource damageSource) {
         return SoundEvents.FOX_HURT;
     }
 
+    @Override
     protected SoundEvent getDeathSound() {
         return SoundEvents.FOX_DEATH;
     }
 
+    @Override
     protected float getSoundVolume() {
         return 0.5F;
     }
 
+    @Override
     public float getVoicePitch() {
         return 0.5F;
     }

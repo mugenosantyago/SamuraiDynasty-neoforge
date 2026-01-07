@@ -1,6 +1,5 @@
 package net.veroxuniverse.samurai_dynasty.entity.custom;
 
-import mod.azure.azurelib.util.MoveAnalysis;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -18,27 +17,19 @@ import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.veroxuniverse.samurai_dynasty.client.entities.AkanameDispatcher;
-import net.veroxuniverse.samurai_dynasty.client.entities.EnenraDispatcher;
 
-public class EnenraEntity extends Monster{
+public class EnenraEntity extends Monster {
 
-    public final EnenraDispatcher dispatcher;
-
-    public final MoveAnalysis moveAnalysis;
-
-    public EnenraEntity(EntityType<? extends Monster> pEntityType, Level pLevel) {
-        super(pEntityType, pLevel);
-        this.dispatcher = new EnenraDispatcher(this);
-        this.moveAnalysis = new MoveAnalysis(this);
+    public EnenraEntity(EntityType<? extends Monster> entityType, Level level) {
+        super(entityType, level);
     }
 
-    public static AttributeSupplier setAttributes() {
+    public static AttributeSupplier.Builder createAttributes() {
         return Monster.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 20.0D)
                 .add(Attributes.ATTACK_DAMAGE, 3.0f)
                 .add(Attributes.ATTACK_SPEED, 0.2f)
-                .add(Attributes.MOVEMENT_SPEED, 0.23f).build();
+                .add(Attributes.MOVEMENT_SPEED, 0.23f);
     }
 
     @Override
@@ -57,22 +48,6 @@ public class EnenraEntity extends Monster{
     }
 
     @Override
-    public void tick() {
-        super.tick();
-        moveAnalysis.update();
-
-        if (this.level().isClientSide) {
-            var isMovingOnGround = moveAnalysis.isMovingHorizontally() && onGround();
-            Runnable animationRunner;
-            if (isMovingOnGround) {
-                animationRunner = dispatcher::walk;
-            } else {
-                animationRunner = dispatcher::idle;
-            }
-            animationRunner.run();
-        }
-    }
-
     public void aiStep() {
         if (this.isAlive()) {
             boolean flag = this.isSunSensitive() && this.isSunBurnTick();
@@ -82,22 +57,21 @@ public class EnenraEntity extends Monster{
                     if (itemstack.isDamageableItem()) {
                         itemstack.setDamageValue(itemstack.getDamageValue() + this.random.nextInt(2));
                         if (itemstack.getDamageValue() >= itemstack.getMaxDamage()) {
-                            this.broadcastBreakEvent(EquipmentSlot.HEAD);
+                            this.onEquippedItemBroken(itemstack.getItem(), EquipmentSlot.HEAD);
                             this.setItemSlot(EquipmentSlot.HEAD, ItemStack.EMPTY);
                         }
                     }
-
                     flag = false;
                 }
 
                 if (flag) {
-                    this.setSecondsOnFire(8);
+                    this.igniteForSeconds(8);
                 }
             }
         }
 
         if (this.level().isClientSide) {
-            for(int i = 0; i < 2; ++i) {
+            for (int i = 0; i < 2; ++i) {
                 this.level().addParticle(ParticleTypes.SMOKE, this.getRandomX(0.25D), this.getRandomY(), this.getRandomZ(0.25D), 0.0D, 0.0D, 0.0D);
             }
         }
@@ -105,29 +79,27 @@ public class EnenraEntity extends Monster{
         super.aiStep();
     }
 
-    public boolean causeFallDamage(float pFallDistance, float pMultiplier, DamageSource pSource) {
+    @Override
+    public boolean causeFallDamage(float fallDistance, float multiplier, DamageSource source) {
         return false;
     }
 
-    /*
-    protected void playStepSound(BlockPos pos, BlockState blockIn) {
-        this.playSound(SoundEvents.ZOMBIE_VILLAGER_STEP, 0.15F, 1.0F);
-    }
-    */
-
+    @Override
     protected SoundEvent getAmbientSound() {
-
         return SoundEvents.VEX_AMBIENT;
     }
 
-    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
+    @Override
+    protected SoundEvent getHurtSound(DamageSource damageSource) {
         return SoundEvents.VEX_HURT;
     }
 
+    @Override
     protected SoundEvent getDeathSound() {
         return SoundEvents.VEX_DEATH;
     }
 
+    @Override
     protected float getSoundVolume() {
         return 0.2F;
     }
@@ -135,5 +107,4 @@ public class EnenraEntity extends Monster{
     protected boolean isSunSensitive() {
         return true;
     }
-
 }

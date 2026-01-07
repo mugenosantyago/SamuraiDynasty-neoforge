@@ -1,6 +1,5 @@
 package net.veroxuniverse.samurai_dynasty.entity.custom;
 
-import mod.azure.azurelib.util.MoveAnalysis;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -19,33 +18,25 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.veroxuniverse.samurai_dynasty.client.entities.AkanameDispatcher;
-import net.veroxuniverse.samurai_dynasty.entity.custom.goals.AnimatedMeleeAttackGoal;
 
-public class AkanameEntity extends Monster{
+public class AkanameEntity extends Monster {
 
-    public final AkanameDispatcher dispatcher;
-
-    public final MoveAnalysis moveAnalysis;
-
-    public AkanameEntity(EntityType<? extends Monster> pEntityType, Level pLevel) {
-        super(pEntityType, pLevel);
-        this.dispatcher = new AkanameDispatcher(this);
-        this.moveAnalysis = new MoveAnalysis(this);
+    public AkanameEntity(EntityType<? extends Monster> entityType, Level level) {
+        super(entityType, level);
     }
 
-    public static AttributeSupplier setAttributes() {
+    public static AttributeSupplier.Builder createAttributes() {
         return Monster.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 20.0D)
                 .add(Attributes.ATTACK_DAMAGE, 3.0f)
                 .add(Attributes.ATTACK_SPEED, 0.2f)
-                .add(Attributes.MOVEMENT_SPEED, 0.23f).build();
+                .add(Attributes.MOVEMENT_SPEED, 0.23f);
     }
 
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new FloatGoal(this));
-        this.goalSelector.addGoal(2, new AnimatedMeleeAttackGoal<>(this, 1.2D, false, (akaname, target) -> akaname.dispatcher.attack()));
+        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.2D, false));
         this.goalSelector.addGoal(3, new FleeSunGoal(this, 1.0D));
         this.goalSelector.addGoal(4, new WaterAvoidingRandomStrollGoal(this, 1.0D));
         this.goalSelector.addGoal(5, new LookAtPlayerGoal(this, Player.class, 6.0F));
@@ -58,22 +49,6 @@ public class AkanameEntity extends Monster{
     }
 
     @Override
-    public void tick() {
-        super.tick();
-        moveAnalysis.update();
-
-        if (this.level().isClientSide) {
-            var isMovingOnGround = moveAnalysis.isMovingHorizontally() && onGround();
-            Runnable animationRunner;
-           if (isMovingOnGround) {
-               animationRunner = dispatcher::walk;
-            } else {
-                animationRunner = dispatcher::idle;
-            }
-            animationRunner.run();
-        }
-    }
-
     public void aiStep() {
         if (this.isAlive()) {
             boolean flag = this.isSunSensitive() && this.isSunBurnTick();
@@ -83,44 +58,42 @@ public class AkanameEntity extends Monster{
                     if (itemstack.isDamageableItem()) {
                         itemstack.setDamageValue(itemstack.getDamageValue() + this.random.nextInt(2));
                         if (itemstack.getDamageValue() >= itemstack.getMaxDamage()) {
-                            this.broadcastBreakEvent(EquipmentSlot.HEAD);
+                            this.onEquippedItemBroken(itemstack.getItem(), EquipmentSlot.HEAD);
                             this.setItemSlot(EquipmentSlot.HEAD, ItemStack.EMPTY);
                         }
                     }
-
                     flag = false;
                 }
 
                 if (flag) {
-                    this.setSecondsOnFire(8);
+                    this.igniteForSeconds(8);
                 }
             }
         }
-
         super.aiStep();
     }
 
     @Override
-    public int getCurrentSwingDuration() {
-        return 10;
-    }
-
-    protected void playStepSound(BlockPos pos, BlockState blockIn) {
+    protected void playStepSound(BlockPos pos, BlockState block) {
         this.playSound(SoundEvents.DROWNED_STEP, 0.15F, 1.0F);
     }
 
+    @Override
     protected SoundEvent getAmbientSound() {
         return SoundEvents.DROWNED_AMBIENT;
     }
 
-    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
+    @Override
+    protected SoundEvent getHurtSound(DamageSource damageSource) {
         return SoundEvents.DROWNED_HURT;
     }
 
+    @Override
     protected SoundEvent getDeathSound() {
         return SoundEvents.DROWNED_DEATH;
     }
 
+    @Override
     protected float getSoundVolume() {
         return 0.2F;
     }
@@ -128,5 +101,4 @@ public class AkanameEntity extends Monster{
     protected boolean isSunSensitive() {
         return true;
     }
-
 }

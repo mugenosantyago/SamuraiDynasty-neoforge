@@ -18,47 +18,53 @@ public class RoofBlock extends HorizontalDirectionalBlock {
 
     public static final VoxelShape SHAPE_BASE = Block.box(0D, 0D, 0D, 16.0D, 16.0D, 16.0D);
 
-    public RoofBlock(Properties pProperties) {
-        super(pProperties);
+    public RoofBlock(Properties properties) {
+        super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
 
-
-    public RenderShape getRenderShape(BlockState pState) {
+    @Override
+    protected @NotNull RenderShape getRenderShape(BlockState state) {
         return RenderShape.MODEL;
     }
 
-    public @NotNull VoxelShape getOcclusionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos) {
+    @Override
+    protected @NotNull VoxelShape getOcclusionShape(BlockState state) {
         return SHAPE_BASE;
     }
 
-    public boolean useShapeForLightOcclusion(BlockState pState) {
+    @Override
+    protected boolean useShapeForLightOcclusion(BlockState state) {
         return true;
     }
 
-    public BlockState getStateForPlacement(BlockPlaceContext pContext) {
-        return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite());
+    @Override
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
 
-    public @NotNull VoxelShape getCollisionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+    @Override
+    protected @NotNull VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         return SHAPE_BASE;
     }
 
-
-    public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext context) {
+    @Override
+    protected @NotNull VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         return SHAPE_BASE;
     }
 
-    public @NotNull BlockState rotate(BlockState pState, Rotation pRotation) {
-        return pState.setValue(FACING, pRotation.rotate(pState.getValue(FACING)));
+    @Override
+    protected @NotNull BlockState rotate(BlockState state, Rotation rotation) {
+        return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
     }
 
-    public @NotNull BlockState mirror(BlockState pState, Mirror pMirror) {
-        return pState.rotate(pMirror.getRotation(pState.getValue(FACING)));
+    @Override
+    protected @NotNull BlockState mirror(BlockState state, Mirror mirror) {
+        return state.rotate(mirror.getRotation(state.getValue(FACING)));
     }
 
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-        pBuilder.add(FACING);
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(FACING);
     }
-
 }

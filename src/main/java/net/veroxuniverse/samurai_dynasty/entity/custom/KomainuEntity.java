@@ -1,6 +1,5 @@
 package net.veroxuniverse.samurai_dynasty.entity.custom;
 
-import mod.azure.azurelib.util.MoveAnalysis;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -29,82 +28,47 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.event.ForgeEventFactory;
-import net.veroxuniverse.samurai_dynasty.client.entities.KomainuDispatcher;
 import net.veroxuniverse.samurai_dynasty.entity.ModEntityTypes;
-import net.veroxuniverse.samurai_dynasty.entity.custom.goals.AnimatedMeleeAttackGoal;
 import net.veroxuniverse.samurai_dynasty.entity.variant.KomainuVariant;
 import org.jetbrains.annotations.Nullable;
 
 public class KomainuEntity extends TamableAnimal {
-
-    public final KomainuDispatcher dispatcher;
-
-    public final MoveAnalysis moveAnalysis;
 
     private static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT =
             SynchedEntityData.defineId(KomainuEntity.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Boolean> ATTACKING =
             SynchedEntityData.defineId(KomainuEntity.class, EntityDataSerializers.BOOLEAN);
 
-    public KomainuEntity(EntityType<? extends TamableAnimal> pEntityType, Level pLevel) {
-        super(pEntityType, pLevel);
-        this.setTame(false);
-        this.dispatcher = new KomainuDispatcher(this);
-        this.moveAnalysis = new MoveAnalysis(this);
+    public KomainuEntity(EntityType<? extends TamableAnimal> entityType, Level level) {
+        super(entityType, level);
+        this.setTame(false, false);
     }
 
-
-    public static AttributeSupplier setAttributes() {
+    public static AttributeSupplier.Builder createAttributes() {
         return Animal.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 20.0D)
                 .add(Attributes.FOLLOW_RANGE, 25D)
                 .add(Attributes.ATTACK_DAMAGE, 3.0f)
-                .add(Attributes.MOVEMENT_SPEED, 0.3D).build();
+                .add(Attributes.MOVEMENT_SPEED, 0.3D);
     }
-
 
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(0, new SitWhenOrderedToGoal(this));
-        //this.goalSelector.addGoal(1, new LeapAtTargetGoal(this, 0.4F));
-        this.goalSelector.addGoal(2, new AnimatedMeleeAttackGoal<>(this, 1.2D, false, (komainu, target) -> komainu.dispatcher.attack()));
+        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.2D, false));
         this.goalSelector.addGoal(3, new BreedGoal(this, 1.0D));
         this.goalSelector.addGoal(4, new TemptGoal(this, 1.2D, Ingredient.of(Items.COOKED_BEEF), true));
-        this.goalSelector.addGoal(5, new FollowOwnerGoal(this, 1.2F, 8.0F, 2.0F, false));
+        this.goalSelector.addGoal(5, new FollowOwnerGoal(this, 1.2F, 8.0F, 2.0F));
         this.goalSelector.addGoal(5, new FollowParentGoal(this, 1.2F));
-
         this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 1.0D));
         this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
         this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
-
 
         this.targetSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
         this.targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
     }
 
-    @Override
-    public void tick(){
-        super.tick();
-        moveAnalysis.update();
-
-        if (this.level().isClientSide) {
-            var isMovingOnGround = moveAnalysis.isMovingHorizontally() && onGround();
-            Runnable animationRunner;
-            if (this.isInSittingPose() && this.isTame()) {
-                animationRunner = dispatcher::sit;
-            } else if (isMovingOnGround) {
-                animationRunner = dispatcher::walk;
-            } else {
-                animationRunner = dispatcher::idle;
-            }
-            animationRunner.run();
-        }
-    }
-
-    /*
-
     public void setAttacking(boolean attacking) {
         this.entityData.set(ATTACKING, attacking);
     }
@@ -113,22 +77,11 @@ public class KomainuEntity extends TamableAnimal {
         return this.entityData.get(ATTACKING);
     }
 
-     */
-
-
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(DATA_ID_TYPE_VARIANT, 0);
-        this.entityData.define(ATTACKING, false);
-    }
-
-    public void setAttacking(boolean attacking) {
-        this.entityData.set(ATTACKING, attacking);
-    }
-
-    public boolean isAttacking() {
-        return this.entityData.get(ATTACKING);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(DATA_ID_TYPE_VARIANT, 0);
+        builder.define(ATTACKING, false);
     }
 
     public KomainuVariant getVariant() {
@@ -144,98 +97,92 @@ public class KomainuEntity extends TamableAnimal {
     }
 
     @Override
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor pLevel, DifficultyInstance pDifficulty, MobSpawnType pReason,
-                                        @Nullable SpawnGroupData pSpawnData, @Nullable CompoundTag pDataTag) {
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, EntitySpawnReason reason,
+                                        @Nullable SpawnGroupData spawnData) {
         KomainuVariant variant = Util.getRandom(KomainuVariant.values(), this.random);
         this.setVariant(variant);
-        return super.finalizeSpawn(pLevel, pDifficulty, pReason, pSpawnData, pDataTag);
+        return super.finalizeSpawn(level, difficulty, reason, spawnData);
     }
 
     @Override
-    public void readAdditionalSaveData(CompoundTag pCompound) {
-        super.readAdditionalSaveData(pCompound);
-        this.entityData.set(DATA_ID_TYPE_VARIANT, pCompound.getInt("Variant"));
+    public void readAdditionalSaveData(CompoundTag compound) {
+        super.readAdditionalSaveData(compound);
+        this.entityData.set(DATA_ID_TYPE_VARIANT, compound.getInt("Variant"));
     }
 
     @Override
-    public void addAdditionalSaveData(CompoundTag pCompound) {
-        super.addAdditionalSaveData(pCompound);
-        pCompound.putInt("Variant", this.getTypeVariant());
+    public void addAdditionalSaveData(CompoundTag compound) {
+        super.addAdditionalSaveData(compound);
+        compound.putInt("Variant", this.getTypeVariant());
     }
 
     @Override
-    public InteractionResult mobInteract(Player pPlayer, InteractionHand pHand) {
-        ItemStack itemstack = pPlayer.getItemInHand(pHand);
+    public InteractionResult mobInteract(Player player, InteractionHand hand) {
+        ItemStack itemstack = player.getItemInHand(hand);
         Item item = itemstack.getItem();
-
         Item itemForTaming = Items.BONE;
 
-        if(item == itemForTaming && !isTame()) {
-            if(this.level().isClientSide()) {
+        if (item == itemForTaming && !isTame()) {
+            if (this.level().isClientSide()) {
                 return InteractionResult.CONSUME;
             } else {
-                if (!pPlayer.getAbilities().instabuild) {
+                if (!player.getAbilities().instabuild) {
                     itemstack.shrink(1);
                 }
 
-                if (!ForgeEventFactory.onAnimalTame(this, pPlayer)) {
-                    super.tame(pPlayer);
-                    this.navigation.recomputePath();
-                    this.setTarget(null);
-                    this.level().broadcastEntityEvent(this, (byte)7);
-                    setOrderedToSit(true);
-                    this.setInSittingPose(true);
-                }
+                this.tame(player);
+                this.navigation.recomputePath();
+                this.setTarget(null);
+                this.level().broadcastEntityEvent(this, (byte) 7);
+                setOrderedToSit(true);
+                this.setInSittingPose(true);
 
                 return InteractionResult.SUCCESS;
             }
         }
 
-        if(isTame() && pHand == InteractionHand.MAIN_HAND && !isFood(itemstack)) {
-
-            // TOGGLES SITTING FOR OUR ENTITY
+        if (isTame() && hand == InteractionHand.MAIN_HAND && !isFood(itemstack)) {
             setOrderedToSit(!isOrderedToSit());
             setInSittingPose(!isOrderedToSit());
-
             return InteractionResult.SUCCESS;
         }
 
-        return super.mobInteract(pPlayer, pHand);
+        return super.mobInteract(player, hand);
     }
 
     @Override
-    public boolean isFood(ItemStack pStack) {
-        return pStack.is(Items.BEEF);
+    public boolean isFood(ItemStack stack) {
+        return stack.is(Items.BEEF);
     }
 
     @Override
-    public int getCurrentSwingDuration() {
-        return 14;
-    }
-
-    protected void playStepSound(BlockPos pos, BlockState blockIn) {
+    protected void playStepSound(BlockPos pos, BlockState block) {
         this.playSound(SoundEvents.WOLF_STEP, 0.15F, 1.0F);
     }
 
+    @Override
     protected SoundEvent getAmbientSound() {
         return SoundEvents.WOLF_AMBIENT;
     }
 
-    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
+    @Override
+    protected SoundEvent getHurtSound(DamageSource damageSource) {
         return SoundEvents.WOLF_HURT;
     }
 
+    @Override
     protected SoundEvent getDeathSound() {
         return SoundEvents.WOLF_DEATH;
     }
 
+    @Override
     protected float getSoundVolume() {
         return 0.2F;
     }
 
     @Nullable
     @Override
-    public AgeableMob getBreedOffspring(ServerLevel pLevel, AgeableMob pOtherParent) {
-        return ModEntityTypes.KOMAINU.get().create(pLevel);
+    public AgeableMob getBreedOffspring(ServerLevel level, AgeableMob otherParent) {
+        return ModEntityTypes.KOMAINU.get().create(level, EntitySpawnReason.BREEDING);
     }
 }

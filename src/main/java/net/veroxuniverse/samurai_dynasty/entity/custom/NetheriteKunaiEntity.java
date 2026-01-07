@@ -3,16 +3,12 @@ package net.veroxuniverse.samurai_dynasty.entity.custom;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ThrowableItemProjectile;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
@@ -22,54 +18,48 @@ import org.jetbrains.annotations.NotNull;
 
 public class NetheriteKunaiEntity extends ThrowableItemProjectile {
 
-    public NetheriteKunaiEntity(EntityType<? extends ThrowableItemProjectile> pEntityType, Level pLevel) {super(pEntityType, pLevel);}
-
-    public NetheriteKunaiEntity(Level pLevel, LivingEntity pShooter) {
-        super(ModEntityTypes.KUNAI_NETHERITE.get(), pShooter, pLevel);
+    public NetheriteKunaiEntity(EntityType<? extends ThrowableItemProjectile> entityType, Level level) {
+        super(entityType, level);
     }
 
+    public NetheriteKunaiEntity(Level level, LivingEntity shooter) {
+        super(ModEntityTypes.KUNAI_NETHERITE.get(), shooter, level);
+    }
 
+    @Override
     protected @NotNull Item getDefaultItem() {
         return ItemsRegistry.KUNAI_NETHERITE.get();
     }
 
     private ParticleOptions getParticle() {
-        ItemStack itemstack = this.getItemRaw();
+        ItemStack itemstack = this.getItem();
         return itemstack.isEmpty() ? ParticleTypes.CRIT : new ItemParticleOption(ParticleTypes.ITEM, itemstack);
     }
 
-    public void handleEntityEvent(byte pId) {
-        if (pId == 3) {
+    @Override
+    public void handleEntityEvent(byte id) {
+        if (id == 3) {
             ParticleOptions particleoptions = this.getParticle();
-
             for (int i = 0; i < 8; ++i) {
                 this.level().addParticle(particleoptions, this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D, 0.0D);
             }
         }
-
     }
 
-    protected void onHitEntity(@NotNull EntityHitResult pResult) {
-        super.onHitEntity(pResult);
-        Entity entity = pResult.getEntity();
-        if (this.getOwner() instanceof Player) {
-            ItemStack itemstack = ((Player) this.getOwner()).getItemInHand(InteractionHand.MAIN_HAND);
-            int sharpnessLvl = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SHARPNESS, itemstack);
-            if (sharpnessLvl > 0) {
-                entity.hurt(entity.damageSources().thrown(this, this.getOwner()), (float) (sharpnessLvl * 0.5D + 8));
-            } else {
-                entity.hurt(entity.damageSources().thrown(this, this.getOwner()),  8);
-            }
-        }
+    @Override
+    protected void onHitEntity(@NotNull EntityHitResult result) {
+        super.onHitEntity(result);
+        Entity entity = result.getEntity();
+        // Simplified damage calculation - enchantment system changed significantly in 1.21
+        entity.hurt(entity.damageSources().thrown(this, this.getOwner()), 10);
     }
 
-    protected void onHit(@NotNull HitResult pResult) {
-        super.onHit(pResult);
+    @Override
+    protected void onHit(@NotNull HitResult result) {
+        super.onHit(result);
         if (!this.level().isClientSide) {
             this.level().broadcastEntityEvent(this, (byte) 3);
             this.discard();
         }
-
     }
-
 }
