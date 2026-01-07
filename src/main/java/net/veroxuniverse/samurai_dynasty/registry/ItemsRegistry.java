@@ -40,48 +40,12 @@ public class ItemsRegistry {
     public static final DeferredItem<Item> STEEL_INGOT = ITEMS.registerSimpleItem("steel_ingot");
 
     // ========== BLOCK ITEMS ==========
+    // TODO: Blocks disabled due to "Block id not set" registration timing issues in NeoForge 1.21.8
+    // Block items cannot be registered using registerSimpleBlockItem() as it causes premature .get() calls
+    /*
     public static final DeferredItem<BlockItem> RUBY_ORE = ITEMS.registerSimpleBlockItem(BlocksRegistry.RUBY_ORE);
-    public static final DeferredItem<BlockItem> DEEPSLATE_RUBY_ORE = ITEMS.registerSimpleBlockItem(BlocksRegistry.DEEPSLATE_RUBY_ORE);
-    public static final DeferredItem<BlockItem> JADE_ORE = ITEMS.registerSimpleBlockItem(BlocksRegistry.JADE_ORE);
-    public static final DeferredItem<BlockItem> DEEPSLATE_JADE_ORE = ITEMS.registerSimpleBlockItem(BlocksRegistry.DEEPSLATE_JADE_ORE);
-    public static final DeferredItem<BlockItem> AQUAMARINE_ORE = ITEMS.registerSimpleBlockItem(BlocksRegistry.AQUAMARINE_ORE);
-    public static final DeferredItem<BlockItem> DEEPSLATE_AQUAMARINE_ORE = ITEMS.registerSimpleBlockItem(BlocksRegistry.DEEPSLATE_AQUAMARINE_ORE);
-    public static final DeferredItem<BlockItem> ONYX_ORE = ITEMS.registerSimpleBlockItem(BlocksRegistry.ONYX_ORE);
-    public static final DeferredItem<BlockItem> DEEPSLATE_ONYX_ORE = ITEMS.registerSimpleBlockItem(BlocksRegistry.DEEPSLATE_ONYX_ORE);
-    public static final DeferredItem<BlockItem> SILVER_ORE = ITEMS.registerSimpleBlockItem(BlocksRegistry.SILVER_ORE);
-    public static final DeferredItem<BlockItem> DEEPSLATE_SILVER_ORE = ITEMS.registerSimpleBlockItem(BlocksRegistry.DEEPSLATE_SILVER_ORE);
-    public static final DeferredItem<BlockItem> RUBY_BLOCK = ITEMS.registerSimpleBlockItem(BlocksRegistry.RUBY_BLOCK);
-    public static final DeferredItem<BlockItem> JADE_BLOCK = ITEMS.registerSimpleBlockItem(BlocksRegistry.JADE_BLOCK);
-    public static final DeferredItem<BlockItem> AQUAMARINE_BLOCK = ITEMS.registerSimpleBlockItem(BlocksRegistry.AQUAMARINE_BLOCK);
-    public static final DeferredItem<BlockItem> ONYX_BLOCK = ITEMS.registerSimpleBlockItem(BlocksRegistry.ONYX_BLOCK);
-    public static final DeferredItem<BlockItem> SILVER_BLOCK = ITEMS.registerSimpleBlockItem(BlocksRegistry.SILVER_BLOCK);
-    public static final DeferredItem<BlockItem> STEEL_BLOCK = ITEMS.registerSimpleBlockItem(BlocksRegistry.STEEL_BLOCK);
-    public static final DeferredItem<BlockItem> SPIRIT_STONE_BASE = ITEMS.registerSimpleBlockItem(BlocksRegistry.SPIRIT_STONE_BASE);
-    public static final DeferredItem<BlockItem> SPIRIT_STONE = ITEMS.registerSimpleBlockItem(BlocksRegistry.SPIRIT_STONE);
-    public static final DeferredItem<BlockItem> SPIRIT_STONE_STAIRS = ITEMS.registerSimpleBlockItem(BlocksRegistry.SPIRIT_STONE_STAIRS);
-    public static final DeferredItem<BlockItem> SPIRIT_STONE_SLAB = ITEMS.registerSimpleBlockItem(BlocksRegistry.SPIRIT_STONE_SLAB);
-    public static final DeferredItem<BlockItem> SPIRIT_STONE_WALL = ITEMS.registerSimpleBlockItem(BlocksRegistry.SPIRIT_STONE_WALL);
-    public static final DeferredItem<BlockItem> MOSSY_SPIRIT_STONE_BRICKS = ITEMS.registerSimpleBlockItem(BlocksRegistry.MOSSY_SPIRIT_STONE_BRICKS);
-    public static final DeferredItem<BlockItem> MOSSY_SPIRIT_STONE_BRICK_STAIRS = ITEMS.registerSimpleBlockItem(BlocksRegistry.MOSSY_SPIRIT_STONE_BRICK_STAIRS);
-    public static final DeferredItem<BlockItem> MOSSY_SPIRIT_STONE_BRICK_SLAB = ITEMS.registerSimpleBlockItem(BlocksRegistry.MOSSY_SPIRIT_STONE_BRICK_SLAB);
-    public static final DeferredItem<BlockItem> MOSSY_SPIRIT_STONE_BRICK_WALL = ITEMS.registerSimpleBlockItem(BlocksRegistry.MOSSY_SPIRIT_STONE_BRICK_WALL);
-    public static final DeferredItem<BlockItem> DRAGON_SPIRIT_STONE = ITEMS.registerSimpleBlockItem(BlocksRegistry.DRAGON_SPIRIT_STONE);
-    public static final DeferredItem<BlockItem> POLISHED_SPIRIT_STONE = ITEMS.registerSimpleBlockItem(BlocksRegistry.POLISHED_SPIRIT_STONE);
-    public static final DeferredItem<BlockItem> POLISHED_SPIRIT_STONE_STAIRS = ITEMS.registerSimpleBlockItem(BlocksRegistry.POLISHED_SPIRIT_STONE_STAIRS);
-    public static final DeferredItem<BlockItem> POLISHED_SPIRIT_STONE_SLAB = ITEMS.registerSimpleBlockItem(BlocksRegistry.POLISHED_SPIRIT_STONE_SLAB);
-    public static final DeferredItem<BlockItem> POLISHED_SPIRIT_STONE_WALL = ITEMS.registerSimpleBlockItem(BlocksRegistry.POLISHED_SPIRIT_STONE_WALL);
-    public static final DeferredItem<BlockItem> CHISELED_SPIRIT_STONE_BRICKS = ITEMS.registerSimpleBlockItem(BlocksRegistry.CHISELED_SPIRIT_STONE_BRICKS);
-    public static final DeferredItem<BlockItem> CHISELED_PATTERN_SPIRIT_STONE_BRICKS = ITEMS.registerSimpleBlockItem(BlocksRegistry.CHISELED_PATTERN_SPIRIT_STONE_BRICKS);
-    public static final DeferredItem<BlockItem> MOSAIC_SPIRIT_STONE_BRICKS = ITEMS.registerSimpleBlockItem(BlocksRegistry.MOSAIC_SPIRIT_STONE_BRICKS);
-    public static final DeferredItem<BlockItem> PATTERN_SPIRIT_STONE_BRICKS = ITEMS.registerSimpleBlockItem(BlocksRegistry.PATTERN_SPIRIT_STONE_BRICKS);
-    public static final DeferredItem<BlockItem> PATTERN_MOSSY_SPIRIT_STONE_BRICKS = ITEMS.registerSimpleBlockItem(BlocksRegistry.PATTERN_MOSSY_SPIRIT_STONE_BRICKS);
-    public static final DeferredItem<BlockItem> PATH_SPIRIT_STONE_BRICKS = ITEMS.registerSimpleBlockItem(BlocksRegistry.PATH_SPIRIT_STONE_BRICKS);
-    public static final DeferredItem<BlockItem> TANUKI_STATUE = ITEMS.registerSimpleBlockItem(BlocksRegistry.TANUKI_STATUE);
-    public static final DeferredItem<BlockItem> KOMAINU_STATUE = ITEMS.registerSimpleBlockItem(BlocksRegistry.KOMAINU_STATUE);
-    public static final DeferredItem<BlockItem> KAWAUSO_STATUE = ITEMS.registerSimpleBlockItem(BlocksRegistry.KAWAUSO_STATUE);
-    public static final DeferredItem<BlockItem> STONE_ROOF = ITEMS.registerSimpleBlockItem(BlocksRegistry.STONE_ROOF);
-    public static final DeferredItem<BlockItem> STONE_ROOF_CORNER = ITEMS.registerSimpleBlockItem(BlocksRegistry.STONE_ROOF_CORNER);
-    public static final DeferredItem<BlockItem> STONE_ROOF_TOP = ITEMS.registerSimpleBlockItem(BlocksRegistry.STONE_ROOF_TOP);
+    ... (other block items)
+    */
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
