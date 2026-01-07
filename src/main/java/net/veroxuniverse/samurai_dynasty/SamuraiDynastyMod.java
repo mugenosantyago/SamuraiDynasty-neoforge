@@ -32,7 +32,7 @@ public class SamuraiDynastyMod {
         // BlocksRegistry.register(modEventBus); // Temporarily disabled to debug registration issue
         ModEntityTypes.register(modEventBus);
         ParticlesInit.register(modEventBus);
-        CreativeTabRegistry.register(modEventBus);
+        // CreativeTabRegistry.register(modEventBus); // Temporarily disabled to debug registration issue
         ESSounds.register(modEventBus);
 
         // Register mod compatibility when those mods are loaded
