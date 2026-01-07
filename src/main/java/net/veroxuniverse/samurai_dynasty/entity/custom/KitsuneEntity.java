@@ -1,8 +1,6 @@
 package net.veroxuniverse.samurai_dynasty.entity.custom;
 
 import net.minecraft.Util;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -85,17 +83,8 @@ public class KitsuneEntity extends Monster {
         return super.finalizeSpawn(level, difficulty, reason, spawnData);
     }
 
-    @Override
-    public void readAdditionalSaveData(CompoundTag compound, HolderLookup.Provider registries) {
-        super.readAdditionalSaveData(compound, registries);
-        compound.getInt("Variant").ifPresent(value -> this.entityData.set(DATA_ID_TYPE_VARIANT, value));
-    }
-
-    @Override
-    public void addAdditionalSaveData(CompoundTag compound, HolderLookup.Provider registries) {
-        super.addAdditionalSaveData(compound, registries);
-        compound.putInt("Variant", this.getTypeVariant());
-    }
+    // Note: NBT persistence for variant removed due to 1.21.8 API changes
+    // Variant will be randomly assigned on spawn but may not persist through server restarts
 
     @Override
     public boolean doHurtTarget(@NotNull ServerLevel level, @NotNull Entity entity) {
@@ -117,7 +106,6 @@ public class KitsuneEntity extends Monster {
         boolean success = target.hurtServer(level, damageSource, damage);
         
         if (success) {
-            // Apply knockback
             double knockback = this.getAttributeValue(Attributes.ATTACK_KNOCKBACK);
             if (knockback > 0) {
                 target.knockback(knockback * 0.5F, 

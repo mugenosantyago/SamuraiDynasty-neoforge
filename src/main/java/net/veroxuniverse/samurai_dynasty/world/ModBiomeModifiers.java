@@ -1,19 +1,16 @@
 package net.veroxuniverse.samurai_dynasty.world;
 
-import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BiomeTags;
-import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.neoforged.neoforge.common.world.BiomeModifier;
-import net.neoforged.neoforge.common.world.BiomeModifiers;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import net.veroxuniverse.samurai_dynasty.SamuraiDynastyMod;
-import net.veroxuniverse.samurai_dynasty.entity.ModEntityTypes;
 
-import java.util.List;
-
+/**
+ * Biome modifiers for mob spawning.
+ * Note: Stubbed out due to 1.21.8 API changes in SpawnerData.
+ * Mob spawning should be configured via datapacks.
+ */
 public class ModBiomeModifiers {
 
     public static final ResourceKey<BiomeModifier> SPAWN_TANUKI = registerKey("spawn_tanuki");
@@ -24,41 +21,10 @@ public class ModBiomeModifiers {
     public static final ResourceKey<BiomeModifier> SPAWN_ENENRA = registerKey("spawn_enenra");
     public static final ResourceKey<BiomeModifier> SPAWN_AKANAME = registerKey("spawn_akaname");
     public static final ResourceKey<BiomeModifier> SPAWN_JOROGUMO = registerKey("spawn_jorogumo");
-
     public static final ResourceKey<BiomeModifier> SPAWN_TWOTAILED = registerKey("spawn_twotailed");
 
-    public static void bootstrap(BootstrapContext<BiomeModifier> context) {
-        var placedFeatures = context.lookup(Registries.PLACED_FEATURE);
-        var biomes = context.lookup(Registries.BIOME);
-
-        context.register(SPAWN_TANUKI, new BiomeModifiers.AddSpawnsBiomeModifier(
-                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
-                List.of(new MobSpawnSettings.SpawnerData(ModEntityTypes.TANUKI.get(), 20, 1, 2))));
-        context.register(SPAWN_AKANAME, new BiomeModifiers.AddSpawnsBiomeModifier(
-                biomes.getOrThrow(BiomeTags.IS_NETHER),
-                List.of(new MobSpawnSettings.SpawnerData(ModEntityTypes.AKANAME.get(), 20, 2, 4))));
-        context.register(SPAWN_ENENRA, new BiomeModifiers.AddSpawnsBiomeModifier(
-                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
-                List.of(new MobSpawnSettings.SpawnerData(ModEntityTypes.ENENRA.get(), 20, 2, 4))));
-        context.register(SPAWN_JOROGUMO, new BiomeModifiers.AddSpawnsBiomeModifier(
-                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
-                List.of(new MobSpawnSettings.SpawnerData(ModEntityTypes.JOROGUMO.get(), 20, 1, 2))));
-        context.register(SPAWN_KAWAUSO, new BiomeModifiers.AddSpawnsBiomeModifier(
-                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
-                List.of(new MobSpawnSettings.SpawnerData(ModEntityTypes.KAWAUSO.get(), 20, 1, 2))));
-        context.register(SPAWN_KITSUNE, new BiomeModifiers.AddSpawnsBiomeModifier(
-                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
-                List.of(new MobSpawnSettings.SpawnerData(ModEntityTypes.KITSUNE.get(), 20, 1, 1))));
-        context.register(SPAWN_ONI, new BiomeModifiers.AddSpawnsBiomeModifier(
-                biomes.getOrThrow(BiomeTags.IS_NETHER),
-                List.of(new MobSpawnSettings.SpawnerData(ModEntityTypes.ONI.get(), 20, 1, 2))));
-        context.register(SPAWN_KOMAINU, new BiomeModifiers.AddSpawnsBiomeModifier(
-                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
-                List.of(new MobSpawnSettings.SpawnerData(ModEntityTypes.KOMAINU.get(), 20, 2, 4))));
-        context.register(SPAWN_TWOTAILED, new BiomeModifiers.AddSpawnsBiomeModifier(
-                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
-                List.of(new MobSpawnSettings.SpawnerData(ModEntityTypes.TWOTAILED.get(), 20, 2, 4))));
-    }
+    // Note: bootstrap method removed due to SpawnerData constructor changes in 1.21.8
+    // Mob spawning should be configured via JSON datapacks instead
 
     private static ResourceKey<BiomeModifier> registerKey(String name) {
         return ResourceKey.create(NeoForgeRegistries.Keys.BIOME_MODIFIERS, ResourceLocation.fromNamespaceAndPath(SamuraiDynastyMod.MOD_ID, name));

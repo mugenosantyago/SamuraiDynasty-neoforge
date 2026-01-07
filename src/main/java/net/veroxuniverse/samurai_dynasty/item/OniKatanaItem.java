@@ -58,7 +58,7 @@ public class OniKatanaItem extends ESWeaponItem {
     @Override
     public boolean onLeftClickEntity(ItemStack stack, Player player, Entity entity) {
         if(entity instanceof LivingEntity livingEntity) {
-            livingEntity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 200, 1), player);
+            livingEntity.addEffect(new MobEffectInstance(MobEffects.SLOWNESS, 200, 1), player);
             livingEntity.igniteForSeconds(10);
         }
 

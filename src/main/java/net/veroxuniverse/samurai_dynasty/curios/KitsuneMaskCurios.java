@@ -10,7 +10,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.veroxuniverse.samurai_dynasty.registry.ItemsRegistry;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
@@ -20,13 +19,8 @@ public class KitsuneMaskCurios extends Item {
         super(pProperties);
     }
 
-    @Override
-    public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
-        if (!(entity instanceof Player player)){
-            return;
-        }
-        // Curios effects stubbed - will be re-enabled when Curios is available
-    }
+    // Note: inventoryTick method removed due to 1.21.8 API changes
+    // Curios effects will be re-enabled when Curios is available
 
     @Override
     public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> components, TooltipFlag flag) {
@@ -38,7 +32,5 @@ public class KitsuneMaskCurios extends Item {
         } else if (stack.getItem() == ItemsRegistry.KITSUNE_MASK.get()) {
             components.add(Component.translatable("curios.samurai_dynasty.summary"));
         }
-
-        super.appendHoverText(stack, context, components, flag);
     }
 }

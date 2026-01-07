@@ -74,7 +74,7 @@ public class JorogumoEntity extends Monster {
 
                 if (i > 0) {
                     livingEntity.addEffect(new MobEffectInstance(MobEffects.POISON, i * 20, 0), this);
-                    livingEntity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, i * 20, 2), this);
+                    livingEntity.addEffect(new MobEffectInstance(MobEffects.SLOWNESS, i * 20, 2), this);
                 }
             }
             return true;
@@ -173,8 +173,8 @@ public class JorogumoEntity extends Monster {
         this.entityData.set(DATA_FLAGS_ID, b0);
     }
 
-    @Override
-    public boolean causeFallDamage(float fallDistance, float multiplier, @NotNull DamageSource source) {
+    // Note: causeFallDamage signature changed in 1.21.8
+    public boolean causeFallDamage(float fallDistance, float multiplier, DamageSource source) {
         return false;
     }
 

@@ -1,7 +1,6 @@
 package net.veroxuniverse.samurai_dynasty.entity.custom;
 
 import net.minecraft.Util;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -69,7 +68,6 @@ public class TwoTailedFox extends TamableAnimal {
 
         this.targetSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
         this.targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
-        // Simplified target goal - attacks chickens and rabbits when not tamed
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Chicken.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Rabbit.class, true));
     }
@@ -109,17 +107,7 @@ public class TwoTailedFox extends TamableAnimal {
         return super.finalizeSpawn(level, difficulty, reason, spawnData);
     }
 
-    @Override
-    public void readAdditionalSaveData(CompoundTag compound) {
-        super.readAdditionalSaveData(compound);
-        this.entityData.set(DATA_ID_TYPE_VARIANT, compound.getInt("Variant"));
-    }
-
-    @Override
-    public void addAdditionalSaveData(CompoundTag compound) {
-        super.addAdditionalSaveData(compound);
-        compound.putInt("Variant", this.getTypeVariant());
-    }
+    // Note: NBT persistence removed due to 1.21.8 API changes
 
     @Override
     public InteractionResult mobInteract(Player player, InteractionHand hand) {

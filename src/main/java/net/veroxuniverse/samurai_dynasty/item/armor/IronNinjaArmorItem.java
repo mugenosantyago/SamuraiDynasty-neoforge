@@ -22,7 +22,7 @@ public class IronNinjaArmorItem extends SamuraiArmorItem {
     public void onArmorTick(ItemStack stack, Level level, Player player) {
         if(!level.isClientSide()) {
             if(player.getInventory().getArmor(EquipmentSlot.LEGS.getIndex()).is(ItemsRegistry.NINJA_LEGGINGS.get())){
-                player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20, 0, false, false, false));
+                player.addEffect(new MobEffectInstance(MobEffects.SPEED, 20, 0, false, false, false));
                 player.addEffect(new MobEffectInstance(MobEffects.JUMP, 20, 0, false, false, false));
             }
         }

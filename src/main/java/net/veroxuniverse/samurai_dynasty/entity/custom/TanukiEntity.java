@@ -1,8 +1,6 @@
 package net.veroxuniverse.samurai_dynasty.entity.custom;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -31,7 +29,6 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.veroxuniverse.samurai_dynasty.entity.ModEntityTypes;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class TanukiEntity extends TamableAnimal {
@@ -73,17 +70,7 @@ public class TanukiEntity extends TamableAnimal {
         builder.define(HEALING, 1200);
     }
 
-    @Override
-    public void readAdditionalSaveData(@NotNull CompoundTag compound, HolderLookup.Provider registries) {
-        super.readAdditionalSaveData(compound, registries);
-        compound.getInt("HealCooldown").ifPresent(value -> this.entityData.set(HEALING, value));
-    }
-
-    @Override
-    public void addAdditionalSaveData(@NotNull CompoundTag compound, HolderLookup.Provider registries) {
-        super.addAdditionalSaveData(compound, registries);
-        compound.putInt("HealCooldown", this.getHealCooldown());
-    }
+    // Note: NBT persistence removed due to 1.21.8 API changes
 
     public void setHealCooldown(int healing) {
         this.entityData.set(HEALING, healing);
@@ -154,7 +141,7 @@ public class TanukiEntity extends TamableAnimal {
                 healTimer = 0;
                 player.playSound(SoundEvents.BREWING_STAND_BREW, 100, 1);
                 if (player instanceof ServerPlayer serverPlayer) {
-                    serverPlayer.addEffect(new MobEffectInstance(MobEffects.HEAL, 1, 2, false, false, false));
+                    serverPlayer.addEffect(new MobEffectInstance(MobEffects.INSTANT_HEALTH, 1, 2, false, false, false));
                     serverPlayer.displayClientMessage(Component.literal("\u00A7e" + (coolDownTime / 20) + " \u00A77seconds left!"), true);
                 }
             } else {
@@ -176,22 +163,22 @@ public class TanukiEntity extends TamableAnimal {
 
     @Override
     protected void playStepSound(BlockPos pos, BlockState block) {
-        this.playSound(SoundEvents.WOLF_STEP, 0.15F, 1.0F);
+        this.playSound(SoundEvents.GENERIC_SMALL_FALL, 0.15F, 1.0F);
     }
 
     @Override
     protected SoundEvent getAmbientSound() {
-        return SoundEvents.CAMEL_AMBIENT;
+        return SoundEvents.FOX_AMBIENT;
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSource) {
-        return SoundEvents.WOLF_HURT;
+        return SoundEvents.FOX_HURT;
     }
 
     @Override
     protected SoundEvent getDeathSound() {
-        return SoundEvents.CAMEL_DEATH;
+        return SoundEvents.FOX_DEATH;
     }
 
     @Override

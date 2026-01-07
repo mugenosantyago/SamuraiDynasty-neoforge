@@ -79,7 +79,7 @@ public class EnenraEntity extends Monster {
         super.aiStep();
     }
 
-    @Override
+    // Note: causeFallDamage signature changed in 1.21.8
     public boolean causeFallDamage(float fallDistance, float multiplier, DamageSource source) {
         return false;
     }

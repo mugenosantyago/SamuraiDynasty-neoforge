@@ -47,7 +47,7 @@ public class KitsuneProjectileEntity extends AbstractHurtingProjectile {
             
             // Apply effects
             if (entity instanceof LivingEntity livingTarget) {
-                livingTarget.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 100, 4), MoreObjects.firstNonNull(owner, this));
+                livingTarget.addEffect(new MobEffectInstance(MobEffects.SLOWNESS, 100, 4), MoreObjects.firstNonNull(owner, this));
                 livingTarget.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 60, 0), MoreObjects.firstNonNull(owner, this));
             }
         }

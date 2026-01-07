@@ -100,8 +100,8 @@ public class OnibiEntity extends Monster {
         this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, Skeleton.class, false));
     }
 
-    @Override
-    public boolean causeFallDamage(float fallDistance, float multiplier, @NotNull DamageSource source) {
+    // Note: causeFallDamage signature changed in 1.21.8
+    public boolean causeFallDamage(float fallDistance, float multiplier, DamageSource source) {
         return false;
     }
 

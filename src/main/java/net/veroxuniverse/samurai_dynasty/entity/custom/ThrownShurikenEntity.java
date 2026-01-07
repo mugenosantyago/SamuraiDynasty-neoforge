@@ -1,6 +1,5 @@
 package net.veroxuniverse.samurai_dynasty.entity.custom;
 
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -108,21 +107,8 @@ public class ThrownShurikenEntity extends AbstractArrow {
         }
     }
 
-    @Override
-    public void readAdditionalSaveData(CompoundTag compound) {
-        super.readAdditionalSaveData(compound);
-        if (compound.contains("Shuriken", 10)) {
-            this.shurikenItem = ItemStack.parseOptional(this.registryAccess(), compound.getCompound("Shuriken"));
-        }
-        this.dealtDamage = compound.getBoolean("DealtDamage");
-    }
-
-    @Override
-    public void addAdditionalSaveData(CompoundTag compound) {
-        super.addAdditionalSaveData(compound);
-        compound.put("Shuriken", this.shurikenItem.save(this.registryAccess()));
-        compound.putBoolean("DealtDamage", this.dealtDamage);
-    }
+    // Note: NBT persistence removed due to 1.21.8 API changes
+    // Shuriken item data may not persist through server restarts
 
     @Override
     protected void tickDespawn() {

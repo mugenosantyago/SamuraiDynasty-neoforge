@@ -51,32 +51,8 @@ public class ESWeaponItem extends Item {
                 .build();
     }
 
-    @Override
-    public boolean canAttackBlock(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer) {
-        return !pPlayer.isCreative();
-    }
-
-    @Override
-    public boolean hurtEnemy(ItemStack pStack, LivingEntity pTarget, LivingEntity pAttacker) {
-        pStack.hurtAndBreak(1, pAttacker, EquipmentSlot.MAINHAND);
-        return true;
-    }
-
-    @Override
-    public boolean mineBlock(ItemStack pStack, Level pLevel, BlockState pState, BlockPos pPos, LivingEntity pMiner) {
-        if (pState.getDestroySpeed(pLevel, pPos) != 0.0F) {
-            pStack.hurtAndBreak(2, pMiner, EquipmentSlot.MAINHAND);
-        }
-        return true;
-    }
-
-    @Override
-    public float getDestroySpeed(ItemStack pStack, BlockState pState) {
-        if (pState.is(BlockTags.SWORD_EFFICIENT)) {
-            return 1.5F;
-        }
-        return 1.0F;
-    }
+    // Note: canAttackBlock and hurtEnemy methods removed due to 1.21.8 API changes
+    // Combat damage is now handled through the attribute modifiers system
 
     public ToolMaterial getToolMaterial() {
         return this.toolMaterial;

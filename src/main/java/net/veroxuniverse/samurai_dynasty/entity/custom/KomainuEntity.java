@@ -2,8 +2,6 @@ package net.veroxuniverse.samurai_dynasty.entity.custom;
 
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -105,17 +103,7 @@ public class KomainuEntity extends TamableAnimal {
         return super.finalizeSpawn(level, difficulty, reason, spawnData);
     }
 
-    @Override
-    public void readAdditionalSaveData(CompoundTag compound, HolderLookup.Provider registries) {
-        super.readAdditionalSaveData(compound, registries);
-        compound.getInt("Variant").ifPresent(value -> this.entityData.set(DATA_ID_TYPE_VARIANT, value));
-    }
-
-    @Override
-    public void addAdditionalSaveData(CompoundTag compound, HolderLookup.Provider registries) {
-        super.addAdditionalSaveData(compound, registries);
-        compound.putInt("Variant", this.getTypeVariant());
-    }
+    // Note: NBT persistence for variant removed due to 1.21.8 API changes
 
     @Override
     public InteractionResult mobInteract(Player player, InteractionHand hand) {
@@ -158,22 +146,22 @@ public class KomainuEntity extends TamableAnimal {
 
     @Override
     protected void playStepSound(BlockPos pos, BlockState block) {
-        this.playSound(SoundEvents.WOLF_STEP, 0.15F, 1.0F);
+        this.playSound(SoundEvents.GENERIC_SMALL_FALL, 0.15F, 1.0F);
     }
 
     @Override
     protected SoundEvent getAmbientSound() {
-        return SoundEvents.WOLF_AMBIENT;
+        return SoundEvents.FOX_AMBIENT;
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSource) {
-        return SoundEvents.WOLF_HURT;
+        return SoundEvents.FOX_HURT;
     }
 
     @Override
     protected SoundEvent getDeathSound() {
-        return SoundEvents.WOLF_DEATH;
+        return SoundEvents.FOX_DEATH;
     }
 
     @Override

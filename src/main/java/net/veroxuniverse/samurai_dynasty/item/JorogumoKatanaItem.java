@@ -49,7 +49,7 @@ public class JorogumoKatanaItem extends ESWeaponItem {
         if (pHand == InteractionHand.MAIN_HAND) {
             pPlayer.getCooldowns().addCooldown(itemstack, 600);
             pLevel.playSound(null, pPlayer.getX(), pPlayer.getY(), pPlayer.getZ(), SoundEvents.ENCHANTMENT_TABLE_USE, SoundSource.NEUTRAL, 1.0F, 1.0F / (pLevel.getRandom().nextFloat() * 0.4F + 0.8F));
-            pPlayer.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 400, 1, false, false, false), pPlayer);
+            pPlayer.addEffect(new MobEffectInstance(MobEffects.SPEED, 400, 1, false, false, false), pPlayer);
         }
 
         return InteractionResult.SUCCESS;
@@ -59,7 +59,7 @@ public class JorogumoKatanaItem extends ESWeaponItem {
     public boolean onLeftClickEntity(ItemStack stack, Player player, Entity entity) {
         if(entity instanceof LivingEntity livingEntity) {
             livingEntity.addEffect(new MobEffectInstance(MobEffects.WITHER, 200, 1), player);
-            livingEntity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 200, 1), player);
+            livingEntity.addEffect(new MobEffectInstance(MobEffects.SLOWNESS, 200, 1), player);
         }
 
         return super.onLeftClickEntity(stack, player, entity);

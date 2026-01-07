@@ -57,7 +57,7 @@ public class AkanameKatanaItem extends ESWeaponItem {
     @Override
     public boolean onLeftClickEntity(ItemStack stack, Player player, Entity entity) {
         if(entity instanceof LivingEntity livingEntity) {
-            livingEntity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 60, 1), player);
+            livingEntity.addEffect(new MobEffectInstance(MobEffects.SLOWNESS, 60, 1), player);
         }
 
         return super.onLeftClickEntity(stack, player, entity);
