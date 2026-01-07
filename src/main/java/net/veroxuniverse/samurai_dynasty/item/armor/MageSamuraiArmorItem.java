@@ -1,24 +1,25 @@
 package net.veroxuniverse.samurai_dynasty.item.armor;
 
-import com.hollingsworth.arsnouveau.common.armor.AnimatedMagicArmor;
+import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.ArmorMaterial;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.item.equipment.ArmorMaterial;
+import net.minecraft.world.item.equipment.ArmorType;
 import net.minecraft.world.item.ItemStack;
 import net.veroxuniverse.samurai_dynasty.SamuraiDynastyMod;
-import net.veroxuniverse.samurai_dynasty.client.armors.samurai_armor.compat_armors.ars_nouveau.ESAnimatedMagicArmor;
-import software.bernie.geckolib.model.GeoModel;
+import net.veroxuniverse.samurai_dynasty.item.armor.lib.SamuraiArmorItem;
 
-import javax.annotation.Nullable;
+/**
+ * Placeholder for Ars Nouveau Mage Armor integration.
+ * When Ars Nouveau is available for NeoForge 1.21, this class should extend
+ * ESAnimatedMagicArmor or AnimatedMagicArmor instead.
+ */
+public class MageSamuraiArmorItem extends SamuraiArmorItem {
 
-public class MageSamuraiArmorItem extends ESAnimatedMagicArmor {
+    private int color = 0;
 
-    public MageSamuraiArmorItem(ArmorMaterial materialIn, ArmorItem.Type slot, Item.Properties builder, GeoModel<AnimatedMagicArmor> model) {
-        super(materialIn, slot, builder, model);
+    public MageSamuraiArmorItem(Holder<ArmorMaterial> material, ArmorType type, Properties properties) {
+        super(material, type, properties);
     }
 
     @Override
@@ -31,10 +32,10 @@ public class MageSamuraiArmorItem extends ESAnimatedMagicArmor {
         return true;
     }
 
-
-    @Override
-    public @Nullable String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {
-        return ResourceLocation.fromNamespaceAndPath(SamuraiDynastyMod.MOD_ID, "textures/models/armor/ars_nouveau/ars_samurai_armor_textures_" + this.getColor(stack) + ".png").toString();
+    public int getColor(ItemStack stack) {
+        return this.color;
     }
 
+    // In 1.21.4, armor textures are handled via armor layers defined in ArmorMaterial
+    // Custom texture overrides should be done via resource packs or data-driven armor models
 }

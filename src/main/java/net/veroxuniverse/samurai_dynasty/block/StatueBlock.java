@@ -22,7 +22,7 @@ import javax.annotation.Nullable;
 public class StatueBlock extends HorizontalDirectionalBlock {
     public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
 
-    public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
+    public static final EnumProperty<Direction> FACING = HorizontalDirectionalBlock.FACING;
 
     public static final VoxelShape SHAPE_BASE = Block.box(1.0D, 0.01D, 1.0D, 15.0D, 16.0D, 15.0D);
     public static final VoxelShape SHAPE_OCCLUSION = Block.box(0D, 0D, 0D, 16.0D, 16.0D, 16.0D);

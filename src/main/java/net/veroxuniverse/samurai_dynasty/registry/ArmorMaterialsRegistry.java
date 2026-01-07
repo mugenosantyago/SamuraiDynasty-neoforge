@@ -1,376 +1,235 @@
 package net.veroxuniverse.samurai_dynasty.registry;
 
-import com.google.common.base.Suppliers;
-import com.stal111.forbidden_arcanus.core.init.ModItems;
-import com.teammetallurgy.aquaculture.init.AquaItems;
 import net.minecraft.Util;
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraftforge.fml.ModList;
-import net.veroxuniverse.samurai_dynasty.compat.CreateCompat;
-import org.jetbrains.annotations.NotNull;
+import net.minecraft.world.item.equipment.ArmorMaterial;
+import net.minecraft.world.item.equipment.ArmorType;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
+import net.veroxuniverse.samurai_dynasty.SamuraiDynastyMod;
 
 import java.util.EnumMap;
+import java.util.Map;
 import java.util.function.Supplier;
 
-public enum ArmorMaterialsRegistry implements ArmorMaterial {
+/**
+ * Armor materials registry for NeoForge 1.21.4.
+ * In 1.21.4, ArmorMaterial is a record registered via DeferredRegister.
+ */
+public class ArmorMaterialsRegistry {
 
-    NINJA_GOLD("ninja_gold", 15,Util.make(new EnumMap<>(ArmorItem.Type.class), (armor) -> {
-        armor.put(ArmorItem.Type.BOOTS, 1);
-        armor.put(ArmorItem.Type.LEGGINGS, 2);
-        armor.put(ArmorItem.Type.CHESTPLATE, 4);
-        armor.put(ArmorItem.Type.HELMET, 1);
-    }), 25, SoundEvents.ARMOR_EQUIP_GOLD, 0.0F, 0.0F,
-            () -> Ingredient.of(Items.GOLD_INGOT)),
+    public static final DeferredRegister<ArmorMaterial> ARMOR_MATERIALS =
+            DeferredRegister.create(Registries.ARMOR_MATERIAL, SamuraiDynastyMod.MOD_ID);
 
-    NINJA_IRON("ninja_iron", 20,Util.make(new EnumMap<>(ArmorItem.Type.class), (armor) -> {
-        armor.put(ArmorItem.Type.BOOTS, 2);
-        armor.put(ArmorItem.Type.LEGGINGS, 3);
-        armor.put(ArmorItem.Type.CHESTPLATE, 5);
-        armor.put(ArmorItem.Type.HELMET, 2);
-    }), 12, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, 0.0F,
-            () -> Ingredient.of(Items.IRON_INGOT)),
+    // ===== NINJA ARMORS =====
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> NINJA_GOLD = registerMaterial("ninja_gold",
+            createDefenseMap(1, 2, 4, 1), 25, SoundEvents.ARMOR_EQUIP_GOLD,
+            0.0F, 0.0F, () -> Ingredient.of(Items.GOLD_INGOT));
 
-    NINJA_DIAMOND("ninja_diamond", 33,Util.make(new EnumMap<>(ArmorItem.Type.class), (armor) -> {
-        armor.put(ArmorItem.Type.BOOTS, 3);
-        armor.put(ArmorItem.Type.LEGGINGS, 4);
-        armor.put(ArmorItem.Type.CHESTPLATE, 7);
-        armor.put(ArmorItem.Type.HELMET, 2);
-    }), 12, SoundEvents.ARMOR_EQUIP_DIAMOND, 1.0F, 0.0F,
-            () -> Ingredient.of(Items.DIAMOND)),
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> NINJA_IRON = registerMaterial("ninja_iron",
+            createDefenseMap(2, 3, 5, 2), 12, SoundEvents.ARMOR_EQUIP_IRON,
+            0.0F, 0.0F, () -> Ingredient.of(Items.IRON_INGOT));
 
-    NINJA_STEEL("ninja_steel", 20,Util.make(new EnumMap<>(ArmorItem.Type.class), (armor) -> {
-        armor.put(ArmorItem.Type.BOOTS, 2);
-        armor.put(ArmorItem.Type.LEGGINGS, 3);
-        armor.put(ArmorItem.Type.CHESTPLATE, 6);
-        armor.put(ArmorItem.Type.HELMET, 2);
-    }), 12, SoundEvents.ARMOR_EQUIP_IRON, 0.5F, 0.0F,
-            () -> Ingredient.of(ItemsRegistry.STEEL_INGOT.get())),
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> NINJA_DIAMOND = registerMaterial("ninja_diamond",
+            createDefenseMap(3, 4, 7, 2), 12, SoundEvents.ARMOR_EQUIP_DIAMOND,
+            1.0F, 0.0F, () -> Ingredient.of(Items.DIAMOND));
 
-    NINJA_NETHERITE("ninja_netherite", 45,Util.make(new EnumMap<>(ArmorItem.Type.class), (armor) -> {
-        armor.put(ArmorItem.Type.BOOTS, 3);
-        armor.put(ArmorItem.Type.LEGGINGS, 6);
-        armor.put(ArmorItem.Type.CHESTPLATE, 8);
-        armor.put(ArmorItem.Type.HELMET, 3);
-    }), 25, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.0F, 0.1F,
-            () -> Ingredient.of(Items.NETHERITE_INGOT)),
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> NINJA_STEEL = registerMaterial("ninja_steel",
+            createDefenseMap(2, 3, 6, 2), 12, SoundEvents.ARMOR_EQUIP_IRON,
+            0.5F, 0.0F, () -> Ingredient.of(Items.IRON_INGOT)); // Fallback until STEEL_INGOT is available
 
-    SAMURAI_RUBY("samurai_ruby", 33,Util.make(new EnumMap<>(ArmorItem.Type.class), (armor) -> {
-        armor.put(ArmorItem.Type.BOOTS, 3);
-        armor.put(ArmorItem.Type.LEGGINGS, 6);
-        armor.put(ArmorItem.Type.CHESTPLATE, 8);
-        armor.put(ArmorItem.Type.HELMET, 2);
-    }), 20, SoundEvents.ARMOR_EQUIP_DIAMOND, 1.0F, 0.0F,
-            () -> Ingredient.of(ItemsRegistry.RUBY.get())),
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> NINJA_NETHERITE = registerMaterial("ninja_netherite",
+            createDefenseMap(3, 6, 8, 3), 25, SoundEvents.ARMOR_EQUIP_NETHERITE,
+            3.0F, 0.1F, () -> Ingredient.of(Items.NETHERITE_INGOT));
 
-    SAMURAI_RUBY_MASTER("samurai_ruby_master", 33,Util.make(new EnumMap<>(ArmorItem.Type.class), (armor) -> {
-        armor.put(ArmorItem.Type.BOOTS, 2);
-        armor.put(ArmorItem.Type.LEGGINGS, 6);
-        armor.put(ArmorItem.Type.CHESTPLATE, 8);
-        armor.put(ArmorItem.Type.HELMET, 2);
-    }), 20, SoundEvents.ARMOR_EQUIP_DIAMOND, 0.0F, 0.0F,
-            () -> Ingredient.of(ItemsRegistry.RUBY.get())),
+    // ===== SAMURAI RUBY ARMORS =====
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> SAMURAI_RUBY = registerMaterial("samurai_ruby",
+            createDefenseMap(3, 6, 8, 2), 20, SoundEvents.ARMOR_EQUIP_DIAMOND,
+            1.0F, 0.0F, () -> Ingredient.of(Items.DIAMOND)); // Fallback
 
-    SAMURAI_ONYX("samurai_onyx", 33,Util.make(new EnumMap<>(ArmorItem.Type.class), (armor) -> {
-        armor.put(ArmorItem.Type.BOOTS, 3);
-        armor.put(ArmorItem.Type.LEGGINGS, 6);
-        armor.put(ArmorItem.Type.CHESTPLATE, 8);
-        armor.put(ArmorItem.Type.HELMET, 2);
-    }), 20, SoundEvents.ARMOR_EQUIP_DIAMOND, 1.0F, 0.0F,
-            () -> Ingredient.of(ItemsRegistry.ONYX.get())),
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> SAMURAI_RUBY_MASTER = registerMaterial("samurai_ruby_master",
+            createDefenseMap(2, 6, 8, 2), 20, SoundEvents.ARMOR_EQUIP_DIAMOND,
+            0.0F, 0.0F, () -> Ingredient.of(Items.DIAMOND));
 
-    SAMURAI_ONYX_MASTER("samurai_onyx_master", 33,Util.make(new EnumMap<>(ArmorItem.Type.class), (armor) -> {
-        armor.put(ArmorItem.Type.BOOTS, 2);
-        armor.put(ArmorItem.Type.LEGGINGS, 6);
-        armor.put(ArmorItem.Type.CHESTPLATE, 8);
-        armor.put(ArmorItem.Type.HELMET, 2);
-    }), 20, SoundEvents.ARMOR_EQUIP_DIAMOND, 0.0F, 0.0F,
-            () -> Ingredient.of(ItemsRegistry.ONYX.get())),
+    // ===== SAMURAI ONYX ARMORS =====
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> SAMURAI_ONYX = registerMaterial("samurai_onyx",
+            createDefenseMap(3, 6, 8, 2), 20, SoundEvents.ARMOR_EQUIP_DIAMOND,
+            1.0F, 0.0F, () -> Ingredient.of(Items.DIAMOND));
 
-    SAMURAI_AQUA("samurai_aqua", 33,Util.make(new EnumMap<>(ArmorItem.Type.class), (armor) -> {
-        armor.put(ArmorItem.Type.BOOTS, 3);
-        armor.put(ArmorItem.Type.LEGGINGS, 6);
-        armor.put(ArmorItem.Type.CHESTPLATE, 8);
-        armor.put(ArmorItem.Type.HELMET, 2);
-    }), 20, SoundEvents.ARMOR_EQUIP_DIAMOND, 1.0F, 0.0F,
-            () -> Ingredient.of(ItemsRegistry.AQUAMARINE.get())),
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> SAMURAI_ONYX_MASTER = registerMaterial("samurai_onyx_master",
+            createDefenseMap(2, 6, 8, 2), 20, SoundEvents.ARMOR_EQUIP_DIAMOND,
+            0.0F, 0.0F, () -> Ingredient.of(Items.DIAMOND));
 
-    SAMURAI_AQUA_MASTER("samurai_aqua_master", 33,Util.make(new EnumMap<>(ArmorItem.Type.class), (armor) -> {
-        armor.put(ArmorItem.Type.BOOTS, 2);
-        armor.put(ArmorItem.Type.LEGGINGS, 6);
-        armor.put(ArmorItem.Type.CHESTPLATE, 8);
-        armor.put(ArmorItem.Type.HELMET, 2);
-    }), 20, SoundEvents.ARMOR_EQUIP_DIAMOND, 0.0F, 0.0F,
-            () -> Ingredient.of(ItemsRegistry.AQUAMARINE.get())),
+    // ===== SAMURAI AQUA ARMORS =====
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> SAMURAI_AQUA = registerMaterial("samurai_aqua",
+            createDefenseMap(3, 6, 8, 2), 20, SoundEvents.ARMOR_EQUIP_DIAMOND,
+            1.0F, 0.0F, () -> Ingredient.of(Items.DIAMOND));
 
-    SAMURAI_JADE("samurai_jade", 33,Util.make(new EnumMap<>(ArmorItem.Type.class), (armor) -> {
-        armor.put(ArmorItem.Type.BOOTS, 3);
-        armor.put(ArmorItem.Type.LEGGINGS, 6);
-        armor.put(ArmorItem.Type.CHESTPLATE, 8);
-        armor.put(ArmorItem.Type.HELMET, 2);
-    }), 20, SoundEvents.ARMOR_EQUIP_DIAMOND, 1.0F, 0.0F,
-            () -> Ingredient.of(ItemsRegistry.JADE.get())),
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> SAMURAI_AQUA_MASTER = registerMaterial("samurai_aqua_master",
+            createDefenseMap(2, 6, 8, 2), 20, SoundEvents.ARMOR_EQUIP_DIAMOND,
+            0.0F, 0.0F, () -> Ingredient.of(Items.DIAMOND));
 
-    SAMURAI_JADE_MASTER("samurai_jade_master", 33,Util.make(new EnumMap<>(ArmorItem.Type.class), (armor) -> {
-        armor.put(ArmorItem.Type.BOOTS, 2);
-        armor.put(ArmorItem.Type.LEGGINGS, 6);
-        armor.put(ArmorItem.Type.CHESTPLATE, 8);
-        armor.put(ArmorItem.Type.HELMET, 2);
-    }), 20, SoundEvents.ARMOR_EQUIP_DIAMOND, 0.0F, 0.0F,
-            () -> Ingredient.of(ItemsRegistry.JADE.get())),
+    // ===== SAMURAI JADE ARMORS =====
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> SAMURAI_JADE = registerMaterial("samurai_jade",
+            createDefenseMap(3, 6, 8, 2), 20, SoundEvents.ARMOR_EQUIP_DIAMOND,
+            1.0F, 0.0F, () -> Ingredient.of(Items.DIAMOND));
 
-    SAMURAI_DIAMOND("samurai_diamond", 33,Util.make(new EnumMap<>(ArmorItem.Type.class), (armor) -> {
-        armor.put(ArmorItem.Type.BOOTS, 3);
-        armor.put(ArmorItem.Type.LEGGINGS, 6);
-        armor.put(ArmorItem.Type.CHESTPLATE, 8);
-        armor.put(ArmorItem.Type.HELMET, 2);
-    }), 12, SoundEvents.ARMOR_EQUIP_DIAMOND, 1.0F, 0.0F,
-            () -> Ingredient.of(Items.DIAMOND)),
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> SAMURAI_JADE_MASTER = registerMaterial("samurai_jade_master",
+            createDefenseMap(2, 6, 8, 2), 20, SoundEvents.ARMOR_EQUIP_DIAMOND,
+            0.0F, 0.0F, () -> Ingredient.of(Items.DIAMOND));
 
-    SAMURAI_DIAMOND_MASTER("samurai_diamond_master", 33,Util.make(new EnumMap<>(ArmorItem.Type.class), (armor) -> {
-        armor.put(ArmorItem.Type.BOOTS, 2);
-        armor.put(ArmorItem.Type.LEGGINGS, 6);
-        armor.put(ArmorItem.Type.CHESTPLATE, 8);
-        armor.put(ArmorItem.Type.HELMET, 2);
-    }), 12, SoundEvents.ARMOR_EQUIP_DIAMOND, 0.0F, 0.0F,
-            () -> Ingredient.of(Items.DIAMOND)),
+    // ===== SAMURAI DIAMOND ARMORS =====
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> SAMURAI_DIAMOND = registerMaterial("samurai_diamond",
+            createDefenseMap(3, 6, 8, 2), 12, SoundEvents.ARMOR_EQUIP_DIAMOND,
+            1.0F, 0.0F, () -> Ingredient.of(Items.DIAMOND));
 
-    SAMURAI_SILVER("samurai_silver", 20,Util.make(new EnumMap<>(ArmorItem.Type.class), (armor) -> {
-        armor.put(ArmorItem.Type.BOOTS, 2);
-        armor.put(ArmorItem.Type.LEGGINGS, 5);
-        armor.put(ArmorItem.Type.CHESTPLATE, 6);
-        armor.put(ArmorItem.Type.HELMET, 2);
-    }), 12, SoundEvents.ARMOR_EQUIP_IRON, 0.5F, 0.0F,
-            () -> Ingredient.of(ItemsRegistry.SILVER_INGOT.get())),
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> SAMURAI_DIAMOND_MASTER = registerMaterial("samurai_diamond_master",
+            createDefenseMap(2, 6, 8, 2), 12, SoundEvents.ARMOR_EQUIP_DIAMOND,
+            0.0F, 0.0F, () -> Ingredient.of(Items.DIAMOND));
 
-    SAMURAI_SILVER_MASTER("samurai_silver_master", 20,Util.make(new EnumMap<>(ArmorItem.Type.class), (armor) -> {
-        armor.put(ArmorItem.Type.BOOTS, 2);
-        armor.put(ArmorItem.Type.LEGGINGS, 5);
-        armor.put(ArmorItem.Type.CHESTPLATE, 6);
-        armor.put(ArmorItem.Type.HELMET, 2);
-    }), 12, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, 0.0F,
-            () -> Ingredient.of(ItemsRegistry.SILVER_INGOT.get())),
+    // ===== SAMURAI SILVER ARMORS =====
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> SAMURAI_SILVER = registerMaterial("samurai_silver",
+            createDefenseMap(2, 5, 6, 2), 12, SoundEvents.ARMOR_EQUIP_IRON,
+            0.5F, 0.0F, () -> Ingredient.of(Items.IRON_INGOT));
 
-    SAMURAI_BRASS("samurai_brass", 33,Util.make(new EnumMap<>(ArmorItem.Type.class), (armor) -> {
-        armor.put(ArmorItem.Type.BOOTS, 3);
-        armor.put(ArmorItem.Type.LEGGINGS, 6);
-        armor.put(ArmorItem.Type.CHESTPLATE, 8);
-        armor.put(ArmorItem.Type.HELMET, 2);
-    }), 12, SoundEvents.ARMOR_EQUIP_IRON, 1.0F, 0.0F,
-            () -> Ingredient.of(CreateCompat.BRASS_REPAIR_KIT.get())),
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> SAMURAI_SILVER_MASTER = registerMaterial("samurai_silver_master",
+            createDefenseMap(2, 5, 6, 2), 12, SoundEvents.ARMOR_EQUIP_IRON,
+            0.0F, 0.0F, () -> Ingredient.of(Items.IRON_INGOT));
 
+    // ===== SAMURAI BRASS ARMOR =====
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> SAMURAI_BRASS = registerMaterial("samurai_brass",
+            createDefenseMap(3, 6, 8, 2), 12, SoundEvents.ARMOR_EQUIP_IRON,
+            1.0F, 0.0F, () -> Ingredient.of(Items.COPPER_INGOT));
 
-    SAMURAI_NETHERITE("samurai_netherite", 45,Util.make(new EnumMap<>(ArmorItem.Type.class), (armor) -> {
-        armor.put(ArmorItem.Type.BOOTS, 3);
-        armor.put(ArmorItem.Type.LEGGINGS, 6);
-        armor.put(ArmorItem.Type.CHESTPLATE, 8);
-        armor.put(ArmorItem.Type.HELMET, 3);
-    }), 25, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.0F, 0.1F,
-            () -> Ingredient.of(Items.NETHERITE_INGOT)),
+    // ===== SAMURAI NETHERITE ARMORS =====
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> SAMURAI_NETHERITE = registerMaterial("samurai_netherite",
+            createDefenseMap(3, 6, 8, 3), 25, SoundEvents.ARMOR_EQUIP_NETHERITE,
+            3.0F, 0.1F, () -> Ingredient.of(Items.NETHERITE_INGOT));
 
-    SAMURAI_NETHERITE_MASTER("samurai_netherite_master", 45,Util.make(new EnumMap<>(ArmorItem.Type.class), (armor) -> {
-        armor.put(ArmorItem.Type.BOOTS, 3);
-        armor.put(ArmorItem.Type.LEGGINGS, 6);
-        armor.put(ArmorItem.Type.CHESTPLATE, 8);
-        armor.put(ArmorItem.Type.HELMET, 3);
-    }), 25, SoundEvents.ARMOR_EQUIP_NETHERITE, 2.0F, 0.1F,
-            () -> Ingredient.of(Items.NETHERITE_INGOT)),
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> SAMURAI_NETHERITE_MASTER = registerMaterial("samurai_netherite_master",
+            createDefenseMap(3, 6, 8, 3), 25, SoundEvents.ARMOR_EQUIP_NETHERITE,
+            2.0F, 0.1F, () -> Ingredient.of(Items.NETHERITE_INGOT));
 
+    // ===== SAMURAI SCULK ARMOR =====
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> SAMURAI_SCULK = registerMaterial("samurai_sculk",
+            createDefenseMap(4, 7, 9, 4), 25, SoundEvents.SCULK_BLOCK_PLACE,
+            4.0F, 0.1F, () -> Ingredient.of(Items.ECHO_SHARD));
 
-    SAMURAI_SCULK("samurai_sculk", 45,Util.make(new EnumMap<>(ArmorItem.Type.class), (armor) -> {
-        armor.put(ArmorItem.Type.BOOTS, 4);
-        armor.put(ArmorItem.Type.LEGGINGS, 7);
-        armor.put(ArmorItem.Type.CHESTPLATE, 9);
-        armor.put(ArmorItem.Type.HELMET, 4);
-    }), 25, SoundEvents.SCULK_BLOCK_PLACE, 4.0F, 0.1F,
-            () -> Ingredient.of(Items.ECHO_SHARD)),
+    // ===== SAMURAI AMETHYST ARMOR =====
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> SAMURAI_AMETHYST = registerMaterial("samurai_amethyst",
+            createDefenseMap(3, 6, 8, 3), 25, SoundEvents.AMETHYST_CLUSTER_PLACE,
+            2.5F, 0.0F, () -> Ingredient.of(Items.AMETHYST_SHARD));
 
-    SAMURAI_AMETHYST("samurai_amethyst", 35,Util.make(new EnumMap<>(ArmorItem.Type.class), (armor) -> {
-        armor.put(ArmorItem.Type.BOOTS, 3);
-        armor.put(ArmorItem.Type.LEGGINGS, 6);
-        armor.put(ArmorItem.Type.CHESTPLATE, 8);
-        armor.put(ArmorItem.Type.HELMET, 3);
-    }), 25, SoundEvents.AMETHYST_CLUSTER_PLACE, 2.5F, 0.0F,
-            () -> Ingredient.of(ItemsRegistry.AMETHYST_INGOT.get())),
+    // ===== SAMURAI NEPTUNIUM ARMOR =====
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> SAMURAI_NEPTUN = registerMaterial("samurai_neptun",
+            createDefenseMap(3, 6, 8, 3), 25, SoundEvents.ARMOR_EQUIP_NETHERITE,
+            2.5F, 0.0F, () -> Ingredient.of(Items.HEART_OF_THE_SEA));
 
-    SAMURAI_NEPTUN("samurai_neptun", 35,Util.make(new EnumMap<>(ArmorItem.Type.class), (armor) -> {
-        armor.put(ArmorItem.Type.BOOTS, 3);
-        armor.put(ArmorItem.Type.LEGGINGS, 6);
-        armor.put(ArmorItem.Type.CHESTPLATE, 8);
-        armor.put(ArmorItem.Type.HELMET, 3);
-    }), 25, SoundEvents.ARMOR_EQUIP_NETHERITE, 2.5F, 0.0F,
-            () -> {
-        if (ModList.get().isLoaded("aquaculture")) {
-            return Ingredient.of(AquaItems.NEPTUNIUM_INGOT.get());
-        } else {
-            return Ingredient.of(Items.HEART_OF_THE_SEA);
-        }
-    }),
+    // ===== SAMURAI ETYRITE ARMOR =====
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> SAMURAI_ETYRITE = registerMaterial("samurai_etyrite",
+            createDefenseMap(3, 6, 8, 3), 25, SoundEvents.ARMOR_EQUIP_NETHERITE,
+            3.0F, 0.1F, () -> Ingredient.of(Items.NETHERITE_INGOT));
 
-    SAMURAI_ETYRITE("samurai_etyrite", 35,Util.make(new EnumMap<>(ArmorItem.Type.class), (armor) -> {
-        armor.put(ArmorItem.Type.BOOTS, 3);
-        armor.put(ArmorItem.Type.LEGGINGS, 6);
-        armor.put(ArmorItem.Type.CHESTPLATE, 8);
-        armor.put(ArmorItem.Type.HELMET, 3);
-    }), 25, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.0F, 0.1F,
-            () -> Ingredient.of(Items.NETHERITE_INGOT)),
+    // ===== SAMURAI QUARTZ ARMOR =====
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> SAMURAI_QUARTZ = registerMaterial("samurai_quartz",
+            createDefenseMap(3, 6, 8, 3), 25, SoundEvents.ARMOR_EQUIP_DIAMOND,
+            2.5F, 0.0F, () -> Ingredient.of(Items.QUARTZ));
 
-    SAMURAI_QUARTZ("samurai_quartz", 35,Util.make(new EnumMap<>(ArmorItem.Type.class), (armor) -> {
-        armor.put(ArmorItem.Type.BOOTS, 3);
-        armor.put(ArmorItem.Type.LEGGINGS, 6);
-        armor.put(ArmorItem.Type.CHESTPLATE, 8);
-        armor.put(ArmorItem.Type.HELMET, 3);
-    }), 25, SoundEvents.ARMOR_EQUIP_DIAMOND, 2.5F, 0.0F,
-            () -> Ingredient.of(ItemsRegistry.QUARTZ_INGOT.get())),
+    // ===== SAMURAI GOLD ARMORS =====
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> SAMURAI_GOLD = registerMaterial("samurai_gold",
+            createDefenseMap(2, 4, 5, 2), 25, SoundEvents.ARMOR_EQUIP_GOLD,
+            0.5F, 0.0F, () -> Ingredient.of(Items.GOLD_INGOT));
 
-    SAMURAI_GOLD("samurai_gold", 15,Util.make(new EnumMap<>(ArmorItem.Type.class), (armor) -> {
-        armor.put(ArmorItem.Type.BOOTS, 2);
-        armor.put(ArmorItem.Type.LEGGINGS, 4);
-        armor.put(ArmorItem.Type.CHESTPLATE, 5);
-        armor.put(ArmorItem.Type.HELMET, 2);
-    }), 25, SoundEvents.ARMOR_EQUIP_GOLD, 0.5F, 0.0F,
-            () -> Ingredient.of(Items.GOLD_INGOT)),
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> SAMURAI_GOLD_MASTER = registerMaterial("samurai_gold_master",
+            createDefenseMap(2, 4, 5, 2), 25, SoundEvents.ARMOR_EQUIP_GOLD,
+            0.0F, 0.0F, () -> Ingredient.of(Items.GOLD_INGOT));
 
-    SAMURAI_GOLD_MASTER("samurai_gold_master", 15,Util.make(new EnumMap<>(ArmorItem.Type.class), (armor) -> {
-        armor.put(ArmorItem.Type.BOOTS, 2);
-        armor.put(ArmorItem.Type.LEGGINGS, 4);
-        armor.put(ArmorItem.Type.CHESTPLATE, 5);
-        armor.put(ArmorItem.Type.HELMET, 2);
-    }), 25, SoundEvents.ARMOR_EQUIP_GOLD, 0.0F, 0.0F,
-            () -> Ingredient.of(Items.GOLD_INGOT)),
+    // ===== SAMURAI IRON ARMORS =====
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> SAMURAI_IRON = registerMaterial("samurai_iron",
+            createDefenseMap(2, 5, 6, 2), 12, SoundEvents.ARMOR_EQUIP_IRON,
+            0.5F, 0.0F, () -> Ingredient.of(Items.IRON_INGOT));
 
-    SAMURAI_IRON("samurai_iron", 20,Util.make(new EnumMap<>(ArmorItem.Type.class), (armor) -> {
-        armor.put(ArmorItem.Type.BOOTS, 2);
-        armor.put(ArmorItem.Type.LEGGINGS, 5);
-        armor.put(ArmorItem.Type.CHESTPLATE, 6);
-        armor.put(ArmorItem.Type.HELMET, 2);
-    }), 12, SoundEvents.ARMOR_EQUIP_IRON, 0.5F, 0.0F,
-            () -> Ingredient.of(Items.IRON_INGOT)),
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> SAMURAI_IRON_MASTER = registerMaterial("samurai_iron_master",
+            createDefenseMap(2, 5, 6, 2), 12, SoundEvents.ARMOR_EQUIP_IRON,
+            0.0F, 0.0F, () -> Ingredient.of(Items.IRON_INGOT));
 
-    SAMURAI_IRON_MASTER("samurai_iron_master", 20,Util.make(new EnumMap<>(ArmorItem.Type.class), (armor) -> {
-        armor.put(ArmorItem.Type.BOOTS, 2);
-        armor.put(ArmorItem.Type.LEGGINGS, 5);
-        armor.put(ArmorItem.Type.CHESTPLATE, 6);
-        armor.put(ArmorItem.Type.HELMET, 2);
-    }), 12, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, 0.0F,
-            () -> Ingredient.of(Items.IRON_INGOT)),
+    // ===== SAMURAI STEEL ARMOR =====
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> SAMURAI_STEEL = registerMaterial("samurai_steel",
+            createDefenseMap(3, 5, 7, 2), 12, SoundEvents.ARMOR_EQUIP_IRON,
+            0.5F, 0.0F, () -> Ingredient.of(Items.IRON_INGOT));
 
-    SAMURAI_STEEL("samurai_steel", 20,Util.make(new EnumMap<>(ArmorItem.Type.class), (armor) -> {
-        armor.put(ArmorItem.Type.BOOTS, 3);
-        armor.put(ArmorItem.Type.LEGGINGS, 5);
-        armor.put(ArmorItem.Type.CHESTPLATE, 7);
-        armor.put(ArmorItem.Type.HELMET, 2);
-    }), 12, SoundEvents.ARMOR_EQUIP_IRON, 0.5F, 0.0F,
-            () -> Ingredient.of(ItemsRegistry.STEEL_INGOT.get())),
+    // ===== SPECIAL ARMORS =====
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> STRAW = registerMaterial("straw",
+            createDefenseMap(1, 1, 1, 1), 7, SoundEvents.ARMOR_EQUIP_LEATHER,
+            0.0F, 0.0F, () -> Ingredient.of(Items.WHEAT));
 
-    STRAW("straw", 15,Util.make(new EnumMap<>(ArmorItem.Type.class), (armor) -> {
-        armor.put(ArmorItem.Type.BOOTS, 1);
-        armor.put(ArmorItem.Type.LEGGINGS, 1);
-        armor.put(ArmorItem.Type.CHESTPLATE, 1);
-        armor.put(ArmorItem.Type.HELMET, 1);
-    }), 7, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, 0.0F,
-            () -> Ingredient.of(Items.WHEAT)),
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> SAMURAI_TYR = registerMaterial("samurai_tyr",
+            createDefenseMap(8, 10, 12, 7), 25, SoundEvents.ARMOR_EQUIP_NETHERITE,
+            4.0F, 0.2F, () -> Ingredient.of(Items.GOLD_INGOT));
 
-    SAMURAI_TYR("samurai_tyr", 50,Util.make(new EnumMap<>(ArmorItem.Type.class), (armor) -> {
-        armor.put(ArmorItem.Type.BOOTS, 8);
-        armor.put(ArmorItem.Type.LEGGINGS, 10);
-        armor.put(ArmorItem.Type.CHESTPLATE, 12);
-        armor.put(ArmorItem.Type.HELMET, 7);
-    }), 25, SoundEvents.ARMOR_EQUIP_IRON, 4.0F, 0.2F,
-            () -> {
-                if (ModList.get().isLoaded("forbidden_arcanus")) {
-                    return Ingredient.of(ModItems.AQUATIC_DRAGON_SCALE.get());
-                } else {
-                    return Ingredient.of(Items.GOLD_INGOT);
-                }
-            }),
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> SAMURAI_DRACO = registerMaterial("samurai_draco",
+            createDefenseMap(6, 8, 10, 6), 15, SoundEvents.ARMOR_EQUIP_NETHERITE,
+            3.0F, 0.1F, () -> Ingredient.of(Items.GOLD_INGOT));
 
-    SAMURAI_DRACO("samurai_draco", 40,Util.make(new EnumMap<>(ArmorItem.Type.class), (armor) -> {
-        armor.put(ArmorItem.Type.BOOTS, 6);
-        armor.put(ArmorItem.Type.LEGGINGS, 8);
-        armor.put(ArmorItem.Type.CHESTPLATE, 10);
-        armor.put(ArmorItem.Type.HELMET, 6);
-    }), 15, SoundEvents.ARMOR_EQUIP_IRON, 3.0F, 0.1F,
-            () -> {
-                if (ModList.get().isLoaded("forbidden_arcanus")) {
-                    return Ingredient.of(ModItems.DRAGON_SCALE.get());
-                } else {
-                    return Ingredient.of(Items.GOLD_INGOT);
-                }
-            }),
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> CLOTH = registerMaterial("cloth",
+            createDefenseMap(1, 2, 3, 1), 12, SoundEvents.ARMOR_EQUIP_LEATHER,
+            0.0F, 0.0F, () -> Ingredient.of(Items.STRING));
 
+    // ===== MAGE ARMOR =====
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> SAMURAI_MAGE = registerMaterial("samurai_mage",
+            createDefenseMap(3, 6, 8, 2), 25, SoundEvents.ARMOR_EQUIP_DIAMOND,
+            1.0F, 0.0F, () -> Ingredient.of(Items.GOLD_INGOT));
 
-    CLOTH("cloth", 15,Util.make(new EnumMap<>(ArmorItem.Type.class), (armor) -> {
-        armor.put(ArmorItem.Type.BOOTS, 1);
-        armor.put(ArmorItem.Type.LEGGINGS, 2);
-        armor.put(ArmorItem.Type.CHESTPLATE, 3);
-        armor.put(ArmorItem.Type.HELMET, 1);
-    }), 12, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F,
-            () -> Ingredient.of(ItemsRegistry.CLOTH.get()));
+    // ===== LIVING ARMOR =====
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> SAMURAI_LIVING = registerMaterial("samurai_living",
+            createDefenseMap(3, 6, 8, 3), 25, SoundEvents.ARMOR_EQUIP_NETHERITE,
+            2.0F, 0.05F, () -> Ingredient.of(Items.REDSTONE));
 
-    private static final EnumMap<ArmorItem.Type, Integer> HEALTH_FUNCTION_FOR_TYPE = Util.make(new EnumMap<>(ArmorItem.Type.class), (p_266653_) -> {
-        p_266653_.put(ArmorItem.Type.BOOTS, 13);
-        p_266653_.put(ArmorItem.Type.LEGGINGS, 15);
-        p_266653_.put(ArmorItem.Type.CHESTPLATE, 16);
-        p_266653_.put(ArmorItem.Type.HELMET, 11);
-    });
-    private final String name;
-    private final int durabilityMultiplier;
-    private final EnumMap<ArmorItem.Type, Integer> protectionFunctionForType;
-    private final int enchantmentValue;
-    private final SoundEvent sound;
-    private final float toughness;
-    private final float knockbackResistance;
-    private final Supplier<Ingredient> repairIngredient;
-
-    ArmorMaterialsRegistry(String name, int durabilityMultiplier, EnumMap<ArmorItem.Type, Integer> protection, int enchantmentValue, SoundEvent soundEvent, float toughness, float knockbackResistance, Supplier<Ingredient> repairIngredient) {
-        this.name = name;
-        this.durabilityMultiplier = durabilityMultiplier;
-        this.protectionFunctionForType = protection;
-        this.enchantmentValue = enchantmentValue;
-            this.sound = soundEvent;
-        this.toughness = toughness;
-        this.knockbackResistance = knockbackResistance;
-        this.repairIngredient = Suppliers.memoize(repairIngredient::get);
+    /**
+     * Creates a defense map for armor pieces.
+     * Order: boots, leggings, chestplate, helmet
+     */
+    private static Map<ArmorType, Integer> createDefenseMap(int boots, int leggings, int chestplate, int helmet) {
+        return Util.make(new EnumMap<>(ArmorType.class), map -> {
+            map.put(ArmorType.BOOTS, boots);
+            map.put(ArmorType.LEGGINGS, leggings);
+            map.put(ArmorType.CHESTPLATE, chestplate);
+            map.put(ArmorType.HELMET, helmet);
+            map.put(ArmorType.BODY, chestplate);
+        });
     }
 
-    public int getDurabilityForType(ArmorItem.@NotNull Type typeDurability) {
-        return HEALTH_FUNCTION_FOR_TYPE.get(typeDurability) * this.durabilityMultiplier;
+    /**
+     * Registers an armor material using DeferredRegister.
+     */
+    private static DeferredHolder<ArmorMaterial, ArmorMaterial> registerMaterial(
+            String name, Map<ArmorType, Integer> defense,
+            int enchantmentValue, SoundEvent equipSound,
+            float toughness, float knockbackResistance,
+            Supplier<Ingredient> repairIngredient) {
+        
+        return ARMOR_MATERIALS.register(name, () -> new ArmorMaterial(
+                defense,
+                enchantmentValue,
+                Holder.direct(equipSound),
+                repairIngredient,
+                toughness,
+                knockbackResistance,
+                ResourceLocation.fromNamespaceAndPath(SamuraiDynastyMod.MOD_ID, name)
+        ));
     }
 
-    public int getDefenseForType(ArmorItem.@NotNull Type typeDefense) {
-        return this.protectionFunctionForType.get(typeDefense);
-    }
-
-    public int getEnchantmentValue() {
-        return this.enchantmentValue;
-    }
-
-    public @NotNull SoundEvent getEquipSound() {
-        return this.sound;
-    }
-
-    public @NotNull Ingredient getRepairIngredient() {
-        return this.repairIngredient.get();
-    }
-
-    public @NotNull String getName() {
-        return this.name;
-    }
-
-    public float getToughness() {
-        return this.toughness;
-    }
-
-    public float getKnockbackResistance() {
-        return this.knockbackResistance;
-    }
-
-    public String getSerializedName() {
-        return this.name;
+    /**
+     * Register this registry to the mod event bus.
+     */
+    public static void register(IEventBus eventBus) {
+        ARMOR_MATERIALS.register(eventBus);
     }
 }

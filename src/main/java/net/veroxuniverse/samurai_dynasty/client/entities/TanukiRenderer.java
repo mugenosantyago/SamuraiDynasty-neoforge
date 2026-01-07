@@ -1,30 +1,8 @@
 package net.veroxuniverse.samurai_dynasty.client.entities;
 
-import mod.azure.azurelib.render.entity.AzEntityRenderer;
-import mod.azure.azurelib.render.entity.AzEntityRendererConfig;
-import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import net.minecraft.resources.ResourceLocation;
-import net.veroxuniverse.samurai_dynasty.SamuraiDynastyMod;
-import net.veroxuniverse.samurai_dynasty.entity.custom.TanukiEntity;
+// TODO: Re-enable AzureLib renderer when dependency is available for 1.21.4
+// This class is stubbed out until AzureLib is accessible
 
-public class TanukiRenderer extends AzEntityRenderer<TanukiEntity> {
-    private static final ResourceLocation GEO = ResourceLocation.fromNamespaceAndPath(
-            SamuraiDynastyMod.MOD_ID,
-            "geo/tanuki.geo.json"
-    );
-
-    private static final ResourceLocation TEX = ResourceLocation.fromNamespaceAndPath(
-            SamuraiDynastyMod.MOD_ID,
-            "textures/entity/tanuki.png"
-    );
-
-    public TanukiRenderer(EntityRendererProvider.Context context) {
-        super(
-                AzEntityRendererConfig.<TanukiEntity>builder(GEO, TEX)
-                        .setAnimatorProvider(TanukiAnimator::new)
-                        .setShadowRadius(0.3f)
-                        .build(),
-                context
-        );
-    }
+public class TanukiRenderer {
+    // Stubbed - AzureLib not available for 1.21.4
 }

@@ -1,44 +1,23 @@
 package net.veroxuniverse.samurai_dynasty.enchantment;
 
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentCategory;
-import net.minecraft.world.item.enchantment.MendingEnchantment;
-import net.veroxuniverse.samurai_dynasty.item.KunaiItem;
-import net.veroxuniverse.samurai_dynasty.item.NetheriteKunaiItem;
+// In 1.21+, enchantments are data-driven and no longer extend Enchantment class
+// This class is kept for reference but the enchantment should be defined in:
+// data/samurai_dynasty/enchantment/returning_blade.json
+//
+// Example JSON structure:
+// {
+//   "anvil_cost": 1,
+//   "description": {"translate": "enchantment.samurai_dynasty.returning_blade"},
+//   "max_cost": {"base": 50, "per_level_above_first": 0},
+//   "max_level": 1,
+//   "min_cost": {"base": 20, "per_level_above_first": 0},
+//   "slots": ["mainhand"],
+//   "supported_items": "#samurai_dynasty:kunai",
+//   "weight": 2
+// }
 
-public class ReturningBladeEnchantment extends Enchantment {
-
-    protected ReturningBladeEnchantment(Rarity pRarity, EnchantmentCategory pCategory, EquipmentSlot... pApplicableSlots) {
-        super(pRarity, pCategory, pApplicableSlots);
-    }
-
-    @Override
-    public int getMaxLevel() {
-        return 1;
-    }
-
-    public int getMinCost(int pEnchantmentLevel) {
-        return 20;
-    }
-
-    public int getMaxCost(int pEnchantmentLevel) {
-        return 50;
-    }
-
-    @Override
-    public boolean canEnchant(ItemStack stack) {
-        return stack.getItem() instanceof KunaiItem || stack.getItem() instanceof NetheriteKunaiItem;
-    }
-
-    @Override
-    public boolean canApplyAtEnchantingTable(ItemStack stack) {
-        return this.canEnchant(stack);
-    }
-
-    public boolean checkCompatibility(Enchantment pEnch) {
-        return pEnch instanceof MendingEnchantment ? false : super.checkCompatibility(pEnch);
-    }
-
+public class ReturningBladeEnchantment {
+    // Stub class - enchantments are now data-driven in 1.21+
+    // The enchantment behavior is defined in the JSON file
+    // Custom effects can be added via enchantment effect components
 }

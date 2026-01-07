@@ -2,17 +2,29 @@ package net.veroxuniverse.samurai_dynasty.registry;
 
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraftforge.common.ForgeTier;
 
 public class ItemMaterialsRegistry {
 
-    public static final ForgeTier SAMURAI = new ForgeTier(3, 1561, 12.0f,
-            5.0f, 12, BlockTags.NEEDS_DIAMOND_TOOL,
-            () -> Ingredient.of(ItemsRegistry.STEEL_INGOT.get()));
+    // In 1.21.4, tool materials are created using ToolMaterial record
+    // Parameters: incorrectBlocksForDrops, durability, speed, attackDamageBonus, enchantmentValue, repairItems
+    public static final ToolMaterial SAMURAI = new ToolMaterial(
+            BlockTags.INCORRECT_FOR_DIAMOND_TOOL,
+            1561,       // durability
+            12.0f,      // speed
+            5.0f,       // attack damage bonus
+            12,         // enchantment value
+            () -> Ingredient.of(ItemsRegistry.STEEL_INGOT.get())
+    );
 
-    public static final ForgeTier SAMURAI_NETHERITE = new ForgeTier(4, 2561, 12.0f,
-            5.0f, 25, BlockTags.NEEDS_DIAMOND_TOOL,
-            () -> Ingredient.of(Items.NETHERITE_INGOT));
+    public static final ToolMaterial SAMURAI_NETHERITE = new ToolMaterial(
+            BlockTags.INCORRECT_FOR_NETHERITE_TOOL,
+            2561,       // durability
+            12.0f,      // speed
+            5.0f,       // attack damage bonus
+            25,         // enchantment value
+            () -> Ingredient.of(Items.NETHERITE_INGOT)
+    );
 
 }

@@ -1,27 +1,8 @@
 package net.veroxuniverse.samurai_dynasty.client.armors.ninja_armor.steel;
 
-import mod.azure.azurelib.render.armor.AzArmorRenderer;
-import mod.azure.azurelib.render.armor.AzArmorRendererConfig;
-import net.minecraft.resources.ResourceLocation;
-import net.veroxuniverse.samurai_dynasty.SamuraiDynastyMod;
-import net.veroxuniverse.samurai_dynasty.client.ArmorAnimator;
+// TODO: Re-enable AzureLib renderer when dependency is available for 1.21.4
+// This class is stubbed out until AzureLib is accessible
 
-public class SteelNinjaArmorRenderer extends AzArmorRenderer {
-    private static final ResourceLocation MODEL = ResourceLocation.fromNamespaceAndPath(
-            SamuraiDynastyMod.MOD_ID,
-            "geo/ninja_armor.geo.json"
-    );
-
-    public static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(
-            SamuraiDynastyMod.MOD_ID,
-            "textures/armor/ninja_steel_armor_textures.png"
-    );
-
-    public SteelNinjaArmorRenderer() {
-        super(
-                AzArmorRendererConfig.builder(MODEL, TEXTURE)
-                        .setAnimatorProvider(ArmorAnimator::new)
-                        .build()
-        );
-    }
+public class SteelNinjaArmorRenderer {
+    // Stubbed - AzureLib not available for 1.21.4
 }

@@ -2,7 +2,7 @@ package net.veroxuniverse.samurai_dynasty.utils;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.client.KeyMapping;
-import net.minecraftforge.client.settings.KeyConflictContext;
+import net.neoforged.neoforge.client.settings.KeyConflictContext;
 import net.veroxuniverse.samurai_dynasty.SamuraiDynastyMod;
 import org.lwjgl.glfw.GLFW;
 

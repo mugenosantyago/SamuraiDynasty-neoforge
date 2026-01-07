@@ -1,36 +1,8 @@
 package net.veroxuniverse.samurai_dynasty.client.entities;
 
-import mod.azure.azurelib.animation.dispatch.command.AzCommand;
-import mod.azure.azurelib.animation.play_behavior.AzPlayBehaviors;
-import net.veroxuniverse.samurai_dynasty.entity.custom.AkanameEntity;
-import net.veroxuniverse.samurai_dynasty.entity.custom.EnenraEntity;
+// TODO: Re-enable AzureLib renderer when dependency is available for 1.21.4
+// This class is stubbed out until AzureLib is accessible
 
 public class EnenraDispatcher {
-    private static final AzCommand IDLE_COMMAND = AzCommand.create(
-            "base_controller",
-            "idle",
-            AzPlayBehaviors.LOOP
-    );
-
-    private static final AzCommand WALK_COMMAND = AzCommand.create(
-            "base_controller",
-            "walk",
-            AzPlayBehaviors.LOOP
-    );
-
-
-    private final EnenraEntity entity;
-
-    public EnenraDispatcher(EnenraEntity animatable) {
-        this.entity = animatable;
-    }
-
-    public void idle() {
-        IDLE_COMMAND.sendForEntity(entity);
-    }
-
-    public void walk() {
-        WALK_COMMAND.sendForEntity(entity);
-    }
-
+    // Stubbed - AzureLib not available for 1.21.4
 }

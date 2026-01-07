@@ -1,24 +1,8 @@
 package net.veroxuniverse.samurai_dynasty.client.weapons.odachi;
 
-import mod.azure.azurelib.render.item.AzItemRenderer;
-import mod.azure.azurelib.render.item.AzItemRendererConfig;
-import net.minecraft.resources.ResourceLocation;
-import net.veroxuniverse.samurai_dynasty.SamuraiDynastyMod;
+// TODO: Re-enable AzureLib renderer when dependency is available for 1.21.4
+// This class is stubbed out until AzureLib is accessible
 
-public class OdachiItemRenderer extends AzItemRenderer {
-    private static final ResourceLocation GEO = ResourceLocation.fromNamespaceAndPath(
-            SamuraiDynastyMod.MOD_ID,
-            "geo/odachi.geo.json"
-    );
-
-    private static final ResourceLocation TEX = ResourceLocation.fromNamespaceAndPath(
-            SamuraiDynastyMod.MOD_ID,
-            "textures/weapon/odachi.png"
-    );
-
-    public OdachiItemRenderer() {
-        super(
-                AzItemRendererConfig.builder(GEO, TEX).build()
-        );
-    }
+public class OdachiItemRenderer {
+    // Stubbed - AzureLib not available for 1.21.4
 }
