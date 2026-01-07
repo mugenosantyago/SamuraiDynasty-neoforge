@@ -3,6 +3,7 @@ package net.veroxuniverse.samurai_dynasty.entity.custom;
 import com.google.common.base.MoreObjects;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -12,7 +13,6 @@ import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
-import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
@@ -29,13 +29,8 @@ public class KitsuneProjectileEntity extends AbstractHurtingProjectile {
         this.noPhysics = true;
     }
 
-    public KitsuneProjectileEntity(Level level, LivingEntity shooter, Vec3 movement) {
-        super(ModEntityTypes.KITSUNE_PROJECTILE.get(), shooter, movement, level);
-        this.noPhysics = true;
-    }
-
-    public KitsuneProjectileEntity(Level level, double x, double y, double z, Vec3 movement) {
-        super(ModEntityTypes.KITSUNE_PROJECTILE.get(), x, y, z, movement, level);
+    public KitsuneProjectileEntity(Level level, double x, double y, double z, double dx, double dy, double dz) {
+        super(ModEntityTypes.KITSUNE_PROJECTILE.get(), x, y, z, new Vec3(dx, dy, dz), level);
         this.noPhysics = true;
     }
 
@@ -46,15 +41,14 @@ public class KitsuneProjectileEntity extends AbstractHurtingProjectile {
             Entity entity = result.getEntity();
             Entity owner = this.getOwner();
             LivingEntity livingentity = owner instanceof LivingEntity ? (LivingEntity) owner : null;
-            boolean flag = entity.hurt(damageSources().mobProjectile(this, livingentity), 4.0F);
-            if (flag) {
-                if (livingentity != null) {
-                    this.doEnchantDamageEffects(livingentity, entity);
-                }
-                if (entity instanceof LivingEntity livingTarget) {
-                    livingTarget.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 100, 4), MoreObjects.firstNonNull(owner, this));
-                    livingTarget.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 60, 0), MoreObjects.firstNonNull(owner, this));
-                }
+            
+            // Apply damage
+            entity.hurt(damageSources().mobProjectile(this, livingentity), 4.0F);
+            
+            // Apply effects
+            if (entity instanceof LivingEntity livingTarget) {
+                livingTarget.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 100, 4), MoreObjects.firstNonNull(owner, this));
+                livingTarget.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 60, 0), MoreObjects.firstNonNull(owner, this));
             }
         }
     }
@@ -107,7 +101,7 @@ public class KitsuneProjectileEntity extends AbstractHurtingProjectile {
     }
 
     @Override
-    public boolean hurtServer(net.minecraft.server.level.ServerLevel level, DamageSource source, float amount) {
+    public boolean hurtServer(@NotNull ServerLevel level, @NotNull DamageSource source, float amount) {
         return false;
     }
 }

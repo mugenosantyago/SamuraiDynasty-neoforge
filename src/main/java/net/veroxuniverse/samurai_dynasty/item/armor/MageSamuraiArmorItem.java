@@ -1,6 +1,6 @@
 package net.veroxuniverse.samurai_dynasty.item.armor;
 
-import net.minecraft.core.Holder;
+
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.equipment.ArmorMaterial;
@@ -18,7 +18,7 @@ public class MageSamuraiArmorItem extends SamuraiArmorItem {
 
     private int color = 0;
 
-    public MageSamuraiArmorItem(Holder<ArmorMaterial> material, ArmorType type, Properties properties) {
+    public MageSamuraiArmorItem(ArmorMaterial material, ArmorType type, Properties properties) {
         super(material, type, properties);
     }
 

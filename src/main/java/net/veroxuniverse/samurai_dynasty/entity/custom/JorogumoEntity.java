@@ -4,6 +4,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.Difficulty;
@@ -14,7 +15,6 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
@@ -29,6 +29,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.NotNull;
 
 public class JorogumoEntity extends Monster {
 
@@ -61,8 +62,8 @@ public class JorogumoEntity extends Monster {
     }
 
     @Override
-    public boolean doHurtTarget(Entity entity) {
-        if (super.doHurtTarget(entity)) {
+    public boolean doHurtTarget(@NotNull ServerLevel level, @NotNull Entity entity) {
+        if (super.doHurtTarget(level, entity)) {
             if (entity instanceof LivingEntity livingEntity) {
                 int i = 0;
                 if (this.level().getDifficulty() == Difficulty.NORMAL) {
@@ -102,11 +103,9 @@ public class JorogumoEntity extends Monster {
                 return super.canContinueToUse();
             }
         }
-
-        @Override
-        protected double getAttackReachSqr(LivingEntity entity) {
-            return 4.0F + entity.getBbWidth();
-        }
+        
+        // Note: getAttackReachSqr was removed/changed in 1.21.4
+        // Attack reach is now handled differently by vanilla MeleeAttackGoal
     }
 
     static class JorogumoTargetGoal<T extends LivingEntity> extends NearestAttackableTargetGoal<T> {
@@ -122,7 +121,7 @@ public class JorogumoEntity extends Monster {
     }
 
     @Override
-    protected PathNavigation createNavigation(Level level) {
+    protected PathNavigation createNavigation(@NotNull Level level) {
         return new WallClimberNavigation(this, level);
     }
 
@@ -146,18 +145,15 @@ public class JorogumoEntity extends Monster {
     }
 
     @Override
-    public void makeStuckInBlock(BlockState state, Vec3 vec3) {
+    public void makeStuckInBlock(@NotNull BlockState state, @NotNull Vec3 vec3) {
         if (!state.is(Blocks.COBWEB)) {
             super.makeStuckInBlock(state, vec3);
         }
     }
 
-    // MobType replaced with EntityType.getCategory() in 1.21
-    // Arthropod behavior is determined by the entity type itself
-
     @Override
-    public boolean canBeAffected(MobEffectInstance effectInstance) {
-        if (effectInstance.getEffect() == MobEffects.POISON) {
+    public boolean canBeAffected(@NotNull MobEffectInstance effectInstance) {
+        if (effectInstance.getEffect().is(MobEffects.POISON)) {
             return false;
         }
         return super.canBeAffected(effectInstance);
@@ -178,7 +174,7 @@ public class JorogumoEntity extends Monster {
     }
 
     @Override
-    public boolean causeFallDamage(float fallDistance, float multiplier, DamageSource source) {
+    public boolean causeFallDamage(float fallDistance, float multiplier, @NotNull DamageSource source) {
         return false;
     }
 
@@ -188,7 +184,7 @@ public class JorogumoEntity extends Monster {
     }
 
     @Override
-    protected SoundEvent getHurtSound(DamageSource damageSource) {
+    protected SoundEvent getHurtSound(@NotNull DamageSource damageSource) {
         return SoundEvents.SPIDER_HURT;
     }
 

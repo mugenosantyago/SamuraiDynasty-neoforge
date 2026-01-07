@@ -1,6 +1,6 @@
 package net.veroxuniverse.samurai_dynasty.item.armor;
 
-import net.minecraft.core.Holder;
+
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.equipment.ArmorMaterial;
 import net.minecraft.world.item.equipment.ArmorType;
@@ -9,7 +9,7 @@ import net.veroxuniverse.samurai_dynasty.item.armor.lib.SamuraiArmorItem;
 import net.veroxuniverse.samurai_dynasty.registry.ArmorMaterialsRegistry;
 
 public class GoldSamuraiArmorLightItem extends SamuraiArmorItem {
-    public GoldSamuraiArmorLightItem(Holder<ArmorMaterial> material, ArmorType type, Properties properties) {
+    public GoldSamuraiArmorLightItem(ArmorMaterial material, ArmorType type, Properties properties) {
         super(material, type, properties);
     }
 

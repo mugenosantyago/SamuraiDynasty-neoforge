@@ -1,5 +1,6 @@
 package net.veroxuniverse.samurai_dynasty.entity.custom.goals;
 
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.InteractionHand;
@@ -190,16 +191,14 @@ public class KitsuneAttackGoal extends Goal {
 
                     KitsuneProjectileEntity kitsuneProjectileEntity = new KitsuneProjectileEntity(
                             this.mob.level(),
-                            this.mob,
+                            this.mob.getX(),
+                            this.mob.getY(0.5D) + 0.5D,
+                            this.mob.getZ(),
                             this.mob.getRandom().triangle(d1, 2.297D * d4),
                             d2,
                             this.mob.getRandom().triangle(d3, 2.297D * d4)
                     );
-                    kitsuneProjectileEntity.setPos(
-                            kitsuneProjectileEntity.getX(),
-                            this.mob.getY(0.5D) + 0.5D,
-                            kitsuneProjectileEntity.getZ()
-                    );
+                    kitsuneProjectileEntity.setOwner(this.mob);
                     this.mob.level().addFreshEntity(kitsuneProjectileEntity);
                     this.mob.playSound(SoundEvents.SHULKER_SHOOT, 2.0F, 1.0F);
                 }
@@ -221,7 +220,9 @@ public class KitsuneAttackGoal extends Goal {
             }
 
             this.mob.swing(InteractionHand.MAIN_HAND);
-            this.mob.doHurtTarget(enemy);
+            if (this.mob.level() instanceof ServerLevel serverLevel) {
+                this.mob.doHurtTarget(serverLevel, enemy);
+            }
         }
     }
 

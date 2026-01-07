@@ -2,6 +2,7 @@ package net.veroxuniverse.samurai_dynasty.entity.custom;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.BlockTags;
@@ -62,7 +63,7 @@ public class OnibiEntity extends Monster {
         FlyingPathNavigation flyingpathnavigation = new FlyingPathNavigation(this, level);
         flyingpathnavigation.setCanOpenDoors(false);
         flyingpathnavigation.setCanFloat(true);
-        flyingpathnavigation.setCanPassDoors(true);
+        // setCanPassDoors removed in 1.21.4, doors are handled differently now
         return flyingpathnavigation;
     }
 
@@ -114,8 +115,8 @@ public class OnibiEntity extends Monster {
     }
 
     @Override
-    public boolean doHurtTarget(@NotNull Entity entity) {
-        if (!super.doHurtTarget(entity)) {
+    public boolean doHurtTarget(@NotNull ServerLevel level, @NotNull Entity entity) {
+        if (!super.doHurtTarget(level, entity)) {
             return false;
         } else {
             if (entity instanceof LivingEntity) {

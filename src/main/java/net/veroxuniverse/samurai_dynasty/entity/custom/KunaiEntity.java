@@ -23,7 +23,7 @@ public class KunaiEntity extends ThrowableItemProjectile {
     }
 
     public KunaiEntity(Level level, LivingEntity shooter) {
-        super(ModEntityTypes.KUNAI.get(), shooter, level);
+        super(ModEntityTypes.KUNAI.get(), shooter, level, new ItemStack(ItemsRegistry.KUNAI.get()));
     }
 
     @Override

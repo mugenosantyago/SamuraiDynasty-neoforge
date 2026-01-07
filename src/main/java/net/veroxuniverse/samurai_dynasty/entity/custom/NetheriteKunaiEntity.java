@@ -23,7 +23,7 @@ public class NetheriteKunaiEntity extends ThrowableItemProjectile {
     }
 
     public NetheriteKunaiEntity(Level level, LivingEntity shooter) {
-        super(ModEntityTypes.KUNAI_NETHERITE.get(), shooter, level);
+        super(ModEntityTypes.KUNAI_NETHERITE.get(), shooter, level, new ItemStack(ItemsRegistry.KUNAI_NETHERITE.get()));
     }
 
     @Override

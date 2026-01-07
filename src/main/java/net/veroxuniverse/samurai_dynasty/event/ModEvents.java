@@ -19,16 +19,16 @@ public class ModEvents {
 
         @SubscribeEvent
         public static void entityAttributeEvent(EntityAttributeCreationEvent event) {
-            event.put(ModEntityTypes.AKANAME.get(), AkanameEntity.setAttributes());
-            event.put(ModEntityTypes.ENENRA.get(), EnenraEntity.setAttributes());
-            event.put(ModEntityTypes.ONI.get(), OniEntity.setAttributes());
-            event.put(ModEntityTypes.KITSUNE.get(), KitsuneEntity.setAttributes());
-            event.put(ModEntityTypes.ONIBI.get(), OnibiEntity.setAttributes());
+            event.put(ModEntityTypes.AKANAME.get(), AkanameEntity.createAttributes().build());
+            event.put(ModEntityTypes.ENENRA.get(), EnenraEntity.createAttributes().build());
+            event.put(ModEntityTypes.ONI.get(), OniEntity.createAttributes().build());
+            event.put(ModEntityTypes.KITSUNE.get(), KitsuneEntity.createAttributes().build());
+            event.put(ModEntityTypes.ONIBI.get(), OnibiEntity.createAttributes().build());
             event.put(ModEntityTypes.JOROGUMO.get(), JorogumoEntity.createAttributes().build());
-            event.put(ModEntityTypes.KOMAINU.get(), KomainuEntity.setAttributes());
-            event.put(ModEntityTypes.TANUKI.get(), KomainuEntity.setAttributes());
-            event.put(ModEntityTypes.KAWAUSO.get(), KomainuEntity.setAttributes());
-            event.put(ModEntityTypes.TWOTAILED.get(), TwoTailedFox.setAttributes());
+            event.put(ModEntityTypes.KOMAINU.get(), KomainuEntity.createAttributes().build());
+            event.put(ModEntityTypes.TANUKI.get(), TanukiEntity.createAttributes().build());
+            event.put(ModEntityTypes.KAWAUSO.get(), KawausoEntity.createAttributes().build());
+            event.put(ModEntityTypes.TWOTAILED.get(), TwoTailedFox.createAttributes().build());
         }
 
         @SubscribeEvent

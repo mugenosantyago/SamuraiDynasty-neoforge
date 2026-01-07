@@ -16,10 +16,12 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
-import net.minecraft.world.entity.ai.goal.target.NonTameRandomTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.OwnerHurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.OwnerHurtTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.animal.Chicken;
+import net.minecraft.world.entity.animal.Rabbit;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -31,14 +33,7 @@ import net.veroxuniverse.samurai_dynasty.entity.ModEntityTypes;
 import net.veroxuniverse.samurai_dynasty.entity.variant.TwoTailedVariant;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.function.Predicate;
-
 public class TwoTailedFox extends TamableAnimal {
-
-    public static final Predicate<LivingEntity> ATTACK_SELECTOR = (livingEntity) -> {
-        EntityType<?> entitytype = livingEntity.getType();
-        return entitytype == EntityType.CHICKEN || entitytype == EntityType.RABBIT;
-    };
 
     private static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT =
             SynchedEntityData.defineId(TwoTailedFox.class, EntityDataSerializers.INT);
@@ -74,7 +69,9 @@ public class TwoTailedFox extends TamableAnimal {
 
         this.targetSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
         this.targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
-        this.targetSelector.addGoal(3, new NonTameRandomTargetGoal<>(this, Animal.class, false, ATTACK_SELECTOR));
+        // Simplified target goal - attacks chickens and rabbits when not tamed
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Chicken.class, true));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Rabbit.class, true));
     }
 
     public void setAttacking(boolean attacking) {
