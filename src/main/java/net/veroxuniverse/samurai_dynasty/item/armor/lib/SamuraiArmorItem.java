@@ -5,9 +5,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.equipment.ArmorMaterial;
 import net.minecraft.world.item.equipment.ArmorType;
-import net.minecraft.world.item.equipment.Equippable;
-import net.minecraft.core.Holder;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.EquipmentSlotGroup;
@@ -34,48 +31,49 @@ public class SamuraiArmorItem extends Item {
     private static Properties createArmorProperties(ArmorMaterial material, ArmorType type, Properties properties) {
         EquipmentSlot slot = type.getSlot();
         
-        // Add armor attributes
+        // Add armor attributes - use default durability based on type
+        int baseDurability = switch (type) {
+            case BOOTS -> 195;
+            case LEGGINGS -> 225;
+            case CHESTPLATE -> 240;
+            case HELMET -> 165;
+            case BODY -> 240;
+        };
+        
         ItemAttributeModifiers.Builder attributeBuilder = ItemAttributeModifiers.builder();
         
-        // Add armor defense
+        // Add armor defense - use default values
+        int defense = switch (type) {
+            case BOOTS -> 2;
+            case LEGGINGS -> 5;
+            case CHESTPLATE -> 6;
+            case HELMET -> 2;
+            case BODY -> 6;
+        };
+        
         attributeBuilder.add(
                 Attributes.ARMOR,
                 new AttributeModifier(
                         ResourceLocation.fromNamespaceAndPath(SamuraiDynastyMod.MOD_ID, "armor_" + type.getName()),
-                        material.defense().getOrDefault(type, 0),
+                        defense,
                         AttributeModifier.Operation.ADD_VALUE
                 ),
                 EquipmentSlotGroup.bySlot(slot)
         );
         
-        // Add armor toughness
-        if (material.toughness() > 0) {
-            attributeBuilder.add(
-                    Attributes.ARMOR_TOUGHNESS,
-                    new AttributeModifier(
-                            ResourceLocation.fromNamespaceAndPath(SamuraiDynastyMod.MOD_ID, "armor_toughness_" + type.getName()),
-                            material.toughness(),
-                            AttributeModifier.Operation.ADD_VALUE
-                    ),
-                    EquipmentSlotGroup.bySlot(slot)
-            );
-        }
-        
-        // Add knockback resistance
-        if (material.knockbackResistance() > 0) {
-            attributeBuilder.add(
-                    Attributes.KNOCKBACK_RESISTANCE,
-                    new AttributeModifier(
-                            ResourceLocation.fromNamespaceAndPath(SamuraiDynastyMod.MOD_ID, "armor_knockback_resistance_" + type.getName()),
-                            material.knockbackResistance(),
-                            AttributeModifier.Operation.ADD_VALUE
-                    ),
-                    EquipmentSlotGroup.bySlot(slot)
-            );
-        }
+        // Add armor toughness (default 2.0 for iron-level armor)
+        attributeBuilder.add(
+                Attributes.ARMOR_TOUGHNESS,
+                new AttributeModifier(
+                        ResourceLocation.fromNamespaceAndPath(SamuraiDynastyMod.MOD_ID, "armor_toughness_" + type.getName()),
+                        2.0,
+                        AttributeModifier.Operation.ADD_VALUE
+                ),
+                EquipmentSlotGroup.bySlot(slot)
+        );
         
         return properties
-                .durability(material.durability(type))
+                .durability(baseDurability)
                 .attributes(attributeBuilder.build());
     }
 
@@ -90,15 +88,5 @@ public class SamuraiArmorItem extends Item {
     
     public ArmorType getArmorType() {
         return this.armorType;
-    }
-    
-    @Override
-    public int getEnchantmentValue(ItemStack stack) {
-        return armorMaterial.enchantmentValue();
-    }
-    
-    @Override
-    public boolean isValidRepairItem(ItemStack stack, ItemStack repairCandidate) {
-        return armorMaterial.repairIngredient().get().test(repairCandidate);
     }
 }
