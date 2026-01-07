@@ -1,13 +1,16 @@
 package net.veroxuniverse.samurai_dynasty.block;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
@@ -20,6 +23,8 @@ import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nullable;
 
 public class StatueBlock extends HorizontalDirectionalBlock {
+    public static final MapCodec<StatueBlock> CODEC = simpleCodec(StatueBlock::new);
+    
     public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
 
     public static final EnumProperty<Direction> FACING = HorizontalDirectionalBlock.FACING;
@@ -32,6 +37,11 @@ public class StatueBlock extends HorizontalDirectionalBlock {
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(FACING, Direction.NORTH)
                 .setValue(HALF, DoubleBlockHalf.LOWER));
+    }
+
+    @Override
+    protected @NotNull MapCodec<? extends HorizontalDirectionalBlock> codec() {
+        return CODEC;
     }
 
     @Override
@@ -87,12 +97,12 @@ public class StatueBlock extends HorizontalDirectionalBlock {
     }
 
     @Override
-    protected @NotNull BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos) {
+    protected @NotNull BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess tickAccess, BlockPos pos, Direction direction, BlockPos neighborPos, BlockState neighborState, RandomSource random) {
         DoubleBlockHalf doubleblockhalf = state.getValue(HALF);
-        if (facing.getAxis() == Direction.Axis.Y && doubleblockhalf == DoubleBlockHalf.LOWER == (facing == Direction.UP)) {
-            return facingState.is(this) && facingState.getValue(HALF) != doubleblockhalf ? state.setValue(FACING, facingState.getValue(FACING)) : Blocks.AIR.defaultBlockState();
+        if (direction.getAxis() == Direction.Axis.Y && doubleblockhalf == DoubleBlockHalf.LOWER == (direction == Direction.UP)) {
+            return neighborState.is(this) && neighborState.getValue(HALF) != doubleblockhalf ? state.setValue(FACING, neighborState.getValue(FACING)) : Blocks.AIR.defaultBlockState();
         } else {
-            return doubleblockhalf == DoubleBlockHalf.LOWER && facing == Direction.DOWN && !state.canSurvive(level, currentPos) ? Blocks.AIR.defaultBlockState() : super.updateShape(state, facing, facingState, level, currentPos, facingPos);
+            return doubleblockhalf == DoubleBlockHalf.LOWER && direction == Direction.DOWN && !state.canSurvive(level, pos) ? Blocks.AIR.defaultBlockState() : super.updateShape(state, level, tickAccess, pos, direction, neighborPos, neighborState, random);
         }
     }
 
