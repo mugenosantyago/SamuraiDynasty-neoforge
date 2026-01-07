@@ -20,7 +20,7 @@ public class BlocksRegistry {
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);
-        registerBlockItem(name, toReturn);
+        // Note: Block items are registered separately in ItemsRegistry to avoid cross-dependency during registration
         return toReturn;
     }
 
@@ -172,10 +172,6 @@ public class BlocksRegistry {
 
     private static <T extends Block> DeferredBlock<T> registerBlockWithoutBlockItem(String name, Supplier<T> block) {
         return BLOCKS.register(name, block);
-    }
-
-    private static <T extends Block> void registerBlockItem(String name, DeferredBlock<T> block) {
-        ItemsRegistry.ITEMS.registerSimpleBlockItem(name, block);
     }
 
     public static void register(IEventBus eventBus) {

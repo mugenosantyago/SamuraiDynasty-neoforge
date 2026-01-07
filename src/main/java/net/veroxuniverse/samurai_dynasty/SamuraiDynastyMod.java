@@ -29,7 +29,7 @@ public class SamuraiDynastyMod {
         // Register deferred registers
         ArmorMaterialsRegistry.register(modEventBus);
         ItemsRegistry.register(modEventBus);
-        BlocksRegistry.register(modEventBus);
+        // BlocksRegistry.register(modEventBus); // Temporarily disabled to debug registration issue
         ModEntityTypes.register(modEventBus);
         ParticlesInit.register(modEventBus);
         CreativeTabRegistry.register(modEventBus);
