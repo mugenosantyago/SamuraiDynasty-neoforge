@@ -175,7 +175,7 @@ public class BlocksRegistry {
     }
 
     private static <T extends Block> void registerBlockItem(String name, DeferredBlock<T> block) {
-        ItemsRegistry.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
+        ItemsRegistry.ITEMS.registerSimpleBlockItem(name, block);
     }
 
     public static void register(IEventBus eventBus) {
