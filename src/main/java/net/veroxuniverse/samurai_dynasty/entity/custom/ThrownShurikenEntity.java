@@ -23,7 +23,7 @@ import org.jetbrains.annotations.Nullable;
 public class ThrownShurikenEntity extends AbstractArrow {
 
     private static final EntityDataAccessor<Boolean> ID_FOIL = SynchedEntityData.defineId(ThrownShurikenEntity.class, EntityDataSerializers.BOOLEAN);
-    private @NotNull ItemStack shurikenItem = new ItemStack(ItemsRegistry.SHURIKEN.get());
+    private @NotNull ItemStack shurikenItem = ItemStack.EMPTY;
     private boolean dealtDamage;
     private float playerYaw;
     private float playerPitch;
@@ -65,12 +65,12 @@ public class ThrownShurikenEntity extends AbstractArrow {
 
     @Override
     protected ItemStack getPickupItem() {
-        return new ItemStack(ItemsRegistry.SHURIKEN.get().asItem());
+        return shurikenItem.isEmpty() ? ItemStack.EMPTY : shurikenItem.copy();
     }
 
     @Override
     protected ItemStack getDefaultPickupItem() {
-        return new ItemStack(ItemsRegistry.SHURIKEN.get().asItem());
+        return shurikenItem.isEmpty() ? ItemStack.EMPTY : shurikenItem.copy();
     }
 
     public boolean isFoil() {
