@@ -3,15 +3,13 @@ package net.veroxuniverse.samurai_dynasty.curios;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.item.component.TooltipDisplay;
 import net.veroxuniverse.samurai_dynasty.registry.ItemsRegistry;
 
-import java.util.List;
+import java.util.function.Consumer;
 
 // TODO: Re-enable Curios integration when dependency is available
 public class KitsuneMaskCurios extends Item {
@@ -19,18 +17,15 @@ public class KitsuneMaskCurios extends Item {
         super(pProperties);
     }
 
-    // Note: inventoryTick method removed due to 1.21.8 API changes
-    // Curios effects will be re-enabled when Curios is available
-
     @Override
-    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> components, TooltipFlag flag) {
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, TooltipDisplay tooltipDisplay, Consumer<Component> components, TooltipFlag flag) {
         if(Screen.hasShiftDown() && stack.getItem() == ItemsRegistry.KITSUNE_MASK.get()) {
-            components.add(Component.translatable("curios.samurai_dynasty.summary"));
-            components.add(Component.literal(""));
-            components.add(Component.translatable("curios.samurai_dynasty.speed").withStyle(ChatFormatting.GRAY));
-            components.add(Component.translatable("curios.samurai_dynasty.immune_slowness").withStyle(ChatFormatting.GRAY));
+            components.accept(Component.translatable("curios.samurai_dynasty.summary"));
+            components.accept(Component.literal(""));
+            components.accept(Component.translatable("curios.samurai_dynasty.speed").withStyle(ChatFormatting.GRAY));
+            components.accept(Component.translatable("curios.samurai_dynasty.immune_slowness").withStyle(ChatFormatting.GRAY));
         } else if (stack.getItem() == ItemsRegistry.KITSUNE_MASK.get()) {
-            components.add(Component.translatable("curios.samurai_dynasty.summary"));
+            components.accept(Component.translatable("curios.samurai_dynasty.summary"));
         }
     }
 }

@@ -1,7 +1,6 @@
 package net.veroxuniverse.samurai_dynasty.item;
 
 import net.minecraft.ChatFormatting;
-import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -12,12 +11,12 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.state.BlockState;
 import net.veroxuniverse.samurai_dynasty.entity.custom.KunaiEntity;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
+import java.util.function.Consumer;
 
 public class KunaiItem extends ESWeaponItem {
     public static final float BASE_DAMAGE = 8.0F;
@@ -50,24 +49,8 @@ public class KunaiItem extends ESWeaponItem {
     }
 
     @Override
-    public void appendHoverText(@NotNull ItemStack stack, @NotNull Item.TooltipContext context, @NotNull List<Component> components, @NotNull TooltipFlag flag) {
-        components.add(Component.literal("Throwable Item:").withStyle(ChatFormatting.GRAY));
-        components.add(Component.literal(" 6+ Ranged Damage").withStyle(ChatFormatting.DARK_GREEN));
-
-        super.appendHoverText(stack, context, components, flag);
-    }
-
-    @Override
-    public boolean hurtEnemy(ItemStack pStack, LivingEntity pTarget, LivingEntity pAttacker) {
-        pStack.hurtAndBreak(1, pAttacker, EquipmentSlot.MAINHAND);
-        return true;
-    }
-
-    @Override
-    public boolean mineBlock(ItemStack pStack, Level pLevel, BlockState pState, BlockPos pPos, LivingEntity pEntityLiving) {
-        if ((double)pState.getDestroySpeed(pLevel, pPos) != 0.0D) {
-            pStack.hurtAndBreak(2, pEntityLiving, EquipmentSlot.MAINHAND);
-        }
-        return true;
+    public void appendHoverText(@NotNull ItemStack stack, @NotNull Item.TooltipContext context, @NotNull TooltipDisplay tooltipDisplay, @NotNull Consumer<Component> components, @NotNull TooltipFlag flag) {
+        components.accept(Component.literal("Throwable Item:").withStyle(ChatFormatting.GRAY));
+        components.accept(Component.literal(" 6+ Ranged Damage").withStyle(ChatFormatting.DARK_GREEN));
     }
 }

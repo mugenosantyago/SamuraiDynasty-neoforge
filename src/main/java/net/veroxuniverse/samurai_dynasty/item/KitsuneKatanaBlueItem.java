@@ -9,18 +9,17 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.level.Level;
 import net.veroxuniverse.samurai_dynasty.registry.ItemsRegistry;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
+import java.util.function.Consumer;
 
 public class KitsuneKatanaBlueItem extends ESWeaponItem {
     public KitsuneKatanaBlueItem(ToolMaterial pTier, float pAttackDamage, float pAttackSpeed, Properties pProperties) {
@@ -28,20 +27,18 @@ public class KitsuneKatanaBlueItem extends ESWeaponItem {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @NotNull Item.TooltipContext context, List<Component> components, TooltipFlag flag) {
+    public void appendHoverText(ItemStack stack, @NotNull Item.TooltipContext context, @NotNull TooltipDisplay tooltipDisplay, @NotNull Consumer<Component> components, TooltipFlag flag) {
         if(Screen.hasShiftDown() && stack.getItem() == ItemsRegistry.KATANA_KITSUNE_BLUE.get()) {
-            components.add(Component.literal("§8Hold [§7Shift§8] for Summary"));
-            components.add(Component.literal(""));
-            components.add(Component.literal("§7Applies §bFlames§7 on hit.").withStyle(ChatFormatting.GRAY));
-            components.add(Component.literal("§7Applies §bBlindness§7 on hit.").withStyle(ChatFormatting.GRAY));
-            components.add(Component.literal(""));
-            components.add(Component.literal("§7Ability [§eRight-Click§7]"));
-            components.add(Component.literal("§7Applies §bFire Resistance§7.").withStyle(ChatFormatting.GRAY));
+            components.accept(Component.literal("§8Hold [§7Shift§8] for Summary"));
+            components.accept(Component.literal(""));
+            components.accept(Component.literal("§7Applies §bFlames§7 on hit.").withStyle(ChatFormatting.GRAY));
+            components.accept(Component.literal("§7Applies §bBlindness§7 on hit.").withStyle(ChatFormatting.GRAY));
+            components.accept(Component.literal(""));
+            components.accept(Component.literal("§7Ability [§eRight-Click§7]"));
+            components.accept(Component.literal("§7Applies §bFire Resistance§7.").withStyle(ChatFormatting.GRAY));
         } else if (stack.getItem() == ItemsRegistry.KATANA_KITSUNE_BLUE.get()) {
-            components.add(Component.literal("§8Hold [§7Shift§8] for Summary"));
+            components.accept(Component.literal("§8Hold [§7Shift§8] for Summary"));
         }
-
-        super.appendHoverText(stack, context, components, flag);
     }
 
     public @NotNull InteractionResult use(Level pLevel, Player pPlayer, InteractionHand pHand) {
@@ -53,15 +50,5 @@ public class KitsuneKatanaBlueItem extends ESWeaponItem {
         }
 
         return InteractionResult.SUCCESS;
-    }
-
-    @Override
-    public boolean onLeftClickEntity(ItemStack stack, Player player, Entity entity) {
-        if(entity instanceof LivingEntity livingEntity) {
-            livingEntity.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 200, 1), player);
-            livingEntity.igniteForSeconds(10);
-        }
-
-        return super.onLeftClickEntity(stack, player, entity);
     }
 }

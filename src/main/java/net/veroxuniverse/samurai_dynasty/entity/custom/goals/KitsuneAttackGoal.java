@@ -85,8 +85,6 @@ public class KitsuneAttackGoal extends Goal {
             return false;
         } else if (!this.followingTargetEvenIfNotSeen) {
             return !this.mob.getNavigation().isDone();
-        } else if (!this.mob.isWithinRestriction(livingentity.blockPosition())) {
-            return false;
         } else {
             return !(livingentity instanceof Player player) ||
                     (!player.isSpectator() && !player.isCreative());
