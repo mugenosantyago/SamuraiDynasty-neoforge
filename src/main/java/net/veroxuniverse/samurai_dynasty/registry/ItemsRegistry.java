@@ -393,27 +393,30 @@ public class ItemsRegistry {
             properties -> new Item(properties.fireResistant()));
 
     // ========== SPAWN EGGS ==========
-    // In 1.21.4, spawn egg colors are now data-driven. See data/samurai_dynasty/spawn_egg_colors/
+    // TODO: Re-enable spawn eggs - requires fixing entity type registration timing
+    // Spawn eggs cause "Block id not set" error due to registration order issues
+    /*
     public static final DeferredItem<Item> AKANAME_SPAWN_EGG = ITEMS.register("akaname_spawn_egg",
-            () -> new DeferredSpawnEggItem(ModEntityTypes.AKANAME, 0x8B4513, 0xFF4500, new Item.Properties()));
+            () -> new SpawnEggItem(ModEntityTypes.AKANAME.get(), new Item.Properties()));
     public static final DeferredItem<Item> ENENRA_SPAWN_EGG = ITEMS.register("enenra_spawn_egg",
-            () -> new DeferredSpawnEggItem(ModEntityTypes.ENENRA, 0x2F4F4F, 0x696969, new Item.Properties()));
+            () -> new SpawnEggItem(ModEntityTypes.ENENRA.get(), new Item.Properties()));
     public static final DeferredItem<Item> ONI_SPAWN_EGG = ITEMS.register("oni_spawn_egg",
-            () -> new DeferredSpawnEggItem(ModEntityTypes.ONI, 0x8B0000, 0xFF0000, new Item.Properties()));
+            () -> new SpawnEggItem(ModEntityTypes.ONI.get(), new Item.Properties()));
     public static final DeferredItem<Item> KITSUNE_SPAWN_EGG = ITEMS.register("kitsune_spawn_egg",
-            () -> new DeferredSpawnEggItem(ModEntityTypes.KITSUNE, 0xFF8C00, 0xFFFFFF, new Item.Properties()));
+            () -> new SpawnEggItem(ModEntityTypes.KITSUNE.get(), new Item.Properties()));
     public static final DeferredItem<Item> KITSUNE_SMALL_SPAWN_EGG = ITEMS.register("kitsune_small_spawn_egg",
-            () -> new DeferredSpawnEggItem(ModEntityTypes.TWOTAILED, 0xFF8C00, 0xFFD700, new Item.Properties()));
+            () -> new SpawnEggItem(ModEntityTypes.TWOTAILED.get(), new Item.Properties()));
     public static final DeferredItem<Item> ONIBI_SPAWN_EGG = ITEMS.register("onibi_spawn_egg",
-            () -> new DeferredSpawnEggItem(ModEntityTypes.ONIBI, 0x4169E1, 0x87CEEB, new Item.Properties()));
+            () -> new SpawnEggItem(ModEntityTypes.ONIBI.get(), new Item.Properties()));
     public static final DeferredItem<Item> JOROGUMO_SPAWN_EGG = ITEMS.register("jorogumo_spawn_egg",
-            () -> new DeferredSpawnEggItem(ModEntityTypes.JOROGUMO, 0x4B0082, 0x8B008B, new Item.Properties()));
+            () -> new SpawnEggItem(ModEntityTypes.JOROGUMO.get(), new Item.Properties()));
     public static final DeferredItem<Item> KOMAINU_SPAWN_EGG = ITEMS.register("komainu_spawn_egg",
-            () -> new DeferredSpawnEggItem(ModEntityTypes.KOMAINU, 0xD2691E, 0xFFD700, new Item.Properties()));
+            () -> new SpawnEggItem(ModEntityTypes.KOMAINU.get(), new Item.Properties()));
     public static final DeferredItem<Item> TANUKI_SPAWN_EGG = ITEMS.register("tanuki_spawn_egg",
-            () -> new DeferredSpawnEggItem(ModEntityTypes.TANUKI, 0x8B4513, 0xF5DEB3, new Item.Properties()));
+            () -> new SpawnEggItem(ModEntityTypes.TANUKI.get(), new Item.Properties()));
     public static final DeferredItem<Item> KAWAUSO_SPAWN_EGG = ITEMS.register("kawauso_spawn_egg",
-            () -> new DeferredSpawnEggItem(ModEntityTypes.KAWAUSO, 0x8B4513, 0x4682B4, new Item.Properties()));
+            () -> new SpawnEggItem(ModEntityTypes.KAWAUSO.get(), new Item.Properties()));
+    */
 
     // ========== MATERIALS / GEMS ==========
     public static final DeferredItem<Item> RUBY = ITEMS.registerSimpleItem("ruby");
