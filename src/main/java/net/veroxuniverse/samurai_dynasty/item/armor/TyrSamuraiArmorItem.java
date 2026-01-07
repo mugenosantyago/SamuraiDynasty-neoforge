@@ -16,7 +16,7 @@ public class TyrSamuraiArmorItem extends SamuraiArmorItem {
 
     @Override
     public boolean makesPiglinsNeutral(ItemStack stack, LivingEntity wearer) {
-        return this.materialHolder.is(ArmorMaterialsRegistry.SAMURAI_TYR.unwrapKey().orElseThrow());
+        return this.armorMaterial == ArmorMaterialsRegistry.SAMURAI_TYR;
     }
 
 }

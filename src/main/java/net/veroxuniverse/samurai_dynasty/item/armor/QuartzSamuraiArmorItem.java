@@ -16,7 +16,7 @@ public class QuartzSamuraiArmorItem extends SamuraiArmorItem {
 
     @Override
     public boolean makesPiglinsNeutral(ItemStack stack, LivingEntity wearer) {
-        return this.materialHolder.is(ArmorMaterialsRegistry.SAMURAI_QUARTZ.unwrapKey().orElseThrow());
+        return this.armorMaterial == ArmorMaterialsRegistry.SAMURAI_QUARTZ;
     }
 
 }

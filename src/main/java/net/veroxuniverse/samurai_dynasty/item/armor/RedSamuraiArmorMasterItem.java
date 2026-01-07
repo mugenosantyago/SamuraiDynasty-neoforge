@@ -16,7 +16,7 @@ public class RedSamuraiArmorMasterItem extends SamuraiArmorItem {
 
     @Override
     public boolean makesPiglinsNeutral(ItemStack stack, LivingEntity wearer) {
-        return this.materialHolder.is(ArmorMaterialsRegistry.SAMURAI_RUBY_MASTER.unwrapKey().orElseThrow());
+        return this.armorMaterial == ArmorMaterialsRegistry.SAMURAI_RUBY_MASTER;
     }
 
 }
