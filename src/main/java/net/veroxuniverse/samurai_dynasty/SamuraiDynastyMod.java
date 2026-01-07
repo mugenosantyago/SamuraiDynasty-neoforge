@@ -27,7 +27,7 @@ public class SamuraiDynastyMod {
 
     public SamuraiDynastyMod(IEventBus modEventBus, ModContainer modContainer) {
         // Register deferred registers
-        // ItemsRegistry.register(modEventBus); // Temporarily disabled
+        ItemsRegistry.register(modEventBus);
         // BlocksRegistry.register(modEventBus); // Temporarily disabled
         ModEntityTypes.register(modEventBus);
         ParticlesInit.register(modEventBus);
