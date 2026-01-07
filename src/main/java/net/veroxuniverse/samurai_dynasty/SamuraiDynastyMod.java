@@ -27,13 +27,12 @@ public class SamuraiDynastyMod {
 
     public SamuraiDynastyMod(IEventBus modEventBus, ModContainer modContainer) {
         // Register deferred registers
-        ItemsRegistry.register(modEventBus);
-        // BlocksRegistry.register(modEventBus); // Temporarily disabled to debug registration issue
+        // ItemsRegistry.register(modEventBus); // Temporarily disabled
+        // BlocksRegistry.register(modEventBus); // Temporarily disabled
         ModEntityTypes.register(modEventBus);
         ParticlesInit.register(modEventBus);
-        // CreativeTabRegistry.register(modEventBus); // Temporarily disabled to debug registration issue
+        // CreativeTabRegistry.register(modEventBus); // Temporarily disabled
         ESSounds.register(modEventBus);
-        ArmorMaterialsRegistry.register(modEventBus); // Moved after items
 
         // Register mod compatibility when those mods are loaded
         // TODO: Re-enable when compat mods are available for 1.21.4
