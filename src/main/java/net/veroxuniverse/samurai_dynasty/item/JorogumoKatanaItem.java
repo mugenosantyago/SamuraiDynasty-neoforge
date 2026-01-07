@@ -14,7 +14,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
@@ -23,9 +22,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class JorogumoKatanaItem extends SwordItem {
-    public JorogumoKatanaItem(ToolMaterial pTier, float pAttackDamageModifier, float pAttackSpeedModifier, Properties pProperties) {
-        super(pTier, pAttackDamageModifier, pAttackSpeedModifier, pProperties);
+public class JorogumoKatanaItem extends ESWeaponItem {
+    public JorogumoKatanaItem(ToolMaterial pTier, float pAttackDamage, float pAttackSpeed, Properties pProperties) {
+        super(pTier, pAttackDamage, pAttackSpeed, pProperties);
     }
 
     @Override
@@ -65,5 +64,4 @@ public class JorogumoKatanaItem extends SwordItem {
 
         return super.onLeftClickEntity(stack, player, entity);
     }
-
 }

@@ -14,7 +14,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
@@ -23,9 +22,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class KitsuneKatanaBlueItem extends SwordItem {
-    public KitsuneKatanaBlueItem(ToolMaterial pTier, float pAttackDamageModifier, float pAttackSpeedModifier, Properties pProperties) {
-        super(pTier, pAttackDamageModifier, pAttackSpeedModifier, pProperties);
+public class KitsuneKatanaBlueItem extends ESWeaponItem {
+    public KitsuneKatanaBlueItem(ToolMaterial pTier, float pAttackDamage, float pAttackSpeed, Properties pProperties) {
+        super(pTier, pAttackDamage, pAttackSpeed, pProperties);
     }
 
     @Override

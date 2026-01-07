@@ -19,7 +19,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class NetheriteKunaiItem extends SwordItem {
+public class NetheriteKunaiItem extends ESWeaponItem {
 
     public static final float BASE_DAMAGE = 8.0F;
 

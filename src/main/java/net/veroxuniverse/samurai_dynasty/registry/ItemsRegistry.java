@@ -1,6 +1,5 @@
 package net.veroxuniverse.samurai_dynasty.registry;
 
-import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.equipment.ArmorType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
