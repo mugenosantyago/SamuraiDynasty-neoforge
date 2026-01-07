@@ -10,7 +10,6 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.neoforged.neoforge.common.NeoForge;
 import net.veroxuniverse.samurai_dynasty.entity.ModEntityTypes;
 import net.veroxuniverse.samurai_dynasty.registry.ArmorMaterialsRegistry;
 import net.veroxuniverse.samurai_dynasty.registry.BlocksRegistry;
@@ -64,9 +63,6 @@ public class SamuraiDynastyMod {
 
         // Register common setup listener
         modEventBus.addListener(this::commonSetup);
-
-        // Register ourselves for game events
-        NeoForge.EVENT_BUS.register(this);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
