@@ -36,6 +36,11 @@ public class ItemsRegistry {
     public static final DeferredItem<Item> AQUAMARINE = ITEMS.registerSimpleItem("aquamarine");
     public static final DeferredItem<Item> ONYX = ITEMS.registerSimpleItem("onyx");
     public static final DeferredItem<Item> SILVER_INGOT = ITEMS.registerSimpleItem("silver_ingot");
+    public static final DeferredItem<Item> STEEL_INGOT = ITEMS.registerSimpleItem("steel_ingot");
+
+    // ========== BLOCK ITEMS ==========
+    // Registered using registerSimpleBlockItem to properly handle block -> item conversion
+    // These are registered after blocks are defined but before blocks are fully registered
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

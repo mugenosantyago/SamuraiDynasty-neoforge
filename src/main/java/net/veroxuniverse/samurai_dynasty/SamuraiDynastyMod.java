@@ -27,11 +27,11 @@ public class SamuraiDynastyMod {
 
     public SamuraiDynastyMod(IEventBus modEventBus, ModContainer modContainer) {
         // Register deferred registers
+        BlocksRegistry.register(modEventBus);
         ItemsRegistry.register(modEventBus);
-        // BlocksRegistry.register(modEventBus); // Disabled - causes "Block id not set"
         ModEntityTypes.register(modEventBus);
         ParticlesInit.register(modEventBus);
-        CreativeTabRegistry.register(modEventBus); // Re-enabled for client
+        CreativeTabRegistry.register(modEventBus);
         ESSounds.register(modEventBus);
 
         // Register mod compatibility when those mods are loaded
