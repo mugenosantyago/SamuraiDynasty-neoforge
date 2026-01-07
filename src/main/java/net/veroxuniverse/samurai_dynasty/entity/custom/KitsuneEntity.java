@@ -5,6 +5,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.DifficultyInstance;
@@ -23,8 +24,6 @@ import net.minecraft.world.level.pathfinder.PathType;
 import net.veroxuniverse.samurai_dynasty.entity.variant.KitsuneVariant;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import static net.minecraft.world.entity.monster.hoglin.HoglinBase.throwTarget;
 
 public class KitsuneEntity extends Monster {
 
@@ -97,32 +96,36 @@ public class KitsuneEntity extends Monster {
         compound.putInt("Variant", this.getTypeVariant());
     }
 
-    static boolean hurtAndThrowTarget(LivingEntity kitsune, LivingEntity target) {
-        float f1 = (float) kitsune.getAttributeValue(Attributes.ATTACK_DAMAGE);
-        float f;
-        if ((int) f1 > 0) {
-            f = f1 / 2.0F + (float) kitsune.level().random.nextInt((int) f1);
-        } else {
-            f = f1;
-        }
-
-        boolean flag = target.hurt(target.damageSources().mobAttack(kitsune), f);
-        if (flag) {
-            kitsune.doEnchantDamageEffects(kitsune, target);
-            throwTarget(kitsune, target);
-        }
-
-        return flag;
-    }
-
     @Override
-    public boolean doHurtTarget(@NotNull Entity entity) {
-        if (!(entity instanceof LivingEntity)) {
+    public boolean doHurtTarget(@NotNull ServerLevel level, @NotNull Entity entity) {
+        if (!(entity instanceof LivingEntity target)) {
             return false;
-        } else {
-            this.playSound(SoundEvents.FOX_BITE, 1.0F, 0.4F);
-            return hurtAndThrowTarget(this, (LivingEntity) entity);
         }
+        
+        this.playSound(SoundEvents.FOX_BITE, 1.0F, 0.4F);
+        
+        float baseDamage = (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE);
+        float damage;
+        if ((int) baseDamage > 0) {
+            damage = baseDamage / 2.0F + (float) this.random.nextInt((int) baseDamage);
+        } else {
+            damage = baseDamage;
+        }
+
+        DamageSource damageSource = this.damageSources().mobAttack(this);
+        boolean success = target.hurtServer(level, damageSource, damage);
+        
+        if (success) {
+            // Apply knockback
+            double knockback = this.getAttributeValue(Attributes.ATTACK_KNOCKBACK);
+            if (knockback > 0) {
+                target.knockback(knockback * 0.5F, 
+                        Math.sin(this.getYRot() * ((float)Math.PI / 180F)),
+                        -Math.cos(this.getYRot() * ((float)Math.PI / 180F)));
+            }
+        }
+
+        return success;
     }
 
     @Override
