@@ -27,12 +27,11 @@ public class SamuraiDynastyMod {
 
     public SamuraiDynastyMod(IEventBus modEventBus, ModContainer modContainer) {
         // Register deferred registers
-        // NOTE: All registries temporarily disabled to test if mod loads at all
-        // ItemsRegistry.register(modEventBus);
-        // BlocksRegistry.register(modEventBus);
-        // ModEntityTypes.register(modEventBus);
-        // ParticlesInit.register(modEventBus);
-        // CreativeTabRegistry.register(modEventBus);
+        ItemsRegistry.register(modEventBus);
+        BlocksRegistry.register(modEventBus);
+        ModEntityTypes.register(modEventBus);
+        ParticlesInit.register(modEventBus);
+        CreativeTabRegistry.register(modEventBus);
         ESSounds.register(modEventBus);
 
         // Register mod compatibility when those mods are loaded
