@@ -1,10 +1,13 @@
 package net.veroxuniverse.samurai_dynasty.item.armor.lib;
 
+import net.minecraft.core.Holder;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.equipment.ArmorMaterial;
 import net.minecraft.world.item.equipment.ArmorType;
+import net.minecraft.world.item.equipment.Equippable;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.EquipmentSlotGroup;
@@ -72,9 +75,15 @@ public class SamuraiArmorItem extends Item {
                 EquipmentSlotGroup.bySlot(slot)
         );
         
+        // Add equippable component so armor can be equipped
+        Equippable equippable = Equippable.builder(slot)
+                .setEquipSound(Holder.direct(SoundEvents.ARMOR_EQUIP_IRON.value()))
+                .build();
+        
         return properties
                 .durability(baseDurability)
-                .attributes(attributeBuilder.build());
+                .attributes(attributeBuilder.build())
+                .component(net.minecraft.core.component.DataComponents.EQUIPPABLE, equippable);
     }
 
     @Override
