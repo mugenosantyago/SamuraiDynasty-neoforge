@@ -1,18 +1,13 @@
 package net.veroxuniverse.samurai_dynasty;
 
 import com.mojang.logging.LogUtils;
-import net.neoforged.api.distmarker.Dist;
+import mod.azure.azurelib.common.animation.cache.AzIdentityRegistry;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
-import net.neoforged.fml.ModList;
-import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.veroxuniverse.samurai_dynasty.entity.ModEntityTypes;
-import net.veroxuniverse.samurai_dynasty.registry.ArmorMaterialsRegistry;
-import net.veroxuniverse.samurai_dynasty.registry.BlocksRegistry;
 import net.veroxuniverse.samurai_dynasty.registry.CreativeTabRegistry;
 import net.veroxuniverse.samurai_dynasty.registry.ItemsRegistry;
 import net.veroxuniverse.samurai_dynasty.registry.ParticlesInit;
@@ -62,10 +57,52 @@ public class SamuraiDynastyMod {
 
         // Register common setup listener
         modEventBus.addListener(this::commonSetup);
+        
+        // Register client setup listener
+        modEventBus.addListener(this::clientSetup);
+    }
+    
+    private void clientSetup(final FMLClientSetupEvent event) {
+        LOGGER.info("Samurai Dynasty client setup");
+        
+        // Register armor renderers with AzureLib 3.2.0
+        event.enqueueWork(() -> {
+            net.veroxuniverse.samurai_dynasty.client.armors.ArmorRendererRegistry.registerAll();
+            LOGGER.info("Registered armor renderers with AzArmorRendererRegistry");
+        });
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
         LOGGER.info("Samurai Dynasty common setup");
+
+        // Register armor items with AzIdentityRegistry for proper animation triggering
+        event.enqueueWork(() -> {
+            AzIdentityRegistry.register(
+                    ItemsRegistry.IRON_SAMURAI_HELMET.get(),
+                    ItemsRegistry.IRON_SAMURAI_CHESTPLATE.get(),
+                    ItemsRegistry.IRON_SAMURAI_LEGGINGS.get(),
+                    ItemsRegistry.IRON_SAMURAI_BOOTS.get(),
+                    ItemsRegistry.GOLD_SAMURAI_HELMET.get(),
+                    ItemsRegistry.GOLD_SAMURAI_CHESTPLATE.get(),
+                    ItemsRegistry.GOLD_SAMURAI_LEGGINGS.get(),
+                    ItemsRegistry.GOLD_SAMURAI_BOOTS.get(),
+                    ItemsRegistry.DIAMOND_SAMURAI_HELMET.get(),
+                    ItemsRegistry.DIAMOND_SAMURAI_CHESTPLATE.get(),
+                    ItemsRegistry.DIAMOND_SAMURAI_LEGGINGS.get(),
+                    ItemsRegistry.DIAMOND_SAMURAI_BOOTS.get(),
+                    ItemsRegistry.RED_SAMURAI_HELMET.get(),
+                    ItemsRegistry.RED_SAMURAI_CHESTPLATE.get(),
+                    ItemsRegistry.RED_SAMURAI_LEGGINGS.get(),
+                    ItemsRegistry.RED_SAMURAI_BOOTS.get(),
+                    ItemsRegistry.IRON_NINJA_HELMET.get(),
+                    ItemsRegistry.IRON_NINJA_CHESTPLATE.get(),
+                    ItemsRegistry.IRON_NINJA_BOOTS.get(),
+                    ItemsRegistry.NINJA_LEGGINGS.get(),
+                    ItemsRegistry.STRAW_HAT.get(),
+                    ItemsRegistry.KIMONO.get()
+            );
+            LOGGER.info("Registered armor items with AzIdentityRegistry");
+        });
 
         // TODO: Re-enable when compat mods are available for 1.21.4
         /*
@@ -80,16 +117,4 @@ public class SamuraiDynastyMod {
         */
     }
 
-    @EventBusSubscriber(modid = MOD_ID, value = Dist.CLIENT)
-    public static class ClientModEvents {
-        @SubscribeEvent
-        public static void onClientSetup(FMLClientSetupEvent event) {
-            LOGGER.info("Samurai Dynasty client setup");
-
-            // Register armor renderers with AzureLib 3.2.0
-            event.enqueueWork(() -> {
-                net.veroxuniverse.samurai_dynasty.client.armors.ArmorRendererRegistry.registerAll();
-            });
-        }
-    }
 }
