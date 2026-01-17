@@ -111,8 +111,9 @@ repositories {
 }
 
 dependencies {
-    // AzureLib for animations (update version when available for 1.21.4)
+    // AzureLib for animations - READY TO ENABLE when ported to 1.21.8
     // implementation "mod.azure.azurelib:azurelib-neo-${minecraft_version}:${azurelib_version}"
+    // Once enabled, uncomment armor/entity renderers in SamuraiDynastyClientMod.java
 
     // Curios API (uncomment when maven is accessible)
     // compileOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}:api"

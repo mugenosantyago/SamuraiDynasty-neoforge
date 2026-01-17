@@ -37,11 +37,8 @@ public class SamuraiDynastyClientMod {
 
     @SubscribeEvent
     public static void registerRenderers(final EntityRenderersEvent.RegisterRenderers event) {
-        // TODO: Replace with proper renderers when AzureLib/GeckoLib is available for NeoForge 1.21
-        // For now, using placeholder renderers that won't crash the game
-        
-        // Entity renderers - these need AzureLib which is not yet available
-        // Commenting out the custom renderers until AzureLib is updated
+        // ===== READY FOR AZURELIB 1.21.8 =====
+        // When AzureLib is ported, uncomment these entity renderers:
         /*
         event.registerEntityRenderer(ModEntityTypes.AKANAME.get(), AkanameRenderer::new);
         event.registerEntityRenderer(ModEntityTypes.ENENRA.get(), EnenraRenderer::new);
@@ -57,10 +54,19 @@ public class SamuraiDynastyClientMod {
         event.registerEntityRenderer(ModEntityTypes.KITSUNE_PROJECTILE.get(), KitsuneProjectileRenderer::new);
         */
         
-        // These use vanilla renderers and should work
+        // These use vanilla renderers and work now
         event.registerEntityRenderer(ModEntityTypes.KUNAI.get(), ThrownItemRenderer::new);
         event.registerEntityRenderer(ModEntityTypes.KUNAI_NETHERITE.get(), ThrownItemRenderer::new);
     }
+    
+    // TODO: When AzureLib is available, add armor renderer registration:
+    /*
+    @SubscribeEvent
+    public static void registerArmorRenderers(final EntityRenderersEvent.AddLayers event) {
+        // Register AzureLib armor renderers for 3D animated armor models
+        // This will replace the vanilla armor layer rendering
+    }
+    */
 
     @SubscribeEvent
     public static void registerLayerRenderers(final EntityRenderersEvent.RegisterLayerDefinitions event) {
