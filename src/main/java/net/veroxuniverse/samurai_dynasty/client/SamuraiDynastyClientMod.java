@@ -37,8 +37,9 @@ public class SamuraiDynastyClientMod {
 
     @SubscribeEvent
     public static void registerRenderers(final EntityRenderersEvent.RegisterRenderers event) {
-        // ===== READY FOR AZURELIB 1.21.8 =====
-        // When AzureLib is ported, uncomment these entity renderers:
+        // TODO: Implement renderer classes with AzureLib 3.2.0 API
+        // The renderer classes are currently stubs and need proper GeoEntityRenderer implementations
+        // See: client/entities/*.java files
         /*
         event.registerEntityRenderer(ModEntityTypes.AKANAME.get(), AkanameRenderer::new);
         event.registerEntityRenderer(ModEntityTypes.ENENRA.get(), EnenraRenderer::new);
@@ -54,19 +55,10 @@ public class SamuraiDynastyClientMod {
         event.registerEntityRenderer(ModEntityTypes.KITSUNE_PROJECTILE.get(), KitsuneProjectileRenderer::new);
         */
         
-        // These use vanilla renderers and work now
+        // Vanilla projectile renderers
         event.registerEntityRenderer(ModEntityTypes.KUNAI.get(), ThrownItemRenderer::new);
         event.registerEntityRenderer(ModEntityTypes.KUNAI_NETHERITE.get(), ThrownItemRenderer::new);
     }
-    
-    // TODO: When AzureLib is available, add armor renderer registration:
-    /*
-    @SubscribeEvent
-    public static void registerArmorRenderers(final EntityRenderersEvent.AddLayers event) {
-        // Register AzureLib armor renderers for 3D animated armor models
-        // This will replace the vanilla armor layer rendering
-    }
-    */
 
     @SubscribeEvent
     public static void registerLayerRenderers(final EntityRenderersEvent.RegisterLayerDefinitions event) {
