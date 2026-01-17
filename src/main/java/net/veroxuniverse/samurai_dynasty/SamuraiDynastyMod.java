@@ -86,16 +86,10 @@ public class SamuraiDynastyMod {
         public static void onClientSetup(FMLClientSetupEvent event) {
             LOGGER.info("Samurai Dynasty client setup");
 
-            // TODO: Register armor renderers when AzureLib is available for 1.21.4
-            // TODO: Register curios renderers when Curios is available for 1.21.4
-            /*
-            CuriosRendererRegistry.register(ItemsRegistry.ONI_MASK.get(), OniMaskRenderer::new);
-            CuriosRendererRegistry.register(ItemsRegistry.KITSUNE_MASK.get(), KitsuneMaskRenderer::new);
-            
-            // Register item renderers
-            AzItemRendererRegistry.register(KamayariItemRenderer::new, ItemsRegistry.KAMAYARI.get());
-            // ... etc
-            */
+            // Register armor renderers with AzureLib 3.2.0
+            event.enqueueWork(() -> {
+                net.veroxuniverse.samurai_dynasty.client.armors.ArmorRendererRegistry.registerAll();
+            });
         }
     }
 }

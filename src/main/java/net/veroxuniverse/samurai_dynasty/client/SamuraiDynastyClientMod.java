@@ -4,10 +4,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
-import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import net.veroxuniverse.samurai_dynasty.SamuraiDynastyMod;
 import net.veroxuniverse.samurai_dynasty.client.entities.*;
@@ -20,27 +18,15 @@ import net.veroxuniverse.samurai_dynasty.registry.ParticlesInit;
 
 @EventBusSubscriber(modid = SamuraiDynastyMod.MOD_ID, value = Dist.CLIENT)
 public class SamuraiDynastyClientMod {
+
     @SubscribeEvent
     public static void registerParticleFactories(final RegisterParticleProvidersEvent event) {
         Minecraft.getInstance().particleEngine.register(ParticlesInit.BLUE_FLAME.get(), BlueFlame.Provider::new);
     }
 
-    // Commented out - RegisterColorHandlersEvent is abstract in 1.21.8
-    // TODO: Use RegisterColorHandlersEvent.ItemTintSources when needed
-    /*
-    @SubscribeEvent
-    public static void initItemColors(final RegisterColorHandlersEvent.ItemTintSources event) {
-        // TODO: Re-enable when Ars Nouveau is available for NeoForge 1.21
-        // Item color handlers registration - currently disabled
-    }
-    */
-
     @SubscribeEvent
     public static void registerRenderers(final EntityRenderersEvent.RegisterRenderers event) {
-        // TODO: Implement renderer classes with AzureLib 3.2.0 API
-        // The renderer classes are currently stubs and need proper GeoEntityRenderer implementations
-        // See: client/entities/*.java files
-        /*
+        // AzureLib 3.2.0 entity renderers
         event.registerEntityRenderer(ModEntityTypes.AKANAME.get(), AkanameRenderer::new);
         event.registerEntityRenderer(ModEntityTypes.ENENRA.get(), EnenraRenderer::new);
         event.registerEntityRenderer(ModEntityTypes.ONI.get(), OniRenderer::new);
@@ -51,11 +37,12 @@ public class SamuraiDynastyClientMod {
         event.registerEntityRenderer(ModEntityTypes.TANUKI.get(), TanukiRenderer::new);
         event.registerEntityRenderer(ModEntityTypes.KAWAUSO.get(), KawausoRenderer::new);
         event.registerEntityRenderer(ModEntityTypes.TWOTAILED.get(), TwoTailedRenderer::new);
-        event.registerEntityRenderer(ModEntityTypes.SHURIKEN.get(), ThrownShurikenRenderer::new);
         event.registerEntityRenderer(ModEntityTypes.KITSUNE_PROJECTILE.get(), KitsuneProjectileRenderer::new);
-        */
         
-        // Vanilla projectile renderers
+        // Shuriken uses its own renderer
+        event.registerEntityRenderer(ModEntityTypes.SHURIKEN.get(), ThrownShurikenRenderer::new);
+        
+        // Vanilla projectile renderers for kunai
         event.registerEntityRenderer(ModEntityTypes.KUNAI.get(), ThrownItemRenderer::new);
         event.registerEntityRenderer(ModEntityTypes.KUNAI_NETHERITE.get(), ThrownItemRenderer::new);
     }

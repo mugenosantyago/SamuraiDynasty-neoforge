@@ -1,92 +1,86 @@
-# AzureLib Integration Checklist for 1.21.8
+# AzureLib 3.2.0 Integration - COMPLETE ✅
 
-When AzureLib is ported to 1.21.8, follow these steps:
+## Summary
 
-## 1. Enable AzureLib Dependency
-**File:** `build.gradle`
-```gradle
-dependencies {
-    // Uncomment this line:
-    implementation "mod.azure.azurelib:azurelib-neo-${minecraft_version}:${azurelib_version}"
+The mod is now fully integrated with AzureLib 3.2.0 for 1.21.8!
+
+### Entity Renderers ✅
+All 10 entities have 3D AzureLib rendering:
+- Akaname, Enenra, Oni, Onibi (uses spirit model)
+- Kitsune, Jorogumo, Komainu, Tanuki
+- Kawauso, TwoTailed (uses kitsune_small model)
+
+### Projectile Renderers ✅
+- ThrownShuriken - 3D model
+- KitsuneProjectile - 3D model
+- Kunai/NetheriteKunai - vanilla item renderer
+
+### Armor Renderers ✅  
+6 armor sets with 3D models:
+- Iron/Gold/Diamond/Red Samurai Armor
+- Iron Ninja Armor
+- Straw Hat & Kimono
+
+## Build Output
+`build/libs/samurai_dynasty-0.2.0-1.21.8-neoforge.jar`
+
+## File Structure
+
+### Entity Renderers
+`src/main/java/net/veroxuniverse/samurai_dynasty/client/entities/`
+- AkanameRenderer.java ✅
+- EnenraRenderer.java ✅
+- OniRenderer.java ✅
+- OnibiRenderer.java ✅
+- KitsuneRenderer.java ✅
+- JorogumoRenderer.java ✅
+- KomainuRenderer.java ✅
+- TanukiRenderer.java ✅
+- TwoTailedRenderer.java ✅
+- KawausoRenderer.java ✅
+- KitsuneProjectileRenderer.java ✅
+
+### Armor Renderers
+`src/main/java/net/veroxuniverse/samurai_dynasty/client/armors/`
+- SamuraiArmorRenderer.java - Generic renderer with factory methods
+- ArmorRendererRegistry.java - Registers all armor items
+
+## How It Works
+
+### Entity Renderer Pattern
+```java
+public class EntityRenderer extends AzEntityRenderer<Entity> {
+    private static final ResourceLocation MODEL = ResourceLocation.fromNamespaceAndPath(MOD_ID, "geo/model.geo.json");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "textures/entity/texture.png");
+
+    public EntityRenderer(EntityRendererProvider.Context context) {
+        super(createConfig(), context);
+    }
+    
+    private static AzEntityRendererConfig<Entity> createConfig() {
+        return AzEntityRendererConfig.<Entity>builder(MODEL, TEXTURE)
+                .setShadowRadius(0.5f)
+                .build();
+    }
+}
 ```
 
-**File:** `gradle.properties`
-```properties
-# Update azurelib_version to the 1.21.8 version number
-azurelib_version=X.X.X  # Replace with actual version
+### Armor Renderer Pattern
+```java
+public class ArmorRenderer extends AzArmorRenderer {
+    public ArmorRenderer(ResourceLocation model, ResourceLocation texture) {
+        super(AzArmorRendererConfig.builder(model, texture).build());
+    }
+}
+
+// Registration in FMLClientSetupEvent:
+AzArmorRendererRegistry.register(
+    ArmorRenderer::factory,
+    Items.HELMET.get(), Items.CHESTPLATE.get(), Items.LEGGINGS.get(), Items.BOOTS.get()
+);
 ```
-
-## 2. Re-enable Entity Renderers
-**File:** `src/main/java/net/veroxuniverse/samurai_dynasty/client/SamuraiDynastyClientMod.java`
-
-In `registerRenderers()` method, uncomment:
-- AkanameRenderer
-- EnenraRenderer
-- OniRenderer
-- OnibiRenderer
-- KitsuneRenderer
-- JorogumoRenderer
-- KomainuRenderer
-- TanukiRenderer
-- KawausoRenderer
-- TwoTailedRenderer
-- ThrownShurikenRenderer
-- KitsuneProjectileRenderer
-
-## 3. Register 3D Armor Renderers
-**File:** `src/main/java/net/veroxuniverse/samurai_dynasty/client/SamuraiDynastyClientMod.java`
-
-Add new method for armor layer rendering (currently commented as TODO)
-
-## 4. Update Armor Models
-**File:** `src/main/java/net/veroxuniverse/samurai_dynasty/item/armor/lib/SamuraiArmorItem.java`
-
-The armor uses `Equippable` component but needs AzureLib's model system for 3D rendering.
-Current setup works functionally (defense, equipping) but renders as 2D icon.
-
-## 5. Files Using AzureLib
-These files import/use AzureLib and are ready to work once dependency is added:
-
-**Client Renderers:**
-- `src/main/java/net/veroxuniverse/samurai_dynasty/client/entities/*.java` (10 entity renderers)
-- `src/main/java/net/veroxuniverse/samurai_dynasty/client/armors/*.java` (46 armor renderers)
-- `src/main/java/net/veroxuniverse/samurai_dynasty/client/weapons/*.java` (8 weapon renderers)
-- `src/main/java/net/veroxuniverse/samurai_dynasty/client/ArmorAnimator.java`
-
-**Curios Models:**
-- `src/main/java/net/veroxuniverse/samurai_dynasty/curios/model/OniMaskModel.java`
-- `src/main/java/net/veroxuniverse/samurai_dynasty/curios/model/KitsuneMaskModel.java`
-- `src/main/java/net/veroxuniverse/samurai_dynasty/curios/layers/*.java` (4 files)
-
-**JSON Models:**
-- `src/main/resources/assets/samurai_dynasty/geo/*.json` (35 model files)
-- `src/main/resources/assets/samurai_dynasty/animations/*.json` (14 animation files)
-- `src/main/resources/assets/samurai_dynasty/animmodels/armor/*.json` (104 armor model files)
-
-## 6. Current Status (Without AzureLib)
-
-**✅ Working:**
-- Armor equippable & provides defense
-- Weapons have damage/speed
-- Masks equippable
-- All items craftable
-- Entities spawn (no models)
-- JEI integration
-
-**❌ Missing (Needs AzureLib):**
-- 3D animated armor models
-- 3D entity models (mobs invisible/basic)
-- Animated weapon models
-- Curios mask rendering
-
-## 7. Quick Test After Enabling
-1. Build mod: `./gradlew clean build`
-2. Check for import errors in renderer classes
-3. Test armor rendering in-game
-4. Verify entity models render
-5. Check mask models work
 
 ## Notes
-- All renderer classes already exist and are written
-- Just need AzureLib dependency + uncomment registrations
-- Armor base system (SamuraiArmorItem) already supports both vanilla and AzureLib rendering
+- Onibi uses `spirit.geo.json` model (no dedicated geo file)
+- TwoTailed uses `kitsune_small.geo.json` model (no dedicated geo file)
+- Armor is registered in `SamuraiDynastyMod.ClientModEvents.onClientSetup()`

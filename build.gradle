@@ -112,7 +112,7 @@ repositories {
 
 dependencies {
     // AzureLib for animations - ENABLED (local file dependency)
-    implementation files('neo/build/libs/azurelib-neo-1.21.8-3.2.0.jar')
+    implementation files('AzureLib/neo/build/libs/azurelib-neo-1.21.8-3.2.0.jar')
 
     // Curios API (uncomment when maven is accessible)
     // compileOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}:api"
