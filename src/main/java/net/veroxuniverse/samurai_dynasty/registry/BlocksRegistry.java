@@ -18,19 +18,18 @@ public class BlocksRegistry {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(SamuraiDynastyMod.MOD_ID);
     public static final DeferredRegister.Items BLOCK_ITEMS = DeferredRegister.createItems(SamuraiDynastyMod.MOD_ID);
 
-    // Helper properties - using of() instead of ofFullCopy() to avoid Block ID issues in 1.21.8
+    // Helper properties - In 1.21.8, tool requirements are handled via block tags, not requiresCorrectToolForDrops()
     private static BlockBehaviour.Properties oreProperties() {
         return BlockBehaviour.Properties.of()
                 .mapColor(MapColor.STONE)
                 .strength(3.0f, 3.0f)
-                .requiresCorrectToolForDrops();
+                .sound(SoundType.STONE);
     }
 
     private static BlockBehaviour.Properties deepslateOreProperties() {
         return BlockBehaviour.Properties.of()
                 .mapColor(MapColor.DEEPSLATE)
                 .strength(4.5f, 3.0f)
-                .requiresCorrectToolForDrops()
                 .sound(SoundType.DEEPSLATE);
     }
 
@@ -38,7 +37,6 @@ public class BlocksRegistry {
         return BlockBehaviour.Properties.of()
                 .mapColor(MapColor.METAL)
                 .strength(5.0f, 6.0f)
-                .requiresCorrectToolForDrops()
                 .sound(SoundType.METAL);
     }
 
@@ -46,7 +44,7 @@ public class BlocksRegistry {
         return BlockBehaviour.Properties.of()
                 .mapColor(MapColor.STONE)
                 .strength(1.5f, 6.0f)
-                .requiresCorrectToolForDrops();
+                .sound(SoundType.STONE);
     }
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
