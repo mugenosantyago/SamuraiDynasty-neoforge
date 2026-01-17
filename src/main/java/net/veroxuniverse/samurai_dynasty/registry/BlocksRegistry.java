@@ -1,8 +1,6 @@
 package net.veroxuniverse.samurai_dynasty.registry;
 
 import net.minecraft.util.valueproviders.UniformInt;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.bus.api.IEventBus;
@@ -17,11 +15,17 @@ import java.util.function.Supplier;
 
 public class BlocksRegistry {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(SamuraiDynastyMod.MOD_ID);
+    public static final DeferredRegister.Items BLOCK_ITEMS = DeferredRegister.createItems(SamuraiDynastyMod.MOD_ID);
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
-        DeferredBlock<T> toReturn = BLOCKS.register(name, block);
-        // Note: Block items are registered separately in ItemsRegistry to avoid cross-dependency during registration
-        return toReturn;
+        DeferredBlock<T> deferredBlock = BLOCKS.register(name, block);
+        // Register block item using the deferred block (no .get() call)
+        BLOCK_ITEMS.registerSimpleBlockItem(deferredBlock);
+        return deferredBlock;
+    }
+    
+    private static <T extends Block> DeferredBlock<T> registerBlockWithoutItem(String name, Supplier<T> block) {
+        return BLOCKS.register(name, block);
     }
 
     // ========== ORES ==========
@@ -170,11 +174,8 @@ public class BlocksRegistry {
             () -> new RoofBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).noOcclusion()
                     .strength(4f).requiresCorrectToolForDrops()));
 
-    private static <T extends Block> DeferredBlock<T> registerBlockWithoutBlockItem(String name, Supplier<T> block) {
-        return BLOCKS.register(name, block);
-    }
-
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);
+        BLOCK_ITEMS.register(eventBus);
     }
 }

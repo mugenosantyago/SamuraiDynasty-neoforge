@@ -8,6 +8,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.veroxuniverse.samurai_dynasty.entity.ModEntityTypes;
+import net.veroxuniverse.samurai_dynasty.registry.BlocksRegistry;
 import net.veroxuniverse.samurai_dynasty.registry.CreativeTabRegistry;
 import net.veroxuniverse.samurai_dynasty.registry.ItemsRegistry;
 import net.veroxuniverse.samurai_dynasty.registry.ParticlesInit;
@@ -22,7 +23,7 @@ public class SamuraiDynastyMod {
 
     public SamuraiDynastyMod(IEventBus modEventBus, ModContainer modContainer) {
         // Register deferred registers
-        // BlocksRegistry.register(modEventBus); // Disabled - blocks cause registration issues
+        BlocksRegistry.register(modEventBus);
         ItemsRegistry.register(modEventBus);
         ModEntityTypes.register(modEventBus);
         ParticlesInit.register(modEventBus);

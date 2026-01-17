@@ -3,7 +3,6 @@ package net.veroxuniverse.samurai_dynasty.registry;
 import net.minecraft.world.item.equipment.ArmorType;
 import net.neoforged.bus.api.IEventBus;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.BlockItem;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.veroxuniverse.samurai_dynasty.SamuraiDynastyMod;
@@ -146,9 +145,8 @@ public class ItemsRegistry {
     public static final DeferredItem<Item> ONI_HORN = ITEMS.registerSimpleItem("oni_horn");
 
     // ========== BLOCK ITEMS ==========
-    // TODO: Blocks remain disabled - NeoForge 1.21.8 has registration timing bugs
-    // BlockItem registration requires blocks to be registered first, but causes circular dependency
-    // Workaround: Use data-driven block item models or wait for NeoForge fix
+    // Block items are registered via BlocksRegistry using registerSimpleBlockItem
+    // This avoids the circular dependency / timing issue with block registration
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
