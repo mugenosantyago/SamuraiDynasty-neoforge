@@ -1,6 +1,5 @@
 package net.veroxuniverse.samurai_dynasty.item.armor.lib;
 
-import net.minecraft.core.Holder;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;

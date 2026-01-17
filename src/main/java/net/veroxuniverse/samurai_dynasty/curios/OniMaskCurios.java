@@ -2,7 +2,6 @@ package net.veroxuniverse.samurai_dynasty.curios;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
@@ -22,7 +21,7 @@ public class OniMaskCurios extends Item {
         super(pProperties
                 .component(DataComponents.EQUIPPABLE, 
                     Equippable.builder(EquipmentSlot.HEAD)
-                        .setEquipSound(Holder.direct(SoundEvents.ARMOR_EQUIP_LEATHER.value()))
+                        .setEquipSound(SoundEvents.ARMOR_EQUIP_LEATHER)
                         .build()));
     }
 
