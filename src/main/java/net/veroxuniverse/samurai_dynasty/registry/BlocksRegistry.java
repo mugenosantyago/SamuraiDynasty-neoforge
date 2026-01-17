@@ -18,33 +18,38 @@ public class BlocksRegistry {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(SamuraiDynastyMod.MOD_ID);
     public static final DeferredRegister.Items BLOCK_ITEMS = DeferredRegister.createItems(SamuraiDynastyMod.MOD_ID);
 
-    // Helper properties - In 1.21.8, tool requirements are handled via block tags, not requiresCorrectToolForDrops()
+    // Helper properties - In 1.21.8, noLootTable() prevents block ID check during construction
+    // Loot tables are handled via JSON data files
     private static BlockBehaviour.Properties oreProperties() {
         return BlockBehaviour.Properties.of()
                 .mapColor(MapColor.STONE)
                 .strength(3.0f, 3.0f)
-                .sound(SoundType.STONE);
+                .sound(SoundType.STONE)
+                .noLootTable();
     }
 
     private static BlockBehaviour.Properties deepslateOreProperties() {
         return BlockBehaviour.Properties.of()
                 .mapColor(MapColor.DEEPSLATE)
                 .strength(4.5f, 3.0f)
-                .sound(SoundType.DEEPSLATE);
+                .sound(SoundType.DEEPSLATE)
+                .noLootTable();
     }
 
     private static BlockBehaviour.Properties metalBlockProperties() {
         return BlockBehaviour.Properties.of()
                 .mapColor(MapColor.METAL)
                 .strength(5.0f, 6.0f)
-                .sound(SoundType.METAL);
+                .sound(SoundType.METAL)
+                .noLootTable();
     }
 
     private static BlockBehaviour.Properties stoneProperties() {
         return BlockBehaviour.Properties.of()
                 .mapColor(MapColor.STONE)
                 .strength(1.5f, 6.0f)
-                .sound(SoundType.STONE);
+                .sound(SoundType.STONE)
+                .noLootTable();
     }
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
