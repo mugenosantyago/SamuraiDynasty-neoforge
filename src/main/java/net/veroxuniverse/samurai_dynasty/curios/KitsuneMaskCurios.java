@@ -22,7 +22,7 @@ public class KitsuneMaskCurios extends Item {
         super(pProperties
                 .component(DataComponents.EQUIPPABLE, 
                     Equippable.builder(EquipmentSlot.HEAD)
-                        .setEquipSound(Holder.direct(SoundEvents.ARMOR_EQUIP_LEATHER.value()))
+                        .setEquipSound(SoundEvents.ARMOR_EQUIP_LEATHER)
                         .build()));
     }
 

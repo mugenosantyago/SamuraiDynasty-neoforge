@@ -79,7 +79,7 @@ public class SamuraiArmorItem extends Item {
         // Note: Visual rendering requires armor textures in assets/samurai_dynasty/textures/models/armor/
         // Or AzureLib for 3D animated models (not yet available for 1.21.8)
         Equippable equippable = Equippable.builder(slot)
-                .setEquipSound(Holder.direct(SoundEvents.ARMOR_EQUIP_IRON.value()))
+                .setEquipSound(SoundEvents.ARMOR_EQUIP_IRON)
                 .build();
         
         return properties
