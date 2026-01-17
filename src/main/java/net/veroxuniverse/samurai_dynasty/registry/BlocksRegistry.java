@@ -1,8 +1,6 @@
 package net.veroxuniverse.samurai_dynasty.registry;
 
 import net.minecraft.util.valueproviders.UniformInt;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
@@ -18,54 +16,54 @@ public class BlocksRegistry {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(SamuraiDynastyMod.MOD_ID);
     public static final DeferredRegister.Items BLOCK_ITEMS = DeferredRegister.createItems(SamuraiDynastyMod.MOD_ID);
 
-    // Helper method - uses registerBlock() which sets block ID before construction
+    // Helper method - uses registerBlock() and registerSimpleBlockItem() for proper ID handling
     private static DeferredBlock<Block> registerSimpleBlock(String name, BlockBehaviour.Properties props) {
         DeferredBlock<Block> block = BLOCKS.registerBlock(name, Block::new, props);
-        BLOCK_ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
+        BLOCK_ITEMS.registerSimpleBlockItem(block);
         return block;
     }
 
     private static DeferredBlock<Block> registerOreBlock(String name, UniformInt xp, BlockBehaviour.Properties props) {
         DeferredBlock<Block> block = BLOCKS.registerBlock(name,
                 p -> new DropExperienceBlock(xp, p), props);
-        BLOCK_ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
+        BLOCK_ITEMS.registerSimpleBlockItem(block);
         return block;
     }
 
     private static DeferredBlock<Block> registerStairBlock(String name, BlockBehaviour.Properties props) {
         DeferredBlock<Block> block = BLOCKS.registerBlock(name,
                 p -> new StairBlock(Blocks.STONE.defaultBlockState(), p), props);
-        BLOCK_ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
+        BLOCK_ITEMS.registerSimpleBlockItem(block);
         return block;
     }
 
     private static DeferredBlock<Block> registerSlabBlock(String name, BlockBehaviour.Properties props) {
         DeferredBlock<Block> block = BLOCKS.registerBlock(name, SlabBlock::new, props);
-        BLOCK_ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
+        BLOCK_ITEMS.registerSimpleBlockItem(block);
         return block;
     }
 
     private static DeferredBlock<Block> registerWallBlock(String name, BlockBehaviour.Properties props) {
         DeferredBlock<Block> block = BLOCKS.registerBlock(name, WallBlock::new, props);
-        BLOCK_ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
+        BLOCK_ITEMS.registerSimpleBlockItem(block);
         return block;
     }
 
     private static DeferredBlock<Block> registerStatueBlock(String name, BlockBehaviour.Properties props) {
         DeferredBlock<Block> block = BLOCKS.registerBlock(name, StatueBlock::new, props);
-        BLOCK_ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
+        BLOCK_ITEMS.registerSimpleBlockItem(block);
         return block;
     }
 
     private static DeferredBlock<Block> registerDragonBlock(String name, BlockBehaviour.Properties props) {
         DeferredBlock<Block> block = BLOCKS.registerBlock(name, DragonBlock::new, props);
-        BLOCK_ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
+        BLOCK_ITEMS.registerSimpleBlockItem(block);
         return block;
     }
 
     private static DeferredBlock<Block> registerRoofBlock(String name, BlockBehaviour.Properties props) {
         DeferredBlock<Block> block = BLOCKS.registerBlock(name, RoofBlock::new, props);
-        BLOCK_ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
+        BLOCK_ITEMS.registerSimpleBlockItem(block);
         return block;
     }
 
