@@ -2,8 +2,8 @@
   "credit": "Made with Blockbench",
   "texture_size": [64, 64],
   "textures": {
-    "0": "samurai_dynasty:weapon/odachi",
-    "particle": "samurai_dynasty:weapon/odachi"
+    "0": "samurai_dynasty:item/odachi",
+    "particle": "samurai_dynasty:item/odachi"
   },
   "elements": [
     {
