@@ -1,9 +1,37 @@
 {
   "credit": "Made with Blockbench",
-  "parent": "builtin/entity",
-  "texture_size": [
-    64,
-    64
+  "texture_size": [64, 64],
+  "textures": {
+    "0": "samurai_dynasty:item/tetsubo",
+    "particle": "samurai_dynasty:item/tetsubo"
+  },
+  "elements": [
+    {
+      "from": [7, -2, 7],
+      "to": [9, 30, 9],
+      "rotation": {"angle": 0, "axis": "y", "origin": [8, 14, 8]},
+      "faces": {
+        "north": {"uv": [0, 0, 2, 32], "texture": "#0"},
+        "east": {"uv": [2, 0, 4, 32], "texture": "#0"},
+        "south": {"uv": [4, 0, 6, 32], "texture": "#0"},
+        "west": {"uv": [6, 0, 8, 32], "texture": "#0"},
+        "up": {"uv": [8, 0, 6, 2], "texture": "#0"},
+        "down": {"uv": [8, 2, 6, 4], "texture": "#0"}
+      }
+    },
+    {
+      "from": [6, -4, 6],
+      "to": [10, -2, 10],
+      "rotation": {"angle": 0, "axis": "y", "origin": [8, 14, 8]},
+      "faces": {
+        "north": {"uv": [8, 0, 12, 2], "texture": "#0"},
+        "east": {"uv": [12, 0, 16, 2], "texture": "#0"},
+        "south": {"uv": [16, 0, 20, 2], "texture": "#0"},
+        "west": {"uv": [20, 0, 24, 2], "texture": "#0"},
+        "up": {"uv": [24, 0, 20, 4], "texture": "#0"},
+        "down": {"uv": [24, 4, 20, 8], "texture": "#0"}
+      }
+    }
   ],
   "display": {
     "thirdperson_righthand": {
