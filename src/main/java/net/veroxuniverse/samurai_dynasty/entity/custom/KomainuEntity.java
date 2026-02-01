@@ -48,7 +48,8 @@ public class KomainuEntity extends TamableAnimal {
                 .add(Attributes.MAX_HEALTH, 20.0D)
                 .add(Attributes.FOLLOW_RANGE, 25D)
                 .add(Attributes.ATTACK_DAMAGE, 3.0f)
-                .add(Attributes.MOVEMENT_SPEED, 0.3D);
+                .add(Attributes.MOVEMENT_SPEED, 0.3D)
+                .add(Attributes.TEMPT_RANGE, 10.0D);
     }
 
     @Override
