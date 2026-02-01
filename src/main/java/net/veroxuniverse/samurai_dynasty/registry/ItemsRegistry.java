@@ -6,6 +6,7 @@ import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.veroxuniverse.samurai_dynasty.SamuraiDynastyMod;
+import net.veroxuniverse.samurai_dynasty.entity.ModEntityTypes;
 import net.veroxuniverse.samurai_dynasty.item.*;
 import net.veroxuniverse.samurai_dynasty.item.armor.*;
 
@@ -121,6 +122,28 @@ public class ItemsRegistry {
             properties -> new net.veroxuniverse.samurai_dynasty.curios.OniMaskCurios(properties.fireResistant().stacksTo(1)));
     public static final DeferredItem<Item> KITSUNE_MASK = ITEMS.registerItem("kitsune_mask",
             properties -> new net.veroxuniverse.samurai_dynasty.curios.KitsuneMaskCurios(properties.fireResistant().stacksTo(1)));
+
+    // ========== SPAWN EGGS ==========
+    public static final DeferredItem<Item> AKANAME_SPAWN_EGG = ITEMS.registerItem("akaname_spawn_egg",
+            props -> new net.minecraft.world.item.SpawnEggItem(ModEntityTypes.AKANAME.get(), 0x4a5568, 0xff6b9d, props));
+    public static final DeferredItem<Item> KITSUNE_SPAWN_EGG = ITEMS.registerItem("kitsune_spawn_egg",
+            props -> new net.minecraft.world.item.SpawnEggItem(ModEntityTypes.KITSUNE.get(), 0xff8c42, 0xffe5d9, props));
+    public static final DeferredItem<Item> ENENRA_SPAWN_EGG = ITEMS.registerItem("enenra_spawn_egg",
+            props -> new net.minecraft.world.item.SpawnEggItem(ModEntityTypes.ENENRA.get(), 0x2d2d2d, 0x6e6e6e, props));
+    public static final DeferredItem<Item> ONI_SPAWN_EGG = ITEMS.registerItem("oni_spawn_egg",
+            props -> new net.minecraft.world.item.SpawnEggItem(ModEntityTypes.ONI.get(), 0xd92027, 0x3d1f1f, props));
+    public static final DeferredItem<Item> ONIBI_SPAWN_EGG = ITEMS.registerItem("onibi_spawn_egg",
+            props -> new net.minecraft.world.item.SpawnEggItem(ModEntityTypes.ONIBI.get(), 0x00ffff, 0x0080ff, props));
+    public static final DeferredItem<Item> JOROGUMO_SPAWN_EGG = ITEMS.registerItem("jorogumo_spawn_egg",
+            props -> new net.minecraft.world.item.SpawnEggItem(ModEntityTypes.JOROGUMO.get(), 0x2d1b1b, 0xff0000, props));
+    public static final DeferredItem<Item> KOMAINU_SPAWN_EGG = ITEMS.registerItem("komainu_spawn_egg",
+            props -> new net.minecraft.world.item.SpawnEggItem(ModEntityTypes.KOMAINU.get(), 0xd4af7a, 0x8b6f47, props));
+    public static final DeferredItem<Item> TANUKI_SPAWN_EGG = ITEMS.registerItem("tanuki_spawn_egg",
+            props -> new net.minecraft.world.item.SpawnEggItem(ModEntityTypes.TANUKI.get(), 0x8b5a3c, 0xe8d5c4, props));
+    public static final DeferredItem<Item> KAWAUSO_SPAWN_EGG = ITEMS.registerItem("kawauso_spawn_egg",
+            props -> new net.minecraft.world.item.SpawnEggItem(ModEntityTypes.KAWAUSO.get(), 0x6d4c41, 0xb8a391, props));
+    public static final DeferredItem<Item> TWOTAILED_SPAWN_EGG = ITEMS.registerItem("twotailed_spawn_egg",
+            props -> new net.minecraft.world.item.SpawnEggItem(ModEntityTypes.TWOTAILED.get(), 0xff6b42, 0xffffff, props));
 
     // ========== MATERIALS / GEMS ==========
     public static final DeferredItem<Item> RUBY = ITEMS.registerSimpleItem("ruby");

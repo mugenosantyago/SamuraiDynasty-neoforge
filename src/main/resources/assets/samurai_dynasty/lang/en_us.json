@@ -48,6 +48,7 @@
   "item.samurai_dynasty.komainu_spawn_egg": "Komainu Spawn Egg",
   "item.samurai_dynasty.kawauso_spawn_egg": "Kawauso Spawn Egg",
   "item.samurai_dynasty.kitsune_small_spawn_egg": "Two-Tailed Fox Spawn Egg",
+  "item.samurai_dynasty.twotailed_spawn_egg": "Two-Tailed Fox Spawn Egg",
   "item.samurai_dynasty.ruby": "Ruby",
   "item.samurai_dynasty.jade": "Jade",
   "item.samurai_dynasty.onyx": "Onyx",
@@ -329,7 +330,21 @@
   "curios.samurai_dynasty.fireres": "§7Applies §bFire Resistance§7.",
   "curios.samurai_dynasty.immune_blindness": "§7Immune to §bBlindness§7.",
   "curios.samurai_dynasty.immune_wither": "§7Immune to §bWither§7.",
-  "curios.samurai_dynasty.immune_slowness": "§7Immune to §bSlowness§7."
+  "curios.samurai_dynasty.immune_slowness": "§7Immune to §bSlowness§7.",
+  "curios.samurai_dynasty.speed": "§7Applies §bSpeed§7.",
 
+  "jei.samurai_dynasty.oni_mask.info": "Provides Night Vision, Fire Resistance, and immunity to Slowness and Wither effects. Dropped by Oni.",
+  "jei.samurai_dynasty.kitsune_mask.info": "Provides Speed and immunity to Slowness effects. Dropped by Kitsune.",
+  "jei.samurai_dynasty.katana_oni.info": "A powerful katana infused with Oni spirit. Crafted using Oni Horn.",
+  "jei.samurai_dynasty.katana_kitsune.info": "A mystical katana infused with Kitsune spirit. Crafted using Kitsune Tail.",
+  "jei.samurai_dynasty.katana_kitsune_blue.info": "A spirit flame katana infused with Onibi power. Crafted using Onibi Flame.",
+  "jei.samurai_dynasty.katana_akaname.info": "A cursed katana infused with Akaname essence. Crafted using Akaname Tongue.",
+  "jei.samurai_dynasty.katana_jorogumo.info": "A spider-blessed katana infused with Jorogumo power. Crafted using Jorogumo Eye.",
+  "jei.samurai_dynasty.kitsune_hide.info": "Dropped by Kitsune. Used in crafting.",
+  "jei.samurai_dynasty.kitsune_tail.info": "Dropped by Kitsune. Used to craft Kitsune Katana.",
+  "jei.samurai_dynasty.oni_horn.info": "Dropped by Oni. Used to craft Oni Katana and other items.",
+  "jei.samurai_dynasty.akaname_tongue.info": "Dropped by Akaname. Used to craft Akaname Katana.",
+  "jei.samurai_dynasty.jorogumo_eye.info": "Dropped by Jorogumo. Used to craft Jorogumo Katana.",
+  "jei.samurai_dynasty.spirit_flame.info": "Dropped by Onibi. Used to craft Onibi Katana."
 
 }
