@@ -57,5 +57,9 @@ public class ArmorRendererRegistry {
         // Special
         AzArmorRendererRegistry.register(ItemsRegistry.STRAW_HAT.get(), SamuraiArmorRenderer::strawHat);
         AzArmorRendererRegistry.register(ItemsRegistry.KIMONO.get(), SamuraiArmorRenderer::kimono);
+        
+        // Masks
+        AzArmorRendererRegistry.register(ItemsRegistry.ONI_MASK.get(), SamuraiArmorRenderer::oniMask);
+        AzArmorRendererRegistry.register(ItemsRegistry.KITSUNE_MASK.get(), SamuraiArmorRenderer::kitsuneMask);
     }
 }

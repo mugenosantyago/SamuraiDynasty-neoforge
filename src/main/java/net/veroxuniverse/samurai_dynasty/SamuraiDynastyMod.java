@@ -100,7 +100,9 @@ public class SamuraiDynastyMod {
                     ItemsRegistry.IRON_NINJA_BOOTS.get(),
                     ItemsRegistry.NINJA_LEGGINGS.get(),
                     ItemsRegistry.STRAW_HAT.get(),
-                    ItemsRegistry.KIMONO.get()
+                    ItemsRegistry.KIMONO.get(),
+                    ItemsRegistry.ONI_MASK.get(),
+                    ItemsRegistry.KITSUNE_MASK.get()
             );
             LOGGER.info("Registered armor items with AzIdentityRegistry");
         });

@@ -69,4 +69,18 @@ public class SamuraiArmorRenderer extends AzArmorRenderer {
                 ResourceLocation.fromNamespaceAndPath(SamuraiDynastyMod.MOD_ID, "textures/armor/kimono_textures.png")
         );
     }
+    
+    public static SamuraiArmorRenderer oniMask() {
+        return new SamuraiArmorRenderer(
+                ResourceLocation.fromNamespaceAndPath(SamuraiDynastyMod.MOD_ID, "geo/oni_mask.geo.json"),
+                ResourceLocation.fromNamespaceAndPath(SamuraiDynastyMod.MOD_ID, "textures/armor/oni_mask_armor_textures.png")
+        );
+    }
+    
+    public static SamuraiArmorRenderer kitsuneMask() {
+        return new SamuraiArmorRenderer(
+                ResourceLocation.fromNamespaceAndPath(SamuraiDynastyMod.MOD_ID, "geo/kitsune_mask.geo.json"),
+                ResourceLocation.fromNamespaceAndPath(SamuraiDynastyMod.MOD_ID, "textures/armor/kitsune_mask.png")
+        );
+    }
 }
