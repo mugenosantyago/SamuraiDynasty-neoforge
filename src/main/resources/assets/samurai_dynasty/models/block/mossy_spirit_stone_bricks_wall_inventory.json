@@ -1,0 +1,6 @@
+{
+  "parent": "block/wall_inventory",
+  "textures": {
+    "wall": "samurai_dynasty:block/mossy_spirit_stone_bricks"
+  }
+}
