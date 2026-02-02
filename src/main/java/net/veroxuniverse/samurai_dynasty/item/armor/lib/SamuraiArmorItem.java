@@ -1,9 +1,5 @@
 package net.veroxuniverse.samurai_dynasty.item.armor.lib;
 
-import mod.azure.azurelib.common.api.AzRenderable;
-import mod.azure.azurelib.common.render.RenderProvider;
-import mod.azure.azurelib.common.render.armor.AzArmorRenderer;
-import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
@@ -19,14 +15,11 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.veroxuniverse.samurai_dynasty.SamuraiDynastyMod;
 
-import java.util.function.Consumer;
-
 /**
  * Base armor item class for Samurai Dynasty.
  * In 1.21.8, ArmorItem was removed, so armor is now just Items with equipment properties.
- * Implements AzRenderable to provide custom 3D rendering and hide 2D icon overlay.
  */
-public class SamuraiArmorItem extends Item implements AzRenderable {
+public class SamuraiArmorItem extends Item {
 
     protected final ArmorMaterial armorMaterial;
     protected final ArmorType armorType;
@@ -105,25 +98,5 @@ public class SamuraiArmorItem extends Item implements AzRenderable {
     
     public ArmorType getArmorType() {
         return this.armorType;
-    }
-
-    @Override
-    public void createRenderer(Consumer<RenderProvider> consumer) {
-        consumer.accept(new RenderProvider() {
-            private AzArmorRenderer renderer = null;
-
-            @Override
-            public HumanoidModel<?> getHumanoidArmorModel(LivingEntity livingEntity, ItemStack itemStack,
-                    EquipmentSlot equipmentSlot, HumanoidModel<?> original) {
-                if (this.renderer == null) {
-                    this.renderer = mod.azure.azurelib.common.render.armor.AzArmorRendererRegistry.getOrNull(itemStack);
-                }
-                if (this.renderer != null) {
-                    this.renderer.prepForRender(livingEntity, itemStack, equipmentSlot, original);
-                    return (HumanoidModel<?>) this.renderer.rendererPipeline().armorModel();
-                }
-                return original;
-            }
-        });
     }
 }

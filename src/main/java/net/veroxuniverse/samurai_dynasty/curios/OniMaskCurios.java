@@ -21,7 +21,7 @@ import net.veroxuniverse.samurai_dynasty.registry.ItemsRegistry;
 import java.util.function.Consumer;
 
 // TODO: Re-enable Curios integration when dependency is available
-public class OniMaskCurios extends Item implements AzRenderable {
+public class OniMaskCurios extends Item {
     public OniMaskCurios(Properties pProperties) {
         super(pProperties
                 .component(DataComponents.EQUIPPABLE, 
@@ -41,25 +41,5 @@ public class OniMaskCurios extends Item implements AzRenderable {
         } else if (stack.getItem() == ItemsRegistry.ONI_MASK.get()) {
             components.accept(Component.translatable("curios.samurai_dynasty.summary"));
         }
-    }
-
-    @Override
-    public void createRenderer(Consumer<RenderProvider> consumer) {
-        consumer.accept(new RenderProvider() {
-            private AzArmorRenderer renderer = null;
-
-            @Override
-            public HumanoidModel<?> getHumanoidArmorModel(LivingEntity livingEntity, ItemStack itemStack,
-                    EquipmentSlot equipmentSlot, HumanoidModel<?> original) {
-                if (this.renderer == null) {
-                    this.renderer = mod.azure.azurelib.common.render.armor.AzArmorRendererRegistry.getOrNull(itemStack);
-                }
-                if (this.renderer != null) {
-                    this.renderer.prepForRender(livingEntity, itemStack, equipmentSlot, original);
-                    return (HumanoidModel<?>) this.renderer.rendererPipeline().armorModel();
-                }
-                return original;
-            }
-        });
     }
 }
