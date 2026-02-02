@@ -1,16 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "minecraft:item/template_spawn_egg",
-    "tints": [
-      {
-        "type": "minecraft:constant",
-        "value": 2955035
-      },
-      {
-        "type": "minecraft:constant",
-        "value": 16711680
-      }
-    ]
+    "model": "samurai_dynasty:item/jorogumo_spawn_egg"
   }
 }

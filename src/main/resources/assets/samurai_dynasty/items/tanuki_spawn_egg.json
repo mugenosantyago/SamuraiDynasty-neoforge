@@ -1,16 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "minecraft:item/template_spawn_egg",
-    "tints": [
-      {
-        "type": "minecraft:constant",
-        "value": 9116732
-      },
-      {
-        "type": "minecraft:constant",
-        "value": 15257284
-      }
-    ]
+    "model": "samurai_dynasty:item/tanuki_spawn_egg"
   }
 }

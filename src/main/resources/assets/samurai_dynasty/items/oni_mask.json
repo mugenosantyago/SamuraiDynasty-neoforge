@@ -1,18 +1,6 @@
 {
   "model": {
-    "type": "minecraft:select",
-    "property": "minecraft:using_item",
-    "cases": [
-      {
-        "when": false,
-        "model": {
-          "type": "minecraft:model",
-          "model": "samurai_dynasty:item/oni_mask"
-        }
-      }
-    ],
-    "fallback": {
-      "type": "minecraft:empty"
-    }
+    "type": "minecraft:model",
+    "model": "samurai_dynasty:item/oni_mask"
   }
 }
