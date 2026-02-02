@@ -7,7 +7,10 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -15,7 +18,9 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.TooltipDisplay;
+import net.minecraft.world.item.equipment.EquipmentAsset;
 import net.minecraft.world.item.equipment.Equippable;
+import net.veroxuniverse.samurai_dynasty.SamuraiDynastyMod;
 import net.veroxuniverse.samurai_dynasty.registry.ItemsRegistry;
 
 import java.util.function.Consumer;
@@ -23,10 +28,17 @@ import java.util.function.Consumer;
 // TODO: Re-enable Curios integration when dependency is available
 public class KitsuneMaskCurios extends Item {
     public KitsuneMaskCurios(Properties pProperties) {
+        // Use empty equipment asset to prevent vanilla 2D icon rendering
+        ResourceKey<EquipmentAsset> emptyAsset = ResourceKey.create(
+                Registries.EQUIPMENT_ASSET,
+                ResourceLocation.fromNamespaceAndPath(SamuraiDynastyMod.MOD_ID, "empty")
+        );
+        
         super(pProperties
                 .component(DataComponents.EQUIPPABLE, 
                     Equippable.builder(EquipmentSlot.HEAD)
                         .setEquipSound(SoundEvents.ARMOR_EQUIP_LEATHER)
+                        .setAsset(emptyAsset)  // Empty asset = no vanilla rendering
                         .build()));
     }
 
