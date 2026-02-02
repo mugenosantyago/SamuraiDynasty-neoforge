@@ -1,5 +1,9 @@
 package net.veroxuniverse.samurai_dynasty.item.armor.lib;
 
+import mod.azure.azurelib.common.api.client.renderer.RenderProvider;
+import mod.azure.azurelib.common.api.common.helper.CommonUtils;
+import mod.azure.azurelib.common.render.armor.AzArmorRenderer;
+import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
@@ -14,6 +18,8 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.veroxuniverse.samurai_dynasty.SamuraiDynastyMod;
+
+import java.util.function.Consumer;
 
 /**
  * Base armor item class for Samurai Dynasty.
@@ -98,5 +104,26 @@ public class SamuraiArmorItem extends Item {
     
     public ArmorType getArmorType() {
         return this.armorType;
+    }
+
+    @Override
+    public void createRenderer(Consumer<RenderProvider> consumer) {
+        consumer.accept(new RenderProvider() {
+            private AzArmorRenderer<?> renderer = null;
+
+            @Override
+            public HumanoidModel<?> getHumanoidArmorModel(LivingEntity livingEntity, ItemStack itemStack, 
+                    EquipmentSlot equipmentSlot, HumanoidModel<?> original) {
+                if (this.renderer == null) {
+                    // Get the renderer from the registry
+                    this.renderer = mod.azure.azurelib.common.render.armor.AzArmorRendererRegistry.getOrNull(itemStack);
+                }
+                if (this.renderer != null) {
+                    this.renderer.prepForRender(livingEntity, itemStack, equipmentSlot, original);
+                    return (HumanoidModel<?>) this.renderer.getRendererModel();
+                }
+                return original;
+            }
+        });
     }
 }

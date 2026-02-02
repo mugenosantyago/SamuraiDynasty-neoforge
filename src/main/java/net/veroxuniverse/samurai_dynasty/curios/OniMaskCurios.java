@@ -1,16 +1,22 @@
 package net.veroxuniverse.samurai_dynasty.curios;
 
+import mod.azure.azurelib.common.api.client.renderer.RenderProvider;
+import mod.azure.azurelib.common.render.armor.AzArmorRenderer;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.item.equipment.Equippable;
+import net.veroxuniverse.samurai_dynasty.SamuraiDynastyMod;
 import net.veroxuniverse.samurai_dynasty.registry.ItemsRegistry;
 
 import java.util.function.Consumer;
@@ -36,5 +42,25 @@ public class OniMaskCurios extends Item {
         } else if (stack.getItem() == ItemsRegistry.ONI_MASK.get()) {
             components.accept(Component.translatable("curios.samurai_dynasty.summary"));
         }
+    }
+
+    @Override
+    public void createRenderer(Consumer<RenderProvider> consumer) {
+        consumer.accept(new RenderProvider() {
+            private AzArmorRenderer<?> renderer = null;
+
+            @Override
+            public HumanoidModel<?> getHumanoidArmorModel(LivingEntity livingEntity, ItemStack itemStack,
+                    EquipmentSlot equipmentSlot, HumanoidModel<?> original) {
+                if (this.renderer == null) {
+                    this.renderer = mod.azure.azurelib.common.render.armor.AzArmorRendererRegistry.getOrNull(itemStack);
+                }
+                if (this.renderer != null) {
+                    this.renderer.prepForRender(livingEntity, itemStack, equipmentSlot, original);
+                    return (HumanoidModel<?>) this.renderer.getRendererModel();
+                }
+                return original;
+            }
+        });
     }
 }
