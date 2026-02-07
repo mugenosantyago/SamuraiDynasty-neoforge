@@ -36,25 +36,14 @@ public class SamuraiArmorItem extends Item {
     private static Properties createArmorProperties(ArmorMaterial material, ArmorType type, Properties properties) {
         EquipmentSlot slot = type.getSlot();
         
-        // Add armor attributes - use default durability based on type
-        int baseDurability = switch (type) {
-            case BOOTS -> 195;
-            case LEGGINGS -> 225;
-            case CHESTPLATE -> 240;
-            case HELMET -> 165;
-            case BODY -> 240;
-        };
+        // Calculate durability based on material durability multiplier
+        int durabilityMultiplier = material.durability();
+        int baseDurability = type.getDurability(durabilityMultiplier);
         
         ItemAttributeModifiers.Builder attributeBuilder = ItemAttributeModifiers.builder();
         
-        // Add armor defense - use default values
-        int defense = switch (type) {
-            case BOOTS -> 2;
-            case LEGGINGS -> 5;
-            case CHESTPLATE -> 6;
-            case HELMET -> 2;
-            case BODY -> 6;
-        };
+        // Get defense from material (uses the material's defense values per armor type)
+        int defense = material.getDefense(type);
         
         attributeBuilder.add(
                 Attributes.ARMOR,
@@ -66,16 +55,31 @@ public class SamuraiArmorItem extends Item {
                 EquipmentSlotGroup.bySlot(slot)
         );
         
-        // Add armor toughness (default 2.0 for iron-level armor)
+        // Add armor toughness from material
+        float toughness = material.toughness();
         attributeBuilder.add(
                 Attributes.ARMOR_TOUGHNESS,
                 new AttributeModifier(
                         ResourceLocation.fromNamespaceAndPath(SamuraiDynastyMod.MOD_ID, "armor_toughness_" + type.getName()),
-                        2.0,
+                        toughness,
                         AttributeModifier.Operation.ADD_VALUE
                 ),
                 EquipmentSlotGroup.bySlot(slot)
         );
+        
+        // Add knockback resistance if material has it
+        float knockbackResistance = material.knockbackResistance();
+        if (knockbackResistance > 0) {
+            attributeBuilder.add(
+                    Attributes.KNOCKBACK_RESISTANCE,
+                    new AttributeModifier(
+                            ResourceLocation.fromNamespaceAndPath(SamuraiDynastyMod.MOD_ID, "armor_knockback_resistance"),
+                            knockbackResistance,
+                            AttributeModifier.Operation.ADD_VALUE
+                    ),
+                    EquipmentSlotGroup.bySlot(slot)
+            );
+        }
         
         // Add equippable component so armor can be equipped
         // Use empty equipment asset to prevent vanilla 2D layer from rendering
@@ -85,7 +89,7 @@ public class SamuraiArmorItem extends Item {
         );
         
         Equippable equippable = Equippable.builder(slot)
-                .setEquipSound(SoundEvents.ARMOR_EQUIP_IRON)
+                .setEquipSound(material.equipSound())
                 .setAsset(emptyAsset)  // Empty asset = no vanilla rendering
                 .build();
         

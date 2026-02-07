@@ -23,6 +23,7 @@ public class SamuraiDynastyMod {
 
     public SamuraiDynastyMod(IEventBus modEventBus, ModContainer modContainer) {
         // Register deferred registers
+        net.veroxuniverse.samurai_dynasty.registry.ArmorMaterialsRegistry.register(modEventBus);
         BlocksRegistry.register(modEventBus);
         ItemsRegistry.register(modEventBus);
         ModEntityTypes.register(modEventBus);
