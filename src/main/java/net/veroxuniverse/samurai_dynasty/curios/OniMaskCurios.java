@@ -28,11 +28,15 @@ import java.util.function.Consumer;
 // TODO: Re-enable Curios integration when dependency is available
 public class OniMaskCurios extends Item {
     public OniMaskCurios(Properties pProperties) {
+        // Use empty equipment asset to prevent vanilla 2D icon rendering
         super(pProperties
                 .component(DataComponents.EQUIPPABLE, 
                     Equippable.builder(EquipmentSlot.HEAD)
                         .setEquipSound(SoundEvents.ARMOR_EQUIP_LEATHER)
-                        // Don't set asset - this prevents vanilla armor layer from rendering
+                        .setAsset(ResourceKey.create(
+                                ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath("minecraft", "equipment_asset")),
+                                ResourceLocation.fromNamespaceAndPath(SamuraiDynastyMod.MOD_ID, "empty")
+                        ))
                         .build()));
     }
 

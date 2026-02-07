@@ -29,16 +29,14 @@ import java.util.function.Consumer;
 public class KitsuneMaskCurios extends Item {
     public KitsuneMaskCurios(Properties pProperties) {
         // Use empty equipment asset to prevent vanilla 2D icon rendering
-        ResourceKey<EquipmentAsset> emptyAsset = ResourceKey.create(
-                Registries.EQUIPMENT_ASSET,
-                ResourceLocation.fromNamespaceAndPath(SamuraiDynastyMod.MOD_ID, "empty")
-        );
-        
         super(pProperties
                 .component(DataComponents.EQUIPPABLE, 
                     Equippable.builder(EquipmentSlot.HEAD)
                         .setEquipSound(SoundEvents.ARMOR_EQUIP_LEATHER)
-                        .setAsset(emptyAsset)  // Empty asset = no vanilla rendering
+                        .setAsset(ResourceKey.create(
+                                ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath("minecraft", "equipment_asset")),
+                                ResourceLocation.fromNamespaceAndPath(SamuraiDynastyMod.MOD_ID, "empty")
+                        ))
                         .build()));
     }
 

@@ -9,7 +9,7 @@
         "group": "Mod Development - samurai_dynasty",
         "order": 0
       },
-      "projectName": "samurai_dynasty",
+      "projectName": "samurai_dynasty-SamuraiDynasty-neoforge",
       "mainClass": "net.neoforged.devlaunch.Main",
       "args": [
         "@/Users/otoyume/Documents/GitHub/SamuraiDynasty-neoforge/build/moddev/clientRunProgramArgs.txt"
@@ -31,7 +31,7 @@
         "group": "Mod Development - samurai_dynasty",
         "order": 1
       },
-      "projectName": "samurai_dynasty",
+      "projectName": "samurai_dynasty-SamuraiDynasty-neoforge",
       "mainClass": "net.neoforged.devlaunch.Main",
       "args": [
         "@/Users/otoyume/Documents/GitHub/SamuraiDynasty-neoforge/build/moddev/dataRunProgramArgs.txt"
@@ -53,7 +53,7 @@
         "group": "Mod Development - samurai_dynasty",
         "order": 2
       },
-      "projectName": "samurai_dynasty",
+      "projectName": "samurai_dynasty-SamuraiDynasty-neoforge",
       "mainClass": "net.neoforged.devlaunch.Main",
       "args": [
         "@/Users/otoyume/Documents/GitHub/SamuraiDynasty-neoforge/build/moddev/gameTestServerRunProgramArgs.txt"
@@ -75,7 +75,7 @@
         "group": "Mod Development - samurai_dynasty",
         "order": 3
       },
-      "projectName": "samurai_dynasty",
+      "projectName": "samurai_dynasty-SamuraiDynasty-neoforge",
       "mainClass": "net.neoforged.devlaunch.Main",
       "args": [
         "@/Users/otoyume/Documents/GitHub/SamuraiDynasty-neoforge/build/moddev/serverRunProgramArgs.txt"

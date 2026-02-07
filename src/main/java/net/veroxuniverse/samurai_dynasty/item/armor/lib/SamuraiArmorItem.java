@@ -80,7 +80,7 @@ public class SamuraiArmorItem extends Item {
         // Add equippable component so armor can be equipped
         // Use empty equipment asset to prevent vanilla 2D layer from rendering
         ResourceKey<EquipmentAsset> emptyAsset = ResourceKey.create(
-                Registries.EQUIPMENT_ASSET,
+                ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath("minecraft", "equipment_asset")),
                 ResourceLocation.fromNamespaceAndPath(SamuraiDynastyMod.MOD_ID, "empty")
         );
         
