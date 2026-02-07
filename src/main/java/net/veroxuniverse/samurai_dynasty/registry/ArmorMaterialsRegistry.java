@@ -25,7 +25,314 @@ public class ArmorMaterialsRegistry {
 
     // ===== BASIC TIER (Iron-level stats) =====
     // Defense: 15 (2/5/6/2), Toughness: 0, Durability: 15
-    public static final Holder<ArmorMaterial> SAMURAI_IRON = ARMOR_MATERIALS.register("samurai_iron",
+    public static final ArmorMaterial SAMURAI_IRON = new ArmorMaterial(Util.make(new EnumMap<>(ArmorType.class), map -> {
+                map.put(ArmorType.BOOTS, 2);
+                map.put(ArmorType.LEGGINGS, 5);
+                map.put(ArmorType.CHESTPLATE, 6);
+                map.put(ArmorType.HELMET, 2);
+                map.put(ArmorType.BODY, 6);
+            }), 15, SoundEvents.ARMOR_EQUIP_IRON, () -> null, List.of(), 0.0F, 0.0F, false);
+
+    public static final ArmorMaterial SAMURAI_IRON_MASTER = new ArmorMaterial(Util.make(new EnumMap<>(ArmorType.class), map -> {
+                map.put(ArmorType.BOOTS, 3);
+                map.put(ArmorType.LEGGINGS, 6);
+                map.put(ArmorType.CHESTPLATE, 7);
+                map.put(ArmorType.HELMET, 3);
+                map.put(ArmorType.BODY, 7);
+            }), 18, SoundEvents.ARMOR_EQUIP_IRON, () -> null, List.of(), 1.0F, 0.0F, false);
+
+    public static final ArmorMaterial SAMURAI_STEEL = new ArmorMaterial(Util.make(new EnumMap<>(ArmorType.class), map -> {
+                map.put(ArmorType.BOOTS, 2);
+                map.put(ArmorType.LEGGINGS, 5);
+                map.put(ArmorType.CHESTPLATE, 6);
+                map.put(ArmorType.HELMET, 2);
+                map.put(ArmorType.BODY, 6);
+            }), 16, SoundEvents.ARMOR_EQUIP_IRON, () -> null, List.of(), 0.5F, 0.0F, false);
+
+    public static final ArmorMaterial SAMURAI_SILVER = new ArmorMaterial(Util.make(new EnumMap<>(ArmorType.class), map -> {
+                map.put(ArmorType.BOOTS, 2);
+                map.put(ArmorType.LEGGINGS, 5);
+                map.put(ArmorType.CHESTPLATE, 6);
+                map.put(ArmorType.HELMET, 2);
+                map.put(ArmorType.BODY, 6);
+            }), 20, SoundEvents.ARMOR_EQUIP_IRON, () -> null, List.of(), 0.0F, 0.0F, false);
+
+    public static final ArmorMaterial SAMURAI_SILVER_MASTER = new ArmorMaterial(Util.make(new EnumMap<>(ArmorType.class), map -> {
+                map.put(ArmorType.BOOTS, 3);
+                map.put(ArmorType.LEGGINGS, 6);
+                map.put(ArmorType.CHESTPLATE, 7);
+                map.put(ArmorType.HELMET, 3);
+                map.put(ArmorType.BODY, 7);
+            }), 22, SoundEvents.ARMOR_EQUIP_IRON, () -> null, List.of(), 1.0F, 0.0F, false);
+
+    public static final ArmorMaterial SAMURAI_BRASS = new ArmorMaterial(Util.make(new EnumMap<>(ArmorType.class), map -> {
+                map.put(ArmorType.BOOTS, 2);
+                map.put(ArmorType.LEGGINGS, 5);
+                map.put(ArmorType.CHESTPLATE, 6);
+                map.put(ArmorType.HELMET, 2);
+                map.put(ArmorType.BODY, 6);
+            }), 14, SoundEvents.ARMOR_EQUIP_IRON, () -> null, List.of(), 0.0F, 0.0F, false);
+
+    public static final ArmorMaterial SAMURAI_GOLD = new ArmorMaterial(Util.make(new EnumMap<>(ArmorType.class), map -> {
+                map.put(ArmorType.BOOTS, 1);
+                map.put(ArmorType.LEGGINGS, 3);
+                map.put(ArmorType.CHESTPLATE, 5);
+                map.put(ArmorType.HELMET, 2);
+                map.put(ArmorType.BODY, 5);
+            }), 25, SoundEvents.ARMOR_EQUIP_GOLD, () -> null, List.of(), 0.0F, 0.0F, false);
+
+    public static final ArmorMaterial SAMURAI_GOLD_MASTER = new ArmorMaterial(Util.make(new EnumMap<>(ArmorType.class), map -> {
+                map.put(ArmorType.BOOTS, 2);
+                map.put(ArmorType.LEGGINGS, 4);
+                map.put(ArmorType.CHESTPLATE, 6);
+                map.put(ArmorType.HELMET, 3);
+                map.put(ArmorType.BODY, 6);
+            }), 30, SoundEvents.ARMOR_EQUIP_GOLD, () -> null, List.of(), 0.5F, 0.0F, false);
+
+    // ===== RARE TIER (Better than Diamond) =====
+    // Ruby - Defense: 22, Toughness: 2.5
+    public static final ArmorMaterial SAMURAI_RUBY = new ArmorMaterial(Util.make(new EnumMap<>(ArmorType.class), map -> {
+                map.put(ArmorType.BOOTS, 3);
+                map.put(ArmorType.LEGGINGS, 6);
+                map.put(ArmorType.CHESTPLATE, 9);
+                map.put(ArmorType.HELMET, 4);
+                map.put(ArmorType.BODY, 9);
+            }), 18, SoundEvents.ARMOR_EQUIP_DIAMOND, () -> null, List.of(), 2.5F, 0.0F, false);
+
+    public static final ArmorMaterial SAMURAI_RUBY_MASTER = new ArmorMaterial(Util.make(new EnumMap<>(ArmorType.class), map -> {
+                map.put(ArmorType.BOOTS, 4);
+                map.put(ArmorType.LEGGINGS, 7);
+                map.put(ArmorType.CHESTPLATE, 10);
+                map.put(ArmorType.HELMET, 5);
+                map.put(ArmorType.BODY, 10);
+            }), 20, SoundEvents.ARMOR_EQUIP_DIAMOND, () -> null, List.of(), 3.0F, 0.05F, false);
+
+    // Jade - Defense: 21, Toughness: 2.0
+    public static final ArmorMaterial SAMURAI_JADE = new ArmorMaterial(Util.make(new EnumMap<>(ArmorType.class), map -> {
+                map.put(ArmorType.BOOTS, 3);
+                map.put(ArmorType.LEGGINGS, 6);
+                map.put(ArmorType.CHESTPLATE, 8);
+                map.put(ArmorType.HELMET, 4);
+                map.put(ArmorType.BODY, 8);
+            }), 19, SoundEvents.ARMOR_EQUIP_DIAMOND, () -> null, List.of(), 2.0F, 0.0F, false);
+
+    public static final ArmorMaterial SAMURAI_JADE_MASTER = new ArmorMaterial(Util.make(new EnumMap<>(ArmorType.class), map -> {
+                map.put(ArmorType.BOOTS, 4);
+                map.put(ArmorType.LEGGINGS, 7);
+                map.put(ArmorType.CHESTPLATE, 9);
+                map.put(ArmorType.HELMET, 5);
+                map.put(ArmorType.BODY, 9);
+            }), 21, SoundEvents.ARMOR_EQUIP_DIAMOND, () -> null, List.of(), 2.5F, 0.0F, false);
+
+    // Aquamarine - Defense: 21, Toughness: 2.0
+    public static final ArmorMaterial SAMURAI_AQUA = new ArmorMaterial(Util.make(new EnumMap<>(ArmorType.class), map -> {
+                map.put(ArmorType.BOOTS, 3);
+                map.put(ArmorType.LEGGINGS, 6);
+                map.put(ArmorType.CHESTPLATE, 8);
+                map.put(ArmorType.HELMET, 4);
+                map.put(ArmorType.BODY, 8);
+            }), 20, SoundEvents.ARMOR_EQUIP_DIAMOND, () -> null, List.of(), 2.0F, 0.0F, false);
+
+    public static final ArmorMaterial SAMURAI_AQUA_MASTER = new ArmorMaterial(Util.make(new EnumMap<>(ArmorType.class), map -> {
+                map.put(ArmorType.BOOTS, 4);
+                map.put(ArmorType.LEGGINGS, 7);
+                map.put(ArmorType.CHESTPLATE, 9);
+                map.put(ArmorType.HELMET, 5);
+                map.put(ArmorType.BODY, 9);
+            }), 22, SoundEvents.ARMOR_EQUIP_DIAMOND, () -> null, List.of(), 2.5F, 0.0F, false);
+
+    // Onyx - Defense: 22, Toughness: 2.5
+    public static final ArmorMaterial SAMURAI_ONYX = new ArmorMaterial(Util.make(new EnumMap<>(ArmorType.class), map -> {
+                map.put(ArmorType.BOOTS, 3);
+                map.put(ArmorType.LEGGINGS, 6);
+                map.put(ArmorType.CHESTPLATE, 9);
+                map.put(ArmorType.HELMET, 4);
+                map.put(ArmorType.BODY, 9);
+            }), 17, SoundEvents.ARMOR_EQUIP_DIAMOND, () -> null, List.of(), 2.5F, 0.0F, false);
+
+    public static final ArmorMaterial SAMURAI_ONYX_MASTER = new ArmorMaterial(Util.make(new EnumMap<>(ArmorType.class), map -> {
+                map.put(ArmorType.BOOTS, 4);
+                map.put(ArmorType.LEGGINGS, 7);
+                map.put(ArmorType.CHESTPLATE, 10);
+                map.put(ArmorType.HELMET, 5);
+                map.put(ArmorType.BODY, 10);
+            }), 19, SoundEvents.ARMOR_EQUIP_DIAMOND, () -> null, List.of(), 3.0F, 0.05F, false);
+
+    // ===== EPIC TIER (Diamond-level) =====
+    // Diamond - Defense: 20, Toughness: 2.0
+    public static final ArmorMaterial SAMURAI_DIAMOND = new ArmorMaterial(Util.make(new EnumMap<>(ArmorType.class), map -> {
+                map.put(ArmorType.BOOTS, 3);
+                map.put(ArmorType.LEGGINGS, 6);
+                map.put(ArmorType.CHESTPLATE, 8);
+                map.put(ArmorType.HELMET, 3);
+                map.put(ArmorType.BODY, 8);
+            }), 15, SoundEvents.ARMOR_EQUIP_DIAMOND, () -> null, List.of(), 2.0F, 0.0F, false);
+
+    public static final ArmorMaterial SAMURAI_DIAMOND_MASTER = new ArmorMaterial(Util.make(new EnumMap<>(ArmorType.class), map -> {
+                map.put(ArmorType.BOOTS, 4);
+                map.put(ArmorType.LEGGINGS, 7);
+                map.put(ArmorType.CHESTPLATE, 9);
+                map.put(ArmorType.HELMET, 4);
+                map.put(ArmorType.BODY, 9);
+            }), 17, SoundEvents.ARMOR_EQUIP_DIAMOND, () -> null, List.of(), 2.5F, 0.0F, false);
+
+    public static final ArmorMaterial SAMURAI_AMETHYST = new ArmorMaterial(Util.make(new EnumMap<>(ArmorType.class), map -> {
+                map.put(ArmorType.BOOTS, 3);
+                map.put(ArmorType.LEGGINGS, 6);
+                map.put(ArmorType.CHESTPLATE, 8);
+                map.put(ArmorType.HELMET, 3);
+                map.put(ArmorType.BODY, 8);
+            }), 16, SoundEvents.ARMOR_EQUIP_DIAMOND, () -> null, List.of(), 2.0F, 0.0F, false);
+
+    public static final ArmorMaterial SAMURAI_QUARTZ = new ArmorMaterial(Util.make(new EnumMap<>(ArmorType.class), map -> {
+                map.put(ArmorType.BOOTS, 3);
+                map.put(ArmorType.LEGGINGS, 6);
+                map.put(ArmorType.CHESTPLATE, 8);
+                map.put(ArmorType.HELMET, 3);
+                map.put(ArmorType.BODY, 8);
+            }), 16, SoundEvents.ARMOR_EQUIP_DIAMOND, () -> null, List.of(), 2.0F, 0.0F, false);
+
+    // ===== LEGENDARY TIER (Netherite-level) =====
+    // Netherite - Defense: 24, Toughness: 3.0, Knockback Resistance: 0.1
+    public static final ArmorMaterial SAMURAI_NETHERITE = new ArmorMaterial(Util.make(new EnumMap<>(ArmorType.class), map -> {
+                map.put(ArmorType.BOOTS, 4);
+                map.put(ArmorType.LEGGINGS, 7);
+                map.put(ArmorType.CHESTPLATE, 9);
+                map.put(ArmorType.HELMET, 4);
+                map.put(ArmorType.BODY, 9);
+            }), 20, SoundEvents.ARMOR_EQUIP_NETHERITE, () -> null, List.of(), 3.0F, 0.1F, false);
+
+    public static final ArmorMaterial SAMURAI_NETHERITE_MASTER = new ArmorMaterial(Util.make(new EnumMap<>(ArmorType.class), map -> {
+                map.put(ArmorType.BOOTS, 5);
+                map.put(ArmorType.LEGGINGS, 8);
+                map.put(ArmorType.CHESTPLATE, 10);
+                map.put(ArmorType.HELMET, 5);
+                map.put(ArmorType.BODY, 10);
+            }), 25, SoundEvents.ARMOR_EQUIP_NETHERITE, () -> null, List.of(), 4.0F, 0.15F, false);
+
+    public static final ArmorMaterial SAMURAI_SCULK = new ArmorMaterial(Util.make(new EnumMap<>(ArmorType.class), map -> {
+                map.put(ArmorType.BOOTS, 4);
+                map.put(ArmorType.LEGGINGS, 7);
+                map.put(ArmorType.CHESTPLATE, 9);
+                map.put(ArmorType.HELMET, 4);
+                map.put(ArmorType.BODY, 9);
+            }), 22, SoundEvents.ARMOR_EQUIP_NETHERITE, () -> null, List.of(), 3.0F, 0.1F, false);
+
+    public static final ArmorMaterial SAMURAI_ETYRITE = new ArmorMaterial(Util.make(new EnumMap<>(ArmorType.class), map -> {
+                map.put(ArmorType.BOOTS, 4);
+                map.put(ArmorType.LEGGINGS, 7);
+                map.put(ArmorType.CHESTPLATE, 9);
+                map.put(ArmorType.HELMET, 4);
+                map.put(ArmorType.BODY, 9);
+            }), 23, SoundEvents.ARMOR_EQUIP_NETHERITE, () -> null, List.of(), 3.0F, 0.1F, false);
+
+    // ===== MYTHIC TIER (Best armor - rarest materials) =====
+    // Defense: 28+, Toughness: 4.0+, Knockback Resistance: 0.15+
+    public static final ArmorMaterial SAMURAI_TYR = new ArmorMaterial(Util.make(new EnumMap<>(ArmorType.class), map -> {
+                map.put(ArmorType.BOOTS, 5);
+                map.put(ArmorType.LEGGINGS, 8);
+                map.put(ArmorType.CHESTPLATE, 10);
+                map.put(ArmorType.HELMET, 5);
+                map.put(ArmorType.BODY, 10);
+            }), 28, SoundEvents.ARMOR_EQUIP_NETHERITE, () -> null, List.of(), 4.0F, 0.15F, false);
+
+    public static final ArmorMaterial SAMURAI_DRACO = new ArmorMaterial(Util.make(new EnumMap<>(ArmorType.class), map -> {
+                map.put(ArmorType.BOOTS, 5);
+                map.put(ArmorType.LEGGINGS, 8);
+                map.put(ArmorType.CHESTPLATE, 10);
+                map.put(ArmorType.HELMET, 5);
+                map.put(ArmorType.BODY, 10);
+            }), 30, SoundEvents.ARMOR_EQUIP_NETHERITE, () -> null, List.of(), 4.0F, 0.15F, false);
+
+    public static final ArmorMaterial SAMURAI_LIVING = new ArmorMaterial(Util.make(new EnumMap<>(ArmorType.class), map -> {
+                map.put(ArmorType.BOOTS, 5);
+                map.put(ArmorType.LEGGINGS, 8);
+                map.put(ArmorType.CHESTPLATE, 11);
+                map.put(ArmorType.HELMET, 5);
+                map.put(ArmorType.BODY, 11);
+            }), 35, SoundEvents.ARMOR_EQUIP_NETHERITE, () -> null, List.of(), 4.5F, 0.2F, false);
+
+    public static final ArmorMaterial SAMURAI_NEPTUN = new ArmorMaterial(Util.make(new EnumMap<>(ArmorType.class), map -> {
+                map.put(ArmorType.BOOTS, 5);
+                map.put(ArmorType.LEGGINGS, 8);
+                map.put(ArmorType.CHESTPLATE, 10);
+                map.put(ArmorType.HELMET, 5);
+                map.put(ArmorType.BODY, 10);
+            }), 26, SoundEvents.ARMOR_EQUIP_NETHERITE, () -> null, List.of(), 4.0F, 0.15F, false);
+
+    public static final ArmorMaterial SAMURAI_MAGE = new ArmorMaterial(Util.make(new EnumMap<>(ArmorType.class), map -> {
+                map.put(ArmorType.BOOTS, 4);
+                map.put(ArmorType.LEGGINGS, 7);
+                map.put(ArmorType.CHESTPLATE, 9);
+                map.put(ArmorType.HELMET, 4);
+                map.put(ArmorType.BODY, 9);
+            }), 24, SoundEvents.ARMOR_EQUIP_DIAMOND, () -> null, List.of(), 3.5F, 0.1F, false);
+
+    // ===== NINJA ARMORS =====
+    public static final ArmorMaterial NINJA_IRON = new ArmorMaterial(Util.make(new EnumMap<>(ArmorType.class), map -> {
+                map.put(ArmorType.BOOTS, 2);
+                map.put(ArmorType.LEGGINGS, 5);
+                map.put(ArmorType.CHESTPLATE, 6);
+                map.put(ArmorType.HELMET, 2);
+                map.put(ArmorType.BODY, 6);
+            }), 15, SoundEvents.ARMOR_EQUIP_IRON, () -> null, List.of(), 0.0F, 0.0F, false);
+
+    public static final ArmorMaterial NINJA_GOLD = new ArmorMaterial(Util.make(new EnumMap<>(ArmorType.class), map -> {
+                map.put(ArmorType.BOOTS, 1);
+                map.put(ArmorType.LEGGINGS, 3);
+                map.put(ArmorType.CHESTPLATE, 5);
+                map.put(ArmorType.HELMET, 2);
+                map.put(ArmorType.BODY, 5);
+            }), 25, SoundEvents.ARMOR_EQUIP_GOLD, () -> null, List.of(), 0.0F, 0.0F, false);
+
+    public static final ArmorMaterial NINJA_DIAMOND = new ArmorMaterial(Util.make(new EnumMap<>(ArmorType.class), map -> {
+                map.put(ArmorType.BOOTS, 3);
+                map.put(ArmorType.LEGGINGS, 6);
+                map.put(ArmorType.CHESTPLATE, 8);
+                map.put(ArmorType.HELMET, 3);
+                map.put(ArmorType.BODY, 8);
+            }), 15, SoundEvents.ARMOR_EQUIP_DIAMOND, () -> null, List.of(), 2.0F, 0.0F, false);
+
+    public static final ArmorMaterial NINJA_STEEL = new ArmorMaterial(Util.make(new EnumMap<>(ArmorType.class), map -> {
+                map.put(ArmorType.BOOTS, 2);
+                map.put(ArmorType.LEGGINGS, 5);
+                map.put(ArmorType.CHESTPLATE, 6);
+                map.put(ArmorType.HELMET, 2);
+                map.put(ArmorType.BODY, 6);
+            }), 16, SoundEvents.ARMOR_EQUIP_IRON, () -> null, List.of(), 0.5F, 0.0F, false);
+
+    public static final ArmorMaterial NINJA_NETHERITE = new ArmorMaterial(Util.make(new EnumMap<>(ArmorType.class), map -> {
+                map.put(ArmorType.BOOTS, 4);
+                map.put(ArmorType.LEGGINGS, 7);
+                map.put(ArmorType.CHESTPLATE, 9);
+                map.put(ArmorType.HELMET, 4);
+                map.put(ArmorType.BODY, 9);
+            }), 20, SoundEvents.ARMOR_EQUIP_NETHERITE, () -> null, List.of(), 3.0F, 0.1F, false);
+
+    // ===== SPECIAL ARMORS =====
+    public static final ArmorMaterial STRAW = new ArmorMaterial(Util.make(new EnumMap<>(ArmorType.class), map -> {
+                map.put(ArmorType.BOOTS, 1);
+                map.put(ArmorType.LEGGINGS, 2);
+                map.put(ArmorType.CHESTPLATE, 3);
+                map.put(ArmorType.HELMET, 1);
+                map.put(ArmorType.BODY, 3);
+            }), 15, SoundEvents.ARMOR_EQUIP_LEATHER, () -> null, List.of(), 0.0F, 0.0F, false);
+
+    public static final ArmorMaterial CLOTH = new ArmorMaterial(Util.make(new EnumMap<>(ArmorType.class), map -> {
+                map.put(ArmorType.BOOTS, 1);
+                map.put(ArmorType.LEGGINGS, 2);
+                map.put(ArmorType.CHESTPLATE, 3);
+                map.put(ArmorType.HELMET, 1);
+                map.put(ArmorType.BODY, 3);
+            }), 15, SoundEvents.ARMOR_EQUIP_LEATHER, () -> null, List.of(), 0.0F, 0.0F, false);
+
+    /**
+     * Called to trigger static initialization.
+     */
+    public static void register(IEventBus eventBus) {
+        // Static initialization is triggered by class loading
+    }
+}
             () -> new ArmorMaterial(Util.make(new EnumMap<>(ArmorType.class), map -> {
                 map.put(ArmorType.BOOTS, 2);
                 map.put(ArmorType.LEGGINGS, 6);
