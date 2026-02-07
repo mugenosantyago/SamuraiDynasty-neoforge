@@ -2,9 +2,11 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "S": {
+      "type": "minecraft:item",
       "item": "minecraft:stick"
     },
     "X": {
+      "type": "minecraft:item",
       "item": "samurai_dynasty:katana_handle"
     }
   },
@@ -14,6 +16,6 @@
     "S  "
   ],
   "result": {
-    "item": "samurai_dynasty:spear_handle"
+    "id": "samurai_dynasty:spear_handle"
   }
 }

@@ -1,15 +1,18 @@
 {
   "type": "minecraft:smithing_transform",
   "addition": {
+    "type": "minecraft:item",
     "item": "minecraft:netherite_ingot"
   },
   "base": {
+    "type": "minecraft:item",
     "item": "samurai_dynasty:sai"
   },
   "result": {
-    "item": "samurai_dynasty:sai_netherite"
+    "id": "samurai_dynasty:sai_netherite"
   },
   "template": {
+    "type": "minecraft:item",
     "item": "minecraft:netherite_upgrade_smithing_template"
   }
 }

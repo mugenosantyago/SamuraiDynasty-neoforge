@@ -2,14 +2,15 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
+      "type": "minecraft:item",
       "item": "samurai_dynasty:spirit_stone"
     },
     {
+      "type": "minecraft:item",
       "item": "minecraft:moss_block"
     }
   ],
   "result": {
-    "item": "samurai_dynasty:mossy_spirit_stone_bricks"
+    "id": "samurai_dynasty:mossy_spirit_stone_bricks"
   }
 }
-

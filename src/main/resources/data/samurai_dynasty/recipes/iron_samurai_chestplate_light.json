@@ -2,10 +2,12 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "S": {
-      "tag": "forge:ingots/steel"
+      "type": "minecraft:tag",
+      "tag": "c:ingots/steel"
     },
     "X": {
-      "tag": "forge:ingots/iron"
+      "type": "minecraft:tag",
+      "tag": "c:ingots/iron"
     }
   },
   "pattern": [
@@ -14,6 +16,6 @@
     "XSX"
   ],
   "result": {
-    "item": "samurai_dynasty:iron_samurai_chestplate_light"
+    "id": "samurai_dynasty:iron_samurai_chestplate_light"
   }
 }

@@ -2,9 +2,11 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "X": {
-      "tag": "forge:ingots/iron"
+      "type": "minecraft:tag",
+      "tag": "c:ingots/iron"
     },
     "S": {
+      "type": "minecraft:item",
       "item": "samurai_dynasty:cloth"
     }
   },
@@ -13,6 +15,6 @@
     "S S"
   ],
   "result": {
-    "item": "samurai_dynasty:iron_ninja_helmet"
+    "id": "samurai_dynasty:iron_ninja_helmet"
   }
 }

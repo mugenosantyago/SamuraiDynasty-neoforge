@@ -1,15 +1,18 @@
 {
   "type": "minecraft:smithing_transform",
   "addition": {
+    "type": "minecraft:tag",
     "tag": "forge:gems/amethyst"
   },
   "base": {
+    "type": "minecraft:tag",
     "tag": "forge:ingots/steel"
   },
   "result": {
-    "item": "samurai_dynasty:amethyst_ingot"
+    "id": "samurai_dynasty:amethyst_ingot"
   },
   "template": {
+    "type": "minecraft:tag",
     "tag": "forge:gems/amethyst"
   }
 }

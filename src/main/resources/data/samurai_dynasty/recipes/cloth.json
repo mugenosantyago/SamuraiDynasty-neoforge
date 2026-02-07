@@ -2,11 +2,12 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
+      "type": "minecraft:tag",
       "tag": "minecraft:wool"
     }
   ],
   "result": {
     "count": 4,
-    "item": "samurai_dynasty:cloth"
+    "id": "samurai_dynasty:cloth"
   }
 }

@@ -2,7 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "X": {
-      "tag": "forge:gems/ruby"
+      "type": "minecraft:tag",
+      "tag": "c:gems/ruby"
     }
   },
   "pattern": [
@@ -11,6 +12,6 @@
     "XXX"
   ],
   "result": {
-    "item": "samurai_dynasty:ruby_block"
+    "id": "samurai_dynasty:ruby_block"
   }
 }

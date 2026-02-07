@@ -2,13 +2,16 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "X": {
-      "tag": "forge:ingots/gold"
+      "type": "minecraft:tag",
+      "tag": "c:ingots/gold"
     },
     "G": {
-      "tag": "forge:gems/emerald"
+      "type": "minecraft:tag",
+      "tag": "c:gems/emerald"
     },
     "S": {
-      "tag": "forge:ingots/steel"
+      "type": "minecraft:tag",
+      "tag": "c:ingots/steel"
     }
   },
   "pattern": [
@@ -17,6 +20,6 @@
     "X X"
   ],
   "result": {
-    "item": "samurai_dynasty:gold_samurai_helmet"
+    "id": "samurai_dynasty:gold_samurai_helmet"
   }
 }

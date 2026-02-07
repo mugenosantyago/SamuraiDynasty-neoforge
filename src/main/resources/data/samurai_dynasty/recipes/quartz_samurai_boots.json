@@ -2,10 +2,12 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "X": {
+      "type": "minecraft:item",
       "item": "samurai_dynasty:quartz_ingot"
     },
     "G": {
-      "tag": "forge:ingots/netherite"
+      "type": "minecraft:tag",
+      "tag": "c:ingots/netherite"
     }
   },
   "pattern": [
@@ -13,6 +15,6 @@
     "X X"
   ],
   "result": {
-    "item": "samurai_dynasty:quartz_samurai_boots"
+    "id": "samurai_dynasty:quartz_samurai_boots"
   }
 }

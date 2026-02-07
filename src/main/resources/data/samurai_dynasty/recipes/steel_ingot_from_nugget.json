@@ -2,7 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "X": {
-      "tag": "forge:nuggets/steel"
+      "type": "minecraft:tag",
+      "tag": "c:nuggets/steel"
     }
   },
   "pattern": [
@@ -11,6 +12,6 @@
     "XXX"
   ],
   "result": {
-    "item": "samurai_dynasty:steel_ingot"
+    "id": "samurai_dynasty:steel_ingot"
   }
 }

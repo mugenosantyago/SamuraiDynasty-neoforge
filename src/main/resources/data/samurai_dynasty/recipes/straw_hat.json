@@ -2,10 +2,12 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "W": {
+      "type": "minecraft:item",
       "item": "minecraft:wheat"
     },
     "L": {
-      "tag": "forge:leather"
+      "type": "minecraft:tag",
+      "tag": "c:leathers"
     }
   },
   "pattern": [
@@ -14,6 +16,6 @@
     "L L"
   ],
   "result": {
-    "item": "samurai_dynasty:straw_hat"
+    "id": "samurai_dynasty:straw_hat"
   }
 }

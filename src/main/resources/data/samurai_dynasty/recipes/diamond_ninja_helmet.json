@@ -2,9 +2,11 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "X": {
-      "tag": "forge:gems/diamond"
+      "type": "minecraft:tag",
+      "tag": "c:gems/diamond"
     },
     "S": {
+      "type": "minecraft:item",
       "item": "samurai_dynasty:cloth"
     }
   },
@@ -13,6 +15,6 @@
     "S S"
   ],
   "result": {
-    "item": "samurai_dynasty:diamond_ninja_helmet"
+    "id": "samurai_dynasty:diamond_ninja_helmet"
   }
 }

@@ -2,10 +2,12 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "X": {
-      "tag": "forge:gems/onyx"
+      "type": "minecraft:tag",
+      "tag": "c:gems/onyx"
     },
     "G": {
-      "tag": "forge:ingots/gold"
+      "type": "minecraft:tag",
+      "tag": "c:ingots/gold"
     }
   },
   "pattern": [
@@ -13,6 +15,6 @@
     "X X"
   ],
   "result": {
-    "item": "samurai_dynasty:gray_samurai_boots"
+    "id": "samurai_dynasty:gray_samurai_boots"
   }
 }

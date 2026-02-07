@@ -3,6 +3,7 @@
   "category": "building",
   "key": {
     "#": {
+      "type": "minecraft:item",
       "item": "samurai_dynasty:spirit_stone"
     }
   },
@@ -13,7 +14,7 @@
   ],
   "result": {
     "count": 4,
-    "item": "samurai_dynasty:spirit_stone_stairs"
+    "id": "samurai_dynasty:spirit_stone_stairs"
   },
   "show_notification": true
 }

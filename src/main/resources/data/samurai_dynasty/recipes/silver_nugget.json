@@ -2,11 +2,12 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
+      "type": "minecraft:item",
       "item": "samurai_dynasty:silver_ingot"
     }
   ],
   "result": {
     "count": 9,
-    "item": "samurai_dynasty:silver_nugget"
+    "id": "samurai_dynasty:silver_nugget"
   }
 }

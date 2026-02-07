@@ -3,13 +3,15 @@
   "category": "equipment",
   "ingredients": [
     {
+      "type": "minecraft:item",
       "item": "samurai_dynasty:quartz_samurai_helmet"
     },
     {
+      "type": "minecraft:item",
       "item": "samurai_dynasty:oni_mask"
     }
   ],
   "result": {
-    "item": "samurai_dynasty:mask_quartz_samurai_helmet"
+    "id": "samurai_dynasty:mask_quartz_samurai_helmet"
   }
 }

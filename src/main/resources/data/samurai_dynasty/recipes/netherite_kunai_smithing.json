@@ -1,15 +1,18 @@
 {
   "type": "minecraft:smithing_transform",
   "addition": {
+    "type": "minecraft:item",
     "item": "minecraft:netherite_ingot"
   },
   "base": {
+    "type": "minecraft:item",
     "item": "samurai_dynasty:kunai"
   },
   "result": {
-    "item": "samurai_dynasty:kunai_netherite"
+    "id": "samurai_dynasty:kunai_netherite"
   },
   "template": {
+    "type": "minecraft:item",
     "item": "minecraft:netherite_upgrade_smithing_template"
   }
 }

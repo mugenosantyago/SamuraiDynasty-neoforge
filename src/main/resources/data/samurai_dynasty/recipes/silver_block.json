@@ -2,7 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "X": {
-      "tag": "forge:ingots/silver"
+      "type": "minecraft:tag",
+      "tag": "c:ingots/silver"
     }
   },
   "pattern": [
@@ -11,6 +12,6 @@
     "XXX"
   ],
   "result": {
-    "item": "samurai_dynasty:silver_block"
+    "id": "samurai_dynasty:silver_block"
   }
 }

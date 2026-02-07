@@ -2,7 +2,10 @@
   "type": "minecraft:stonecutting",
   "count": 1,
   "ingredient": {
+    "type": "minecraft:item",
     "item": "samurai_dynasty:mossy_spirit_stone_bricks"
   },
-  "result": "samurai_dynasty:mossy_spirit_stone_brick_wall"
+  "result": {
+    "id": "samurai_dynasty:mossy_spirit_stone_brick_wall"
+  }
 }

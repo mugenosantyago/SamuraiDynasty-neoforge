@@ -2,9 +2,11 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "X": {
-      "tag": "forge:stone"
+      "type": "minecraft:tag",
+      "tag": "c:stones"
     },
     "S": {
+      "type": "minecraft:item",
       "item": "samurai_dynasty:spirit_flame"
     }
   },
@@ -15,6 +17,6 @@
   ],
   "result": {
     "count": 8,
-    "item": "samurai_dynasty:spirit_stone"
+    "id": "samurai_dynasty:spirit_stone"
   }
 }

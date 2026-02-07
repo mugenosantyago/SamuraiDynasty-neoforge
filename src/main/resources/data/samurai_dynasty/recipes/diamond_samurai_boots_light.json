@@ -2,10 +2,12 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "S": {
-      "tag": "forge:ingots/steel"
+      "type": "minecraft:tag",
+      "tag": "c:ingots/steel"
     },
     "X": {
-      "tag": "forge:gems/diamond"
+      "type": "minecraft:tag",
+      "tag": "c:gems/diamond"
     }
   },
   "pattern": [
@@ -13,6 +15,6 @@
     "S S"
   ],
   "result": {
-    "item": "samurai_dynasty:diamond_samurai_boots_light"
+    "id": "samurai_dynasty:diamond_samurai_boots_light"
   }
 }

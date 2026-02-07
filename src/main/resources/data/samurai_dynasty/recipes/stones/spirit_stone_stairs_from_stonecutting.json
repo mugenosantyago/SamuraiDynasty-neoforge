@@ -2,7 +2,10 @@
   "type": "minecraft:stonecutting",
   "count": 1,
   "ingredient": {
+    "type": "minecraft:item",
     "item": "samurai_dynasty:spirit_stone"
   },
-  "result": "samurai_dynasty:spirit_stone_stairs"
+  "result": {
+    "id": "samurai_dynasty:spirit_stone_stairs"
+  }
 }

@@ -1,15 +1,18 @@
 {
   "type": "minecraft:smithing_transform",
   "addition": {
+    "type": "minecraft:item",
     "item": "minecraft:netherite_ingot"
   },
   "base": {
+    "type": "minecraft:item",
     "item": "samurai_dynasty:diamond_ninja_chestplate"
   },
   "result": {
-    "item": "samurai_dynasty:netherite_ninja_chestplate"
+    "id": "samurai_dynasty:netherite_ninja_chestplate"
   },
   "template": {
+    "type": "minecraft:item",
     "item": "minecraft:netherite_upgrade_smithing_template"
   }
 }

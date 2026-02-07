@@ -2,13 +2,16 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "X": {
+      "type": "minecraft:item",
       "item": "samurai_dynasty:amethyst_ingot"
     },
     "G": {
-      "tag": "forge:ingots/netherite"
+      "type": "minecraft:tag",
+      "tag": "c:ingots/netherite"
     },
     "A": {
-      "tag": "forge:gems/amethyst"
+      "type": "minecraft:tag",
+      "tag": "c:gems/amethyst"
     }
   },
   "pattern": [
@@ -17,6 +20,6 @@
     "X X"
   ],
   "result": {
-    "item": "samurai_dynasty:amethyst_samurai_helmet"
+    "id": "samurai_dynasty:amethyst_samurai_helmet"
   }
 }

@@ -2,6 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "X": {
+      "type": "minecraft:item",
       "item": "samurai_dynasty:cloth"
     }
   },
@@ -10,6 +11,6 @@
     "XX"
   ],
   "result": {
-    "item": "minecraft:white_wool"
+    "id": "minecraft:white_wool"
   }
 }

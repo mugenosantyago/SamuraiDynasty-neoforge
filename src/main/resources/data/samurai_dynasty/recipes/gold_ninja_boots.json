@@ -2,9 +2,11 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "X": {
-      "tag": "forge:ingots/gold"
+      "type": "minecraft:tag",
+      "tag": "c:ingots/gold"
     },
     "S": {
+      "type": "minecraft:item",
       "item": "samurai_dynasty:cloth"
     }
   },
@@ -13,6 +15,6 @@
     "X X"
   ],
   "result": {
-    "item": "samurai_dynasty:gold_ninja_boots"
+    "id": "samurai_dynasty:gold_ninja_boots"
   }
 }

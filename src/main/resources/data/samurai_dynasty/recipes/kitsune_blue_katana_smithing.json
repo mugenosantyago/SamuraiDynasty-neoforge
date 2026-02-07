@@ -1,15 +1,18 @@
 {
   "type": "minecraft:smithing_transform",
   "addition": {
+    "type": "minecraft:item",
     "item": "samurai_dynasty:spirit_flame"
   },
   "base": {
+    "type": "minecraft:item",
     "item": "samurai_dynasty:katana_netherite"
   },
   "result": {
-    "item": "samurai_dynasty:katana_kitsune_blue"
+    "id": "samurai_dynasty:katana_kitsune_blue"
   },
   "template": {
+    "type": "minecraft:item",
     "item": "samurai_dynasty:spirit_upgrade_smithing_template"
   }
 }

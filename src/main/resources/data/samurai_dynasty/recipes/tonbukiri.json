@@ -2,9 +2,11 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "S": {
-      "tag": "forge:ingots/steel"
+      "type": "minecraft:tag",
+      "tag": "c:ingots/steel"
     },
     "W": {
+      "type": "minecraft:item",
       "item": "samurai_dynasty:katana_handle"
     }
   },
@@ -14,6 +16,6 @@
     "WS "
   ],
   "result": {
-    "item": "samurai_dynasty:tonbukiri"
+    "id": "samurai_dynasty:tonbukiri"
   }
 }

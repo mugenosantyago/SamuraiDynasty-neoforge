@@ -2,10 +2,12 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "S": {
+      "type": "minecraft:item",
       "item": "minecraft:stick"
     },
     "X": {
-      "tag": "forge:nuggets/steel"
+      "type": "minecraft:tag",
+      "tag": "c:nuggets/steel"
     }
   },
   "pattern": [
@@ -14,6 +16,6 @@
     "X  "
   ],
   "result": {
-    "item": "samurai_dynasty:knive_handle"
+    "id": "samurai_dynasty:knive_handle"
   }
 }

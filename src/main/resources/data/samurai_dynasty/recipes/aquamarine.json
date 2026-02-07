@@ -2,11 +2,12 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
+      "type": "minecraft:item",
       "item": "samurai_dynasty:aquamarine_block"
     }
   ],
   "result": {
     "count": 9,
-    "item": "samurai_dynasty:aquamarine"
+    "id": "samurai_dynasty:aquamarine"
   }
 }

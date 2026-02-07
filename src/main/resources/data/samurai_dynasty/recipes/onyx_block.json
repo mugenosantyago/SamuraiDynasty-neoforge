@@ -2,7 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "X": {
-      "tag": "forge:gems/onyx"
+      "type": "minecraft:tag",
+      "tag": "c:gems/onyx"
     }
   },
   "pattern": [
@@ -11,6 +12,6 @@
     "XXX"
   ],
   "result": {
-    "item": "samurai_dynasty:onyx_block"
+    "id": "samurai_dynasty:onyx_block"
   }
 }

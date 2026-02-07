@@ -3,7 +3,10 @@
   "cookingtime": 300,
   "experience": 1.5,
   "ingredient": {
+    "type": "minecraft:item",
     "item": "minecraft:iron_ingot"
   },
-  "result": "samurai_dynasty:steel_ingot"
+  "result": {
+    "id": "samurai_dynasty:steel_ingot"
+  }
 }

@@ -2,10 +2,12 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "S": {
-      "tag": "forge:ingots/steel"
+      "type": "minecraft:tag",
+      "tag": "c:ingots/steel"
     },
     "X": {
-      "tag": "forge:gems/aquamarine"
+      "type": "minecraft:tag",
+      "tag": "c:gems/aquamarine"
     }
   },
   "pattern": [
@@ -14,6 +16,6 @@
     "X X"
   ],
   "result": {
-    "item": "samurai_dynasty:blue_samurai_leggings_master"
+    "id": "samurai_dynasty:blue_samurai_leggings_master"
   }
 }

@@ -2,10 +2,12 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "S": {
-      "tag": "forge:ingots/steel"
+      "type": "minecraft:tag",
+      "tag": "c:ingots/steel"
     },
     "X": {
-      "tag": "forge:ingots/silver"
+      "type": "minecraft:tag",
+      "tag": "c:ingots/silver"
     }
   },
   "pattern": [
@@ -14,6 +16,6 @@
     "S S"
   ],
   "result": {
-    "item": "samurai_dynasty:white_samurai_helmet_master"
+    "id": "samurai_dynasty:white_samurai_helmet_master"
   }
 }

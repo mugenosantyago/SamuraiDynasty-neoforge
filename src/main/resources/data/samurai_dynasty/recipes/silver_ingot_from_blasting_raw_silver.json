@@ -3,7 +3,10 @@
   "cookingtime": 100,
   "experience": 0.7,
   "ingredient": {
+    "type": "minecraft:item",
     "item": "samurai_dynasty:raw_silver"
   },
-  "result": "samurai_dynasty:silver_ingot"
+  "result": {
+    "id": "samurai_dynasty:silver_ingot"
+  }
 }

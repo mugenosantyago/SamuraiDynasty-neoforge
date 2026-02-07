@@ -3,6 +3,7 @@
   "category": "misc",
   "key": {
     "#": {
+      "type": "minecraft:item",
       "item": "samurai_dynasty:polished_spirit_stone"
     }
   },
@@ -12,7 +13,7 @@
   ],
   "result": {
     "count": 6,
-    "item": "samurai_dynasty:polished_spirit_stone_wall"
+    "id": "samurai_dynasty:polished_spirit_stone_wall"
   },
   "show_notification": true
 }
