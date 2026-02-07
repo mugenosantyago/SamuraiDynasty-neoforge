@@ -80,8 +80,8 @@ public class ModEvents {
                     // Check if player is wearing ninja leggings
                     if (player.getItemBySlot(EquipmentSlot.LEGS).is(ItemsRegistry.NINJA_LEGGINGS.get())) {
                         // Apply speed and jump boost effects
-                        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20, 0, false, false, false));
-                        player.addEffect(new MobEffectInstance(MobEffects.JUMP, 20, 0, false, false, false));
+                        player.addEffect(new MobEffectInstance(MobEffects.SPEED, 20, 0, false, false, false));
+                        player.addEffect(new MobEffectInstance(MobEffects.JUMP_BOOST, 20, 0, false, false, false));
                     }
                 }
             }

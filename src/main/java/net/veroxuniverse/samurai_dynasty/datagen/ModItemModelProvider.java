@@ -1,9 +1,14 @@
 package net.veroxuniverse.samurai_dynasty.datagen;
 
-// TODO: Re-implement data generators for NeoForge 1.21.4
-// NeoForge has different data provider classes
-// This class is stubbed out until data generators are fully ported
-
+/**
+ * Item Model Provider - Stubbed
+ * 
+ * All item models currently exist as hand-crafted JSON files in:
+ * src/main/resources/assets/samurai_dynasty/models/item/
+ * 
+ * Models include custom 3D weapon models created in Blockbench with
+ * custom display transforms for first-person, third-person, GUI, etc.
+ */
 public class ModItemModelProvider {
-    // Stubbed - datagen needs reimplementation for NeoForge 1.21.4
+    // Stubbed - models exist as hand-crafted JSON files
 }

@@ -49,6 +49,14 @@ public class ItemsRegistry {
             props -> new ESWeaponItem(ItemMaterialsRegistry.SAMURAI_NETHERITE, 3.0f, -2.0f, props.fireResistant()));
     public static final DeferredItem<Item> KUNAI_NETHERITE = ITEMS.registerItem("kunai_netherite",
             props -> new NetheriteKunaiItem(ItemMaterialsRegistry.SAMURAI_NETHERITE, 3.0f, -1.8f, props.fireResistant()));
+    public static final DeferredItem<Item> TETSUBO_NETHERITE = ITEMS.registerItem("tetsubo_netherite",
+            props -> new TetsuboNetheriteItem(ItemMaterialsRegistry.SAMURAI_NETHERITE, 6.0f, -3.0f, props.fireResistant()));
+    public static final DeferredItem<Item> ODACHI_NETHERITE = ITEMS.registerItem("odachi_netherite",
+            props -> new OdachiNetheriteItem(ItemMaterialsRegistry.SAMURAI_NETHERITE, 6.0f, -3.0f, props.fireResistant()));
+    public static final DeferredItem<Item> TONBUKIRI_NETHERITE = ITEMS.registerItem("tonbukiri_netherite",
+            props -> new TonbukiriNetheriteItem(ItemMaterialsRegistry.SAMURAI_NETHERITE, 5.0f, -2.8f, props.fireResistant()));
+    public static final DeferredItem<Item> KAMAYARI_NETHERITE = ITEMS.registerItem("kamayari_netherite",
+            props -> new KamayariNetheriteItem(ItemMaterialsRegistry.SAMURAI_NETHERITE, 5.0f, -2.8f, props.fireResistant()));
     // Special Katanas (with abilities)
     public static final DeferredItem<Item> KATANA_ONI = ITEMS.registerItem("katana_oni",
             props -> new OniKatanaItem(ItemMaterialsRegistry.SAMURAI_NETHERITE, 4.0f, -2.4f, props));
@@ -195,168 +203,168 @@ public class ItemsRegistry {
     
     // ========== LIGHT VARIANTS ==========
     // Iron Samurai Light
-    public static final DeferredItem<Item> IRON_SAMURAI_LIGHT_HELMET = ITEMS.registerItem("iron_samurai_light_helmet",
+    public static final DeferredItem<Item> IRON_SAMURAI_HELMET_LIGHT = ITEMS.registerItem("iron_samurai_helmet_light",
             props -> new IronSamuraiArmorLightItem(ArmorMaterialsRegistry.SAMURAI_IRON, ArmorType.HELMET, props));
-    public static final DeferredItem<Item> IRON_SAMURAI_LIGHT_CHESTPLATE = ITEMS.registerItem("iron_samurai_light_chestplate",
+    public static final DeferredItem<Item> IRON_SAMURAI_CHESTPLATE_LIGHT = ITEMS.registerItem("iron_samurai_chestplate_light",
             props -> new IronSamuraiArmorLightItem(ArmorMaterialsRegistry.SAMURAI_IRON, ArmorType.CHESTPLATE, props));
-    public static final DeferredItem<Item> IRON_SAMURAI_LIGHT_LEGGINGS = ITEMS.registerItem("iron_samurai_light_leggings",
+    public static final DeferredItem<Item> IRON_SAMURAI_LEGGINGS_LIGHT = ITEMS.registerItem("iron_samurai_leggings_light",
             props -> new IronSamuraiArmorLightItem(ArmorMaterialsRegistry.SAMURAI_IRON, ArmorType.LEGGINGS, props));
-    public static final DeferredItem<Item> IRON_SAMURAI_LIGHT_BOOTS = ITEMS.registerItem("iron_samurai_light_boots",
+    public static final DeferredItem<Item> IRON_SAMURAI_BOOTS_LIGHT = ITEMS.registerItem("iron_samurai_boots_light",
             props -> new IronSamuraiArmorLightItem(ArmorMaterialsRegistry.SAMURAI_IRON, ArmorType.BOOTS, props));
     // Gold Samurai Light
-    public static final DeferredItem<Item> GOLD_SAMURAI_LIGHT_HELMET = ITEMS.registerItem("gold_samurai_light_helmet",
+    public static final DeferredItem<Item> GOLD_SAMURAI_HELMET_LIGHT = ITEMS.registerItem("gold_samurai_helmet_light",
             props -> new GoldSamuraiArmorLightItem(ArmorMaterialsRegistry.SAMURAI_GOLD, ArmorType.HELMET, props));
-    public static final DeferredItem<Item> GOLD_SAMURAI_LIGHT_CHESTPLATE = ITEMS.registerItem("gold_samurai_light_chestplate",
+    public static final DeferredItem<Item> GOLD_SAMURAI_CHESTPLATE_LIGHT = ITEMS.registerItem("gold_samurai_chestplate_light",
             props -> new GoldSamuraiArmorLightItem(ArmorMaterialsRegistry.SAMURAI_GOLD, ArmorType.CHESTPLATE, props));
-    public static final DeferredItem<Item> GOLD_SAMURAI_LIGHT_LEGGINGS = ITEMS.registerItem("gold_samurai_light_leggings",
+    public static final DeferredItem<Item> GOLD_SAMURAI_LEGGINGS_LIGHT = ITEMS.registerItem("gold_samurai_leggings_light",
             props -> new GoldSamuraiArmorLightItem(ArmorMaterialsRegistry.SAMURAI_GOLD, ArmorType.LEGGINGS, props));
-    public static final DeferredItem<Item> GOLD_SAMURAI_LIGHT_BOOTS = ITEMS.registerItem("gold_samurai_light_boots",
+    public static final DeferredItem<Item> GOLD_SAMURAI_BOOTS_LIGHT = ITEMS.registerItem("gold_samurai_boots_light",
             props -> new GoldSamuraiArmorLightItem(ArmorMaterialsRegistry.SAMURAI_GOLD, ArmorType.BOOTS, props));
     // Diamond Samurai Light
-    public static final DeferredItem<Item> DIAMOND_SAMURAI_LIGHT_HELMET = ITEMS.registerItem("diamond_samurai_light_helmet",
+    public static final DeferredItem<Item> DIAMOND_SAMURAI_HELMET_LIGHT = ITEMS.registerItem("diamond_samurai_helmet_light",
             props -> new DiamondSamuraiArmorLightItem(ArmorMaterialsRegistry.SAMURAI_DIAMOND, ArmorType.HELMET, props));
-    public static final DeferredItem<Item> DIAMOND_SAMURAI_LIGHT_CHESTPLATE = ITEMS.registerItem("diamond_samurai_light_chestplate",
+    public static final DeferredItem<Item> DIAMOND_SAMURAI_CHESTPLATE_LIGHT = ITEMS.registerItem("diamond_samurai_chestplate_light",
             props -> new DiamondSamuraiArmorLightItem(ArmorMaterialsRegistry.SAMURAI_DIAMOND, ArmorType.CHESTPLATE, props));
-    public static final DeferredItem<Item> DIAMOND_SAMURAI_LIGHT_LEGGINGS = ITEMS.registerItem("diamond_samurai_light_leggings",
+    public static final DeferredItem<Item> DIAMOND_SAMURAI_LEGGINGS_LIGHT = ITEMS.registerItem("diamond_samurai_leggings_light",
             props -> new DiamondSamuraiArmorLightItem(ArmorMaterialsRegistry.SAMURAI_DIAMOND, ArmorType.LEGGINGS, props));
-    public static final DeferredItem<Item> DIAMOND_SAMURAI_LIGHT_BOOTS = ITEMS.registerItem("diamond_samurai_light_boots",
+    public static final DeferredItem<Item> DIAMOND_SAMURAI_BOOTS_LIGHT = ITEMS.registerItem("diamond_samurai_boots_light",
             props -> new DiamondSamuraiArmorLightItem(ArmorMaterialsRegistry.SAMURAI_DIAMOND, ArmorType.BOOTS, props));
     // Red Samurai Light
-    public static final DeferredItem<Item> RED_SAMURAI_LIGHT_HELMET = ITEMS.registerItem("red_samurai_light_helmet",
+    public static final DeferredItem<Item> RED_SAMURAI_HELMET_LIGHT = ITEMS.registerItem("red_samurai_helmet_light",
             props -> new RedSamuraiArmorLightItem(ArmorMaterialsRegistry.SAMURAI_RUBY, ArmorType.HELMET, props));
-    public static final DeferredItem<Item> RED_SAMURAI_LIGHT_CHESTPLATE = ITEMS.registerItem("red_samurai_light_chestplate",
+    public static final DeferredItem<Item> RED_SAMURAI_CHESTPLATE_LIGHT = ITEMS.registerItem("red_samurai_chestplate_light",
             props -> new RedSamuraiArmorLightItem(ArmorMaterialsRegistry.SAMURAI_RUBY, ArmorType.CHESTPLATE, props));
-    public static final DeferredItem<Item> RED_SAMURAI_LIGHT_LEGGINGS = ITEMS.registerItem("red_samurai_light_leggings",
+    public static final DeferredItem<Item> RED_SAMURAI_LEGGINGS_LIGHT = ITEMS.registerItem("red_samurai_leggings_light",
             props -> new RedSamuraiArmorLightItem(ArmorMaterialsRegistry.SAMURAI_RUBY, ArmorType.LEGGINGS, props));
-    public static final DeferredItem<Item> RED_SAMURAI_LIGHT_BOOTS = ITEMS.registerItem("red_samurai_light_boots",
+    public static final DeferredItem<Item> RED_SAMURAI_BOOTS_LIGHT = ITEMS.registerItem("red_samurai_boots_light",
             props -> new RedSamuraiArmorLightItem(ArmorMaterialsRegistry.SAMURAI_RUBY, ArmorType.BOOTS, props));
     // Blue Samurai Light
-    public static final DeferredItem<Item> BLUE_SAMURAI_LIGHT_HELMET = ITEMS.registerItem("blue_samurai_light_helmet",
+    public static final DeferredItem<Item> BLUE_SAMURAI_HELMET_LIGHT = ITEMS.registerItem("blue_samurai_helmet_light",
             props -> new BlueSamuraiArmorLightItem(ArmorMaterialsRegistry.SAMURAI_AQUA, ArmorType.HELMET, props));
-    public static final DeferredItem<Item> BLUE_SAMURAI_LIGHT_CHESTPLATE = ITEMS.registerItem("blue_samurai_light_chestplate",
+    public static final DeferredItem<Item> BLUE_SAMURAI_CHESTPLATE_LIGHT = ITEMS.registerItem("blue_samurai_chestplate_light",
             props -> new BlueSamuraiArmorLightItem(ArmorMaterialsRegistry.SAMURAI_AQUA, ArmorType.CHESTPLATE, props));
-    public static final DeferredItem<Item> BLUE_SAMURAI_LIGHT_LEGGINGS = ITEMS.registerItem("blue_samurai_light_leggings",
+    public static final DeferredItem<Item> BLUE_SAMURAI_LEGGINGS_LIGHT = ITEMS.registerItem("blue_samurai_leggings_light",
             props -> new BlueSamuraiArmorLightItem(ArmorMaterialsRegistry.SAMURAI_AQUA, ArmorType.LEGGINGS, props));
-    public static final DeferredItem<Item> BLUE_SAMURAI_LIGHT_BOOTS = ITEMS.registerItem("blue_samurai_light_boots",
+    public static final DeferredItem<Item> BLUE_SAMURAI_BOOTS_LIGHT = ITEMS.registerItem("blue_samurai_boots_light",
             props -> new BlueSamuraiArmorLightItem(ArmorMaterialsRegistry.SAMURAI_AQUA, ArmorType.BOOTS, props));
     // Green Samurai Light
-    public static final DeferredItem<Item> GREEN_SAMURAI_LIGHT_HELMET = ITEMS.registerItem("green_samurai_light_helmet",
+    public static final DeferredItem<Item> GREEN_SAMURAI_HELMET_LIGHT = ITEMS.registerItem("green_samurai_helmet_light",
             props -> new GreenSamuraiArmorLightItem(ArmorMaterialsRegistry.SAMURAI_JADE, ArmorType.HELMET, props));
-    public static final DeferredItem<Item> GREEN_SAMURAI_LIGHT_CHESTPLATE = ITEMS.registerItem("green_samurai_light_chestplate",
+    public static final DeferredItem<Item> GREEN_SAMURAI_CHESTPLATE_LIGHT = ITEMS.registerItem("green_samurai_chestplate_light",
             props -> new GreenSamuraiArmorLightItem(ArmorMaterialsRegistry.SAMURAI_JADE, ArmorType.CHESTPLATE, props));
-    public static final DeferredItem<Item> GREEN_SAMURAI_LIGHT_LEGGINGS = ITEMS.registerItem("green_samurai_light_leggings",
+    public static final DeferredItem<Item> GREEN_SAMURAI_LEGGINGS_LIGHT = ITEMS.registerItem("green_samurai_leggings_light",
             props -> new GreenSamuraiArmorLightItem(ArmorMaterialsRegistry.SAMURAI_JADE, ArmorType.LEGGINGS, props));
-    public static final DeferredItem<Item> GREEN_SAMURAI_LIGHT_BOOTS = ITEMS.registerItem("green_samurai_light_boots",
+    public static final DeferredItem<Item> GREEN_SAMURAI_BOOTS_LIGHT = ITEMS.registerItem("green_samurai_boots_light",
             props -> new GreenSamuraiArmorLightItem(ArmorMaterialsRegistry.SAMURAI_JADE, ArmorType.BOOTS, props));
     // White Samurai Light
-    public static final DeferredItem<Item> WHITE_SAMURAI_LIGHT_HELMET = ITEMS.registerItem("white_samurai_light_helmet",
+    public static final DeferredItem<Item> WHITE_SAMURAI_HELMET_LIGHT = ITEMS.registerItem("white_samurai_helmet_light",
             props -> new WhiteSamuraiArmorLightItem(ArmorMaterialsRegistry.SAMURAI_SILVER, ArmorType.HELMET, props));
-    public static final DeferredItem<Item> WHITE_SAMURAI_LIGHT_CHESTPLATE = ITEMS.registerItem("white_samurai_light_chestplate",
+    public static final DeferredItem<Item> WHITE_SAMURAI_CHESTPLATE_LIGHT = ITEMS.registerItem("white_samurai_chestplate_light",
             props -> new WhiteSamuraiArmorLightItem(ArmorMaterialsRegistry.SAMURAI_SILVER, ArmorType.CHESTPLATE, props));
-    public static final DeferredItem<Item> WHITE_SAMURAI_LIGHT_LEGGINGS = ITEMS.registerItem("white_samurai_light_leggings",
+    public static final DeferredItem<Item> WHITE_SAMURAI_LEGGINGS_LIGHT = ITEMS.registerItem("white_samurai_leggings_light",
             props -> new WhiteSamuraiArmorLightItem(ArmorMaterialsRegistry.SAMURAI_SILVER, ArmorType.LEGGINGS, props));
-    public static final DeferredItem<Item> WHITE_SAMURAI_LIGHT_BOOTS = ITEMS.registerItem("white_samurai_light_boots",
+    public static final DeferredItem<Item> WHITE_SAMURAI_BOOTS_LIGHT = ITEMS.registerItem("white_samurai_boots_light",
             props -> new WhiteSamuraiArmorLightItem(ArmorMaterialsRegistry.SAMURAI_SILVER, ArmorType.BOOTS, props));
     // Gray Samurai Light
-    public static final DeferredItem<Item> GRAY_SAMURAI_LIGHT_HELMET = ITEMS.registerItem("gray_samurai_light_helmet",
+    public static final DeferredItem<Item> GRAY_SAMURAI_HELMET_LIGHT = ITEMS.registerItem("gray_samurai_helmet_light",
             props -> new GraySamuraiArmorLightItem(ArmorMaterialsRegistry.SAMURAI_ONYX, ArmorType.HELMET, props));
-    public static final DeferredItem<Item> GRAY_SAMURAI_LIGHT_CHESTPLATE = ITEMS.registerItem("gray_samurai_light_chestplate",
+    public static final DeferredItem<Item> GRAY_SAMURAI_CHESTPLATE_LIGHT = ITEMS.registerItem("gray_samurai_chestplate_light",
             props -> new GraySamuraiArmorLightItem(ArmorMaterialsRegistry.SAMURAI_ONYX, ArmorType.CHESTPLATE, props));
-    public static final DeferredItem<Item> GRAY_SAMURAI_LIGHT_LEGGINGS = ITEMS.registerItem("gray_samurai_light_leggings",
+    public static final DeferredItem<Item> GRAY_SAMURAI_LEGGINGS_LIGHT = ITEMS.registerItem("gray_samurai_leggings_light",
             props -> new GraySamuraiArmorLightItem(ArmorMaterialsRegistry.SAMURAI_ONYX, ArmorType.LEGGINGS, props));
-    public static final DeferredItem<Item> GRAY_SAMURAI_LIGHT_BOOTS = ITEMS.registerItem("gray_samurai_light_boots",
+    public static final DeferredItem<Item> GRAY_SAMURAI_BOOTS_LIGHT = ITEMS.registerItem("gray_samurai_boots_light",
             props -> new GraySamuraiArmorLightItem(ArmorMaterialsRegistry.SAMURAI_ONYX, ArmorType.BOOTS, props));
     // Netherite Samurai Light
-    public static final DeferredItem<Item> NETHERITE_SAMURAI_LIGHT_HELMET = ITEMS.registerItem("netherite_samurai_light_helmet",
+    public static final DeferredItem<Item> NETHERITE_SAMURAI_HELMET_LIGHT = ITEMS.registerItem("netherite_samurai_helmet_light",
             props -> new NetheriteSamuraiArmorLightItem(ArmorMaterialsRegistry.SAMURAI_NETHERITE, ArmorType.HELMET, props.fireResistant()));
-    public static final DeferredItem<Item> NETHERITE_SAMURAI_LIGHT_CHESTPLATE = ITEMS.registerItem("netherite_samurai_light_chestplate",
+    public static final DeferredItem<Item> NETHERITE_SAMURAI_CHESTPLATE_LIGHT = ITEMS.registerItem("netherite_samurai_chestplate_light",
             props -> new NetheriteSamuraiArmorLightItem(ArmorMaterialsRegistry.SAMURAI_NETHERITE, ArmorType.CHESTPLATE, props.fireResistant()));
-    public static final DeferredItem<Item> NETHERITE_SAMURAI_LIGHT_LEGGINGS = ITEMS.registerItem("netherite_samurai_light_leggings",
+    public static final DeferredItem<Item> NETHERITE_SAMURAI_LEGGINGS_LIGHT = ITEMS.registerItem("netherite_samurai_leggings_light",
             props -> new NetheriteSamuraiArmorLightItem(ArmorMaterialsRegistry.SAMURAI_NETHERITE, ArmorType.LEGGINGS, props.fireResistant()));
-    public static final DeferredItem<Item> NETHERITE_SAMURAI_LIGHT_BOOTS = ITEMS.registerItem("netherite_samurai_light_boots",
+    public static final DeferredItem<Item> NETHERITE_SAMURAI_BOOTS_LIGHT = ITEMS.registerItem("netherite_samurai_boots_light",
             props -> new NetheriteSamuraiArmorLightItem(ArmorMaterialsRegistry.SAMURAI_NETHERITE, ArmorType.BOOTS, props.fireResistant()));
     
     // ========== MASTER VARIANTS ==========
     // Iron Samurai Master
-    public static final DeferredItem<Item> IRON_SAMURAI_MASTER_HELMET = ITEMS.registerItem("iron_samurai_master_helmet",
+    public static final DeferredItem<Item> IRON_SAMURAI_HELMET_MASTER = ITEMS.registerItem("iron_samurai_helmet_master",
             props -> new IronSamuraiArmorMasterItem(ArmorMaterialsRegistry.SAMURAI_IRON_MASTER, ArmorType.HELMET, props));
-    public static final DeferredItem<Item> IRON_SAMURAI_MASTER_CHESTPLATE = ITEMS.registerItem("iron_samurai_master_chestplate",
+    public static final DeferredItem<Item> IRON_SAMURAI_CHESTPLATE_MASTER = ITEMS.registerItem("iron_samurai_chestplate_master",
             props -> new IronSamuraiArmorMasterItem(ArmorMaterialsRegistry.SAMURAI_IRON_MASTER, ArmorType.CHESTPLATE, props));
-    public static final DeferredItem<Item> IRON_SAMURAI_MASTER_LEGGINGS = ITEMS.registerItem("iron_samurai_master_leggings",
+    public static final DeferredItem<Item> IRON_SAMURAI_LEGGINGS_MASTER = ITEMS.registerItem("iron_samurai_leggings_master",
             props -> new IronSamuraiArmorMasterItem(ArmorMaterialsRegistry.SAMURAI_IRON_MASTER, ArmorType.LEGGINGS, props));
-    public static final DeferredItem<Item> IRON_SAMURAI_MASTER_BOOTS = ITEMS.registerItem("iron_samurai_master_boots",
+    public static final DeferredItem<Item> IRON_SAMURAI_BOOTS_MASTER = ITEMS.registerItem("iron_samurai_boots_master",
             props -> new IronSamuraiArmorMasterItem(ArmorMaterialsRegistry.SAMURAI_IRON_MASTER, ArmorType.BOOTS, props));
     // Gold Samurai Master
-    public static final DeferredItem<Item> GOLD_SAMURAI_MASTER_HELMET = ITEMS.registerItem("gold_samurai_master_helmet",
+    public static final DeferredItem<Item> GOLD_SAMURAI_HELMET_MASTER = ITEMS.registerItem("gold_samurai_helmet_master",
             props -> new GoldSamuraiArmorMasterItem(ArmorMaterialsRegistry.SAMURAI_GOLD_MASTER, ArmorType.HELMET, props));
-    public static final DeferredItem<Item> GOLD_SAMURAI_MASTER_CHESTPLATE = ITEMS.registerItem("gold_samurai_master_chestplate",
+    public static final DeferredItem<Item> GOLD_SAMURAI_CHESTPLATE_MASTER = ITEMS.registerItem("gold_samurai_chestplate_master",
             props -> new GoldSamuraiArmorMasterItem(ArmorMaterialsRegistry.SAMURAI_GOLD_MASTER, ArmorType.CHESTPLATE, props));
-    public static final DeferredItem<Item> GOLD_SAMURAI_MASTER_LEGGINGS = ITEMS.registerItem("gold_samurai_master_leggings",
+    public static final DeferredItem<Item> GOLD_SAMURAI_LEGGINGS_MASTER = ITEMS.registerItem("gold_samurai_leggings_master",
             props -> new GoldSamuraiArmorMasterItem(ArmorMaterialsRegistry.SAMURAI_GOLD_MASTER, ArmorType.LEGGINGS, props));
-    public static final DeferredItem<Item> GOLD_SAMURAI_MASTER_BOOTS = ITEMS.registerItem("gold_samurai_master_boots",
+    public static final DeferredItem<Item> GOLD_SAMURAI_BOOTS_MASTER = ITEMS.registerItem("gold_samurai_boots_master",
             props -> new GoldSamuraiArmorMasterItem(ArmorMaterialsRegistry.SAMURAI_GOLD_MASTER, ArmorType.BOOTS, props));
     // Diamond Samurai Master
-    public static final DeferredItem<Item> DIAMOND_SAMURAI_MASTER_HELMET = ITEMS.registerItem("diamond_samurai_master_helmet",
+    public static final DeferredItem<Item> DIAMOND_SAMURAI_HELMET_MASTER = ITEMS.registerItem("diamond_samurai_helmet_master",
             props -> new DiamondSamuraiArmorMasterItem(ArmorMaterialsRegistry.SAMURAI_DIAMOND_MASTER, ArmorType.HELMET, props));
-    public static final DeferredItem<Item> DIAMOND_SAMURAI_MASTER_CHESTPLATE = ITEMS.registerItem("diamond_samurai_master_chestplate",
+    public static final DeferredItem<Item> DIAMOND_SAMURAI_CHESTPLATE_MASTER = ITEMS.registerItem("diamond_samurai_chestplate_master",
             props -> new DiamondSamuraiArmorMasterItem(ArmorMaterialsRegistry.SAMURAI_DIAMOND_MASTER, ArmorType.CHESTPLATE, props));
-    public static final DeferredItem<Item> DIAMOND_SAMURAI_MASTER_LEGGINGS = ITEMS.registerItem("diamond_samurai_master_leggings",
+    public static final DeferredItem<Item> DIAMOND_SAMURAI_LEGGINGS_MASTER = ITEMS.registerItem("diamond_samurai_leggings_master",
             props -> new DiamondSamuraiArmorMasterItem(ArmorMaterialsRegistry.SAMURAI_DIAMOND_MASTER, ArmorType.LEGGINGS, props));
-    public static final DeferredItem<Item> DIAMOND_SAMURAI_MASTER_BOOTS = ITEMS.registerItem("diamond_samurai_master_boots",
+    public static final DeferredItem<Item> DIAMOND_SAMURAI_BOOTS_MASTER = ITEMS.registerItem("diamond_samurai_boots_master",
             props -> new DiamondSamuraiArmorMasterItem(ArmorMaterialsRegistry.SAMURAI_DIAMOND_MASTER, ArmorType.BOOTS, props));
     // Red Samurai Master
-    public static final DeferredItem<Item> RED_SAMURAI_MASTER_HELMET = ITEMS.registerItem("red_samurai_master_helmet",
+    public static final DeferredItem<Item> RED_SAMURAI_HELMET_MASTER = ITEMS.registerItem("red_samurai_helmet_master",
             props -> new RedSamuraiArmorMasterItem(ArmorMaterialsRegistry.SAMURAI_RUBY_MASTER, ArmorType.HELMET, props));
-    public static final DeferredItem<Item> RED_SAMURAI_MASTER_CHESTPLATE = ITEMS.registerItem("red_samurai_master_chestplate",
+    public static final DeferredItem<Item> RED_SAMURAI_CHESTPLATE_MASTER = ITEMS.registerItem("red_samurai_chestplate_master",
             props -> new RedSamuraiArmorMasterItem(ArmorMaterialsRegistry.SAMURAI_RUBY_MASTER, ArmorType.CHESTPLATE, props));
-    public static final DeferredItem<Item> RED_SAMURAI_MASTER_LEGGINGS = ITEMS.registerItem("red_samurai_master_leggings",
+    public static final DeferredItem<Item> RED_SAMURAI_LEGGINGS_MASTER = ITEMS.registerItem("red_samurai_leggings_master",
             props -> new RedSamuraiArmorMasterItem(ArmorMaterialsRegistry.SAMURAI_RUBY_MASTER, ArmorType.LEGGINGS, props));
-    public static final DeferredItem<Item> RED_SAMURAI_MASTER_BOOTS = ITEMS.registerItem("red_samurai_master_boots",
+    public static final DeferredItem<Item> RED_SAMURAI_BOOTS_MASTER = ITEMS.registerItem("red_samurai_boots_master",
             props -> new RedSamuraiArmorMasterItem(ArmorMaterialsRegistry.SAMURAI_RUBY_MASTER, ArmorType.BOOTS, props));
     // Blue Samurai Master
-    public static final DeferredItem<Item> BLUE_SAMURAI_MASTER_HELMET = ITEMS.registerItem("blue_samurai_master_helmet",
+    public static final DeferredItem<Item> BLUE_SAMURAI_HELMET_MASTER = ITEMS.registerItem("blue_samurai_helmet_master",
             props -> new BlueSamuraiArmorMasterItem(ArmorMaterialsRegistry.SAMURAI_AQUA_MASTER, ArmorType.HELMET, props));
-    public static final DeferredItem<Item> BLUE_SAMURAI_MASTER_CHESTPLATE = ITEMS.registerItem("blue_samurai_master_chestplate",
+    public static final DeferredItem<Item> BLUE_SAMURAI_CHESTPLATE_MASTER = ITEMS.registerItem("blue_samurai_chestplate_master",
             props -> new BlueSamuraiArmorMasterItem(ArmorMaterialsRegistry.SAMURAI_AQUA_MASTER, ArmorType.CHESTPLATE, props));
-    public static final DeferredItem<Item> BLUE_SAMURAI_MASTER_LEGGINGS = ITEMS.registerItem("blue_samurai_master_leggings",
+    public static final DeferredItem<Item> BLUE_SAMURAI_LEGGINGS_MASTER = ITEMS.registerItem("blue_samurai_leggings_master",
             props -> new BlueSamuraiArmorMasterItem(ArmorMaterialsRegistry.SAMURAI_AQUA_MASTER, ArmorType.LEGGINGS, props));
-    public static final DeferredItem<Item> BLUE_SAMURAI_MASTER_BOOTS = ITEMS.registerItem("blue_samurai_master_boots",
+    public static final DeferredItem<Item> BLUE_SAMURAI_BOOTS_MASTER = ITEMS.registerItem("blue_samurai_boots_master",
             props -> new BlueSamuraiArmorMasterItem(ArmorMaterialsRegistry.SAMURAI_AQUA_MASTER, ArmorType.BOOTS, props));
     // Green Samurai Master
-    public static final DeferredItem<Item> GREEN_SAMURAI_MASTER_HELMET = ITEMS.registerItem("green_samurai_master_helmet",
+    public static final DeferredItem<Item> GREEN_SAMURAI_HELMET_MASTER = ITEMS.registerItem("green_samurai_helmet_master",
             props -> new GreenSamuraiArmorMasterItem(ArmorMaterialsRegistry.SAMURAI_JADE_MASTER, ArmorType.HELMET, props));
-    public static final DeferredItem<Item> GREEN_SAMURAI_MASTER_CHESTPLATE = ITEMS.registerItem("green_samurai_master_chestplate",
+    public static final DeferredItem<Item> GREEN_SAMURAI_CHESTPLATE_MASTER = ITEMS.registerItem("green_samurai_chestplate_master",
             props -> new GreenSamuraiArmorMasterItem(ArmorMaterialsRegistry.SAMURAI_JADE_MASTER, ArmorType.CHESTPLATE, props));
-    public static final DeferredItem<Item> GREEN_SAMURAI_MASTER_LEGGINGS = ITEMS.registerItem("green_samurai_master_leggings",
+    public static final DeferredItem<Item> GREEN_SAMURAI_LEGGINGS_MASTER = ITEMS.registerItem("green_samurai_leggings_master",
             props -> new GreenSamuraiArmorMasterItem(ArmorMaterialsRegistry.SAMURAI_JADE_MASTER, ArmorType.LEGGINGS, props));
-    public static final DeferredItem<Item> GREEN_SAMURAI_MASTER_BOOTS = ITEMS.registerItem("green_samurai_master_boots",
+    public static final DeferredItem<Item> GREEN_SAMURAI_BOOTS_MASTER = ITEMS.registerItem("green_samurai_boots_master",
             props -> new GreenSamuraiArmorMasterItem(ArmorMaterialsRegistry.SAMURAI_JADE_MASTER, ArmorType.BOOTS, props));
     // White Samurai Master
-    public static final DeferredItem<Item> WHITE_SAMURAI_MASTER_HELMET = ITEMS.registerItem("white_samurai_master_helmet",
+    public static final DeferredItem<Item> WHITE_SAMURAI_HELMET_MASTER = ITEMS.registerItem("white_samurai_helmet_master",
             props -> new WhiteSamuraiArmorMasterItem(ArmorMaterialsRegistry.SAMURAI_SILVER_MASTER, ArmorType.HELMET, props));
-    public static final DeferredItem<Item> WHITE_SAMURAI_MASTER_CHESTPLATE = ITEMS.registerItem("white_samurai_master_chestplate",
+    public static final DeferredItem<Item> WHITE_SAMURAI_CHESTPLATE_MASTER = ITEMS.registerItem("white_samurai_chestplate_master",
             props -> new WhiteSamuraiArmorMasterItem(ArmorMaterialsRegistry.SAMURAI_SILVER_MASTER, ArmorType.CHESTPLATE, props));
-    public static final DeferredItem<Item> WHITE_SAMURAI_MASTER_LEGGINGS = ITEMS.registerItem("white_samurai_master_leggings",
+    public static final DeferredItem<Item> WHITE_SAMURAI_LEGGINGS_MASTER = ITEMS.registerItem("white_samurai_leggings_master",
             props -> new WhiteSamuraiArmorMasterItem(ArmorMaterialsRegistry.SAMURAI_SILVER_MASTER, ArmorType.LEGGINGS, props));
-    public static final DeferredItem<Item> WHITE_SAMURAI_MASTER_BOOTS = ITEMS.registerItem("white_samurai_master_boots",
+    public static final DeferredItem<Item> WHITE_SAMURAI_BOOTS_MASTER = ITEMS.registerItem("white_samurai_boots_master",
             props -> new WhiteSamuraiArmorMasterItem(ArmorMaterialsRegistry.SAMURAI_SILVER_MASTER, ArmorType.BOOTS, props));
     // Gray Samurai Master
-    public static final DeferredItem<Item> GRAY_SAMURAI_MASTER_HELMET = ITEMS.registerItem("gray_samurai_master_helmet",
+    public static final DeferredItem<Item> GRAY_SAMURAI_HELMET_MASTER = ITEMS.registerItem("gray_samurai_helmet_master",
             props -> new GraySamuraiArmorMasterItem(ArmorMaterialsRegistry.SAMURAI_ONYX_MASTER, ArmorType.HELMET, props));
-    public static final DeferredItem<Item> GRAY_SAMURAI_MASTER_CHESTPLATE = ITEMS.registerItem("gray_samurai_master_chestplate",
+    public static final DeferredItem<Item> GRAY_SAMURAI_CHESTPLATE_MASTER = ITEMS.registerItem("gray_samurai_chestplate_master",
             props -> new GraySamuraiArmorMasterItem(ArmorMaterialsRegistry.SAMURAI_ONYX_MASTER, ArmorType.CHESTPLATE, props));
-    public static final DeferredItem<Item> GRAY_SAMURAI_MASTER_LEGGINGS = ITEMS.registerItem("gray_samurai_master_leggings",
+    public static final DeferredItem<Item> GRAY_SAMURAI_LEGGINGS_MASTER = ITEMS.registerItem("gray_samurai_leggings_master",
             props -> new GraySamuraiArmorMasterItem(ArmorMaterialsRegistry.SAMURAI_ONYX_MASTER, ArmorType.LEGGINGS, props));
-    public static final DeferredItem<Item> GRAY_SAMURAI_MASTER_BOOTS = ITEMS.registerItem("gray_samurai_master_boots",
+    public static final DeferredItem<Item> GRAY_SAMURAI_BOOTS_MASTER = ITEMS.registerItem("gray_samurai_boots_master",
             props -> new GraySamuraiArmorMasterItem(ArmorMaterialsRegistry.SAMURAI_ONYX_MASTER, ArmorType.BOOTS, props));
     // Netherite Samurai Master
-    public static final DeferredItem<Item> NETHERITE_SAMURAI_MASTER_HELMET = ITEMS.registerItem("netherite_samurai_master_helmet",
+    public static final DeferredItem<Item> NETHERITE_SAMURAI_HELMET_MASTER = ITEMS.registerItem("netherite_samurai_helmet_master",
             props -> new NetheriteSamuraiArmorMasterItem(ArmorMaterialsRegistry.SAMURAI_NETHERITE_MASTER, ArmorType.HELMET, props.fireResistant()));
-    public static final DeferredItem<Item> NETHERITE_SAMURAI_MASTER_CHESTPLATE = ITEMS.registerItem("netherite_samurai_master_chestplate",
+    public static final DeferredItem<Item> NETHERITE_SAMURAI_CHESTPLATE_MASTER = ITEMS.registerItem("netherite_samurai_chestplate_master",
             props -> new NetheriteSamuraiArmorMasterItem(ArmorMaterialsRegistry.SAMURAI_NETHERITE_MASTER, ArmorType.CHESTPLATE, props.fireResistant()));
-    public static final DeferredItem<Item> NETHERITE_SAMURAI_MASTER_LEGGINGS = ITEMS.registerItem("netherite_samurai_master_leggings",
+    public static final DeferredItem<Item> NETHERITE_SAMURAI_LEGGINGS_MASTER = ITEMS.registerItem("netherite_samurai_leggings_master",
             props -> new NetheriteSamuraiArmorMasterItem(ArmorMaterialsRegistry.SAMURAI_NETHERITE_MASTER, ArmorType.LEGGINGS, props.fireResistant()));
-    public static final DeferredItem<Item> NETHERITE_SAMURAI_MASTER_BOOTS = ITEMS.registerItem("netherite_samurai_master_boots",
+    public static final DeferredItem<Item> NETHERITE_SAMURAI_BOOTS_MASTER = ITEMS.registerItem("netherite_samurai_boots_master",
             props -> new NetheriteSamuraiArmorMasterItem(ArmorMaterialsRegistry.SAMURAI_NETHERITE_MASTER, ArmorType.BOOTS, props.fireResistant()));
     
     // ========== SPECIAL ARMOR SETS ==========

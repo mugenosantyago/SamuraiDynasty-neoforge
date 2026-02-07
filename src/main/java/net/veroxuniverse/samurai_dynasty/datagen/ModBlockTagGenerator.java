@@ -1,9 +1,12 @@
 package net.veroxuniverse.samurai_dynasty.datagen;
 
-// TODO: Re-implement data generators for NeoForge 1.21.4
-// NeoForge has different data provider classes
-// This class is stubbed out until data generators are fully ported
-
+/**
+ * Block Tag Generator - Stubbed
+ * 
+ * All block tags currently exist as hand-crafted JSON files in:
+ * src/main/resources/data/samurai_dynasty/tags/blocks/
+ * src/main/resources/data/minecraft/tags/blocks/
+ */
 public class ModBlockTagGenerator {
-    // Stubbed - datagen needs reimplementation for NeoForge 1.21.4
+    // Stubbed - tags exist as hand-crafted JSON files
 }

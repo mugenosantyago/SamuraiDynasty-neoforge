@@ -1,9 +1,12 @@
 package net.veroxuniverse.samurai_dynasty.datagen;
 
-// TODO: Re-implement data generators for NeoForge 1.21.4
-// NeoForge has different data provider classes
-// This class is stubbed out until data generators are fully ported
-
+/**
+ * Block State Provider - Stubbed
+ * 
+ * All block states and models currently exist as hand-crafted JSON files in:
+ * src/main/resources/assets/samurai_dynasty/blockstates/
+ * src/main/resources/assets/samurai_dynasty/models/block/
+ */
 public class ModBlockStateProvider {
-    // Stubbed - datagen needs reimplementation for NeoForge 1.21.4
+    // Stubbed - blockstates exist as hand-crafted JSON files
 }
