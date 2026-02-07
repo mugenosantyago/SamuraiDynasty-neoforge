@@ -1,16 +1,22 @@
 package net.veroxuniverse.samurai_dynasty.event;
 
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.SpawnPlacementTypes;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
+import net.neoforged.neoforge.event.tick.EntityTickEvent;
 import net.veroxuniverse.samurai_dynasty.SamuraiDynastyMod;
 import net.veroxuniverse.samurai_dynasty.entity.ModEntityTypes;
 import net.veroxuniverse.samurai_dynasty.entity.custom.*;
+import net.veroxuniverse.samurai_dynasty.registry.ItemsRegistry;
 
 public class ModEvents {
 
@@ -62,6 +68,24 @@ public class ModEvents {
                     Animal::checkAnimalSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
         }
 
+    }
+
+    @EventBusSubscriber(modid = SamuraiDynastyMod.MOD_ID)
+    public static class ForgeEvents {
+        
+        @SubscribeEvent
+        public static void onEntityTick(EntityTickEvent.Post event) {
+            if (event.getEntity() instanceof Player player) {
+                if (!player.level().isClientSide()) {
+                    // Check if player is wearing ninja leggings
+                    if (player.getItemBySlot(EquipmentSlot.LEGS).is(ItemsRegistry.NINJA_LEGGINGS.get())) {
+                        // Apply speed and jump boost effects
+                        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20, 0, false, false, false));
+                        player.addEffect(new MobEffectInstance(MobEffects.JUMP, 20, 0, false, false, false));
+                    }
+                }
+            }
+        }
     }
 
 }
