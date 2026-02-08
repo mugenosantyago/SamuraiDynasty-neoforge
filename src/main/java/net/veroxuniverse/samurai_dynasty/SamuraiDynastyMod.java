@@ -79,33 +79,24 @@ public class SamuraiDynastyMod {
 
         // Register armor items with AzIdentityRegistry for proper animation triggering
         event.enqueueWork(() -> {
-            AzIdentityRegistry.register(
-                    ItemsRegistry.IRON_SAMURAI_HELMET.get(),
-                    ItemsRegistry.IRON_SAMURAI_CHESTPLATE.get(),
-                    ItemsRegistry.IRON_SAMURAI_LEGGINGS.get(),
-                    ItemsRegistry.IRON_SAMURAI_BOOTS.get(),
-                    ItemsRegistry.GOLD_SAMURAI_HELMET.get(),
-                    ItemsRegistry.GOLD_SAMURAI_CHESTPLATE.get(),
-                    ItemsRegistry.GOLD_SAMURAI_LEGGINGS.get(),
-                    ItemsRegistry.GOLD_SAMURAI_BOOTS.get(),
-                    ItemsRegistry.DIAMOND_SAMURAI_HELMET.get(),
-                    ItemsRegistry.DIAMOND_SAMURAI_CHESTPLATE.get(),
-                    ItemsRegistry.DIAMOND_SAMURAI_LEGGINGS.get(),
-                    ItemsRegistry.DIAMOND_SAMURAI_BOOTS.get(),
-                    ItemsRegistry.RED_SAMURAI_HELMET.get(),
-                    ItemsRegistry.RED_SAMURAI_CHESTPLATE.get(),
-                    ItemsRegistry.RED_SAMURAI_LEGGINGS.get(),
-                    ItemsRegistry.RED_SAMURAI_BOOTS.get(),
-                    ItemsRegistry.IRON_NINJA_HELMET.get(),
-                    ItemsRegistry.IRON_NINJA_CHESTPLATE.get(),
-                    ItemsRegistry.IRON_NINJA_BOOTS.get(),
-                    ItemsRegistry.NINJA_LEGGINGS.get(),
-                    ItemsRegistry.STRAW_HAT.get(),
-                    ItemsRegistry.KIMONO.get(),
-                    ItemsRegistry.ONI_MASK.get(),
-                    ItemsRegistry.KITSUNE_MASK.get()
-            );
-            LOGGER.info("Registered armor items with AzIdentityRegistry");
+            // Collect all armor items from ItemsRegistry automatically
+            java.util.List<net.minecraft.world.item.Item> armorItems = new java.util.ArrayList<>();
+            
+            // Add all registered items that are SamuraiArmorItem instances
+            ItemsRegistry.ITEMS.getEntries().forEach(itemHolder -> {
+                net.minecraft.world.item.Item item = itemHolder.get();
+                if (item instanceof net.veroxuniverse.samurai_dynasty.item.armor.lib.SamuraiArmorItem) {
+                    armorItems.add(item);
+                }
+            });
+            
+            // Register all armor items with AzureLib (requires at least one item, then varargs for rest)
+            if (!armorItems.isEmpty()) {
+                net.minecraft.world.item.Item first = armorItems.get(0);
+                net.minecraft.world.item.Item[] rest = armorItems.subList(1, armorItems.size()).toArray(new net.minecraft.world.item.Item[0]);
+                AzIdentityRegistry.register(first, rest);
+                LOGGER.info("Registered " + armorItems.size() + " armor items with AzIdentityRegistry");
+            }
         });
 
         // TODO: Re-enable when compat mods are available for 1.21.4
