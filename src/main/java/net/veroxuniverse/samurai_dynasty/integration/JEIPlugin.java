@@ -10,6 +10,7 @@ import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.item.crafting.SmithingTransformRecipe;
 import net.veroxuniverse.samurai_dynasty.SamuraiDynastyMod;
+import net.veroxuniverse.samurai_dynasty.registry.BlocksRegistry;
 import net.veroxuniverse.samurai_dynasty.registry.ItemsRegistry;
 
 import java.util.List;
@@ -102,6 +103,74 @@ public class JEIPlugin implements IModPlugin {
         registration.addItemStackInfo(
             new ItemStack(ItemsRegistry.SPIRIT_FLAME.get()),
             net.minecraft.network.chat.Component.translatable("jei.samurai_dynasty.spirit_flame.info")
+        );
+        
+        // Add descriptions for Spirit Stone blocks
+        registration.addItemStackInfo(
+            new ItemStack(BlocksRegistry.SPIRIT_STONE.get()),
+            net.minecraft.network.chat.Component.translatable("jei.samurai_dynasty.spirit_stone.info")
+        );
+        
+        registration.addItemStackInfo(
+            new ItemStack(BlocksRegistry.DRAGON_SPIRIT_STONE.get()),
+            net.minecraft.network.chat.Component.translatable("jei.samurai_dynasty.dragon_spirit_stone.info")
+        );
+        
+        registration.addItemStackInfo(
+            new ItemStack(BlocksRegistry.POLISHED_SPIRIT_STONE.get()),
+            net.minecraft.network.chat.Component.translatable("jei.samurai_dynasty.polished_spirit_stone.info")
+        );
+        
+        registration.addItemStackInfo(
+            new ItemStack(BlocksRegistry.MOSSY_SPIRIT_STONE_BRICKS.get()),
+            net.minecraft.network.chat.Component.translatable("jei.samurai_dynasty.mossy_spirit_stone_bricks.info")
+        );
+        
+        registration.addItemStackInfo(
+            new ItemStack(BlocksRegistry.CHISELED_SPIRIT_STONE_BRICKS.get()),
+            net.minecraft.network.chat.Component.translatable("jei.samurai_dynasty.chiseled_spirit_stone_bricks.info")
+        );
+        
+        registration.addItemStackInfo(
+            new ItemStack(BlocksRegistry.PATTERN_SPIRIT_STONE_BRICKS.get()),
+            net.minecraft.network.chat.Component.translatable("jei.samurai_dynasty.pattern_spirit_stone_bricks.info")
+        );
+        
+        registration.addItemStackInfo(
+            new ItemStack(BlocksRegistry.MOSAIC_SPIRIT_STONE_BRICKS.get()),
+            net.minecraft.network.chat.Component.translatable("jei.samurai_dynasty.mosaic_spirit_stone_bricks.info")
+        );
+        
+        // Roof blocks
+        registration.addItemStackInfo(
+            new ItemStack(BlocksRegistry.STONE_ROOF.get()),
+            net.minecraft.network.chat.Component.translatable("jei.samurai_dynasty.stone_roof.info")
+        );
+        
+        registration.addItemStackInfo(
+            new ItemStack(BlocksRegistry.STONE_ROOF_CORNER.get()),
+            net.minecraft.network.chat.Component.translatable("jei.samurai_dynasty.stone_roof_corner.info")
+        );
+        
+        registration.addItemStackInfo(
+            new ItemStack(BlocksRegistry.STONE_ROOF_TOP.get()),
+            net.minecraft.network.chat.Component.translatable("jei.samurai_dynasty.stone_roof_top.info")
+        );
+        
+        // Statues
+        registration.addItemStackInfo(
+            new ItemStack(BlocksRegistry.TANUKI_STATUE.get()),
+            net.minecraft.network.chat.Component.translatable("jei.samurai_dynasty.tanuki_statue.info")
+        );
+        
+        registration.addItemStackInfo(
+            new ItemStack(BlocksRegistry.KOMAINU_STATUE.get()),
+            net.minecraft.network.chat.Component.translatable("jei.samurai_dynasty.komainu_statue.info")
+        );
+        
+        registration.addItemStackInfo(
+            new ItemStack(BlocksRegistry.KAWAUSO_STATUE.get()),
+            net.minecraft.network.chat.Component.translatable("jei.samurai_dynasty.kawauso_statue.info")
         );
     }
 }
