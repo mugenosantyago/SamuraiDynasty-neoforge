@@ -1,0 +1,1 @@
+{"type":"minecraft:crafting_shaped","key":{"X":{"type":"minecraft:tag","tag":"c:leathers"},"B":{"type":"minecraft:tag","tag":"forge:ingots/brass"}},"pattern":["BBB","BXB","B B"],"result":{"id":"samurai_dynasty:brass_samurai_leggings"}}

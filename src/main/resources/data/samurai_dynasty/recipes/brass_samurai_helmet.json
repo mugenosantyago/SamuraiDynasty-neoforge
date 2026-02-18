@@ -1,0 +1,1 @@
+{"type":"minecraft:crafting_shaped","key":{"X":{"type":"minecraft:tag","tag":"c:feathers"},"B":{"type":"minecraft:tag","tag":"forge:ingots/brass"}},"pattern":[" X ","BBB","B B"],"result":{"id":"samurai_dynasty:brass_samurai_helmet"}}
