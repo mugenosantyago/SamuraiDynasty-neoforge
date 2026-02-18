@@ -29,6 +29,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.veroxuniverse.samurai_dynasty.entity.ModEntityTypes;
+import net.veroxuniverse.samurai_dynasty.entity.goals.NightVisionGoal;
 import org.jetbrains.annotations.Nullable;
 
 public class KawausoEntity extends TamableAnimal {
@@ -63,6 +64,7 @@ public class KawausoEntity extends TamableAnimal {
         this.goalSelector.addGoal(4, new WaterAvoidingRandomStrollGoal(this, 1.0D));
         this.goalSelector.addGoal(5, new LookAtPlayerGoal(this, Player.class, 6.0F));
         this.goalSelector.addGoal(6, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(7, new NightVisionGoal(this, 5.0, 400, 0));
     }
 
     @Override
