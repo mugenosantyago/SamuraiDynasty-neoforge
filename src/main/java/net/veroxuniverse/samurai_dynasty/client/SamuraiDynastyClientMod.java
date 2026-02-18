@@ -1,13 +1,10 @@
 package net.veroxuniverse.samurai_dynasty.client;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
-import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import net.veroxuniverse.samurai_dynasty.SamuraiDynastyMod;
@@ -16,33 +13,14 @@ import net.veroxuniverse.samurai_dynasty.client.projectiles.ThrownShurikenRender
 import net.veroxuniverse.samurai_dynasty.curios.model.KitsuneMaskModel;
 import net.veroxuniverse.samurai_dynasty.curios.model.OniMaskModel;
 import net.veroxuniverse.samurai_dynasty.entity.ModEntityTypes;
-import net.veroxuniverse.samurai_dynasty.item.YumiBow;
 import net.veroxuniverse.samurai_dynasty.particle.BlueFlame;
-import net.veroxuniverse.samurai_dynasty.registry.ItemsRegistry;
 import net.veroxuniverse.samurai_dynasty.registry.ParticlesInit;
 
 @EventBusSubscriber(modid = SamuraiDynastyMod.MOD_ID, value = Dist.CLIENT)
 public class SamuraiDynastyClientMod {
 
     /** Helmet head/hat hiding is done in LivingEntityRendererHelmetMixin (port from 1.21.1). */
-
-    @SubscribeEvent
-    public static void onClientSetup(final FMLClientSetupEvent event) {
-        event.enqueueWork(() -> registerYumiItemProperties());
-    }
-
-    /** Register pull/pulling item model properties for Yumi so bow draw animation works. */
-    private static void registerYumiItemProperties() {
-        ItemProperties.register(ItemsRegistry.YUMI.get(), ResourceLocation.withDefaultNamespace("pull"),
-                (stack, level, living, seed) -> {
-                    if (living == null) return 0.0F;
-                    if (living.getUseItem() != stack) return 0.0F;
-                    int useTicks = living.getTicksUsingItem();
-                    return YumiBow.getPowerForTime(useTicks);
-                });
-        ItemProperties.register(ItemsRegistry.YUMI.get(), ResourceLocation.withDefaultNamespace("pulling"),
-                (stack, level, living, seed) -> living != null && living.isUsingItem() && living.getUseItem() == stack ? 1.0F : 0.0F);
-    }
+    /** Yumi bow uses parent minecraft:item/bow; in 1.21.8 item model properties are defined in JSON (assets/.../items/yumi.json) if pull/pulling animation is needed. */
 
     @SubscribeEvent
     public static void registerParticleFactories(final RegisterParticleProvidersEvent event) {

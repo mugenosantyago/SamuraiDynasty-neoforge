@@ -70,9 +70,11 @@ public class SpawnMobNearPlayerGoal<T extends Mob> extends Goal {
         BlockPos mobPos = mob.blockPosition();
         BlockPos spawnPos = mobPos.offset(mob.getRandom().nextInt(3) - 1, 0, mob.getRandom().nextInt(3) - 1);
 
-        if (level.isEmptyBlock(spawnPos) && spawnPos.getY() < level.getMaxBuildHeight()) {
+        if (level.isEmptyBlock(spawnPos) && spawnPos.getY() < level.getMaxY()) {
             OnibiEntity onibiEntity = new OnibiEntity(ModEntityTypes.ONIBI.get(), level);
-            onibiEntity.moveTo(spawnPos.getX(), spawnPos.getY(), spawnPos.getZ(), mob.getYRot(), 0.0F);
+            onibiEntity.setPos(spawnPos.getX() + 0.5, spawnPos.getY(), spawnPos.getZ() + 0.5);
+            onibiEntity.setYRot(mob.getYRot());
+            onibiEntity.setXRot(0.0F);
             onibiEntity.setTarget(mob.getTarget());
             level.addFreshEntity(onibiEntity);
         }
