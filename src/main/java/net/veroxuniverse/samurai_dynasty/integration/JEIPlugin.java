@@ -98,6 +98,28 @@ public class JEIPlugin implements IModPlugin {
             new ItemStack(ItemsRegistry.SPIRIT_FLAME.get()),
             net.minecraft.network.chat.Component.translatable("jei.samurai_dynasty.spirit_flame.info")
         );
+
+        // New weapons (Masakari, Kabutowari, Yumi)
+        registration.addItemStackInfo(
+            new ItemStack(ItemsRegistry.MASAKARI.get()),
+            net.minecraft.network.chat.Component.translatable("jei.samurai_dynasty.masakari.info")
+        );
+        registration.addItemStackInfo(
+            new ItemStack(ItemsRegistry.MASAKARI_NETHERITE.get()),
+            net.minecraft.network.chat.Component.translatable("jei.samurai_dynasty.masakari_netherite.info")
+        );
+        registration.addItemStackInfo(
+            new ItemStack(ItemsRegistry.KABUTOWARI.get()),
+            net.minecraft.network.chat.Component.translatable("jei.samurai_dynasty.kabutowari.info")
+        );
+        registration.addItemStackInfo(
+            new ItemStack(ItemsRegistry.KABUTOWARI_NETHERITE.get()),
+            net.minecraft.network.chat.Component.translatable("jei.samurai_dynasty.kabutowari_netherite.info")
+        );
+        registration.addItemStackInfo(
+            new ItemStack(ItemsRegistry.YUMI.get()),
+            net.minecraft.network.chat.Component.translatable("jei.samurai_dynasty.yumi.info")
+        );
         
         // Add descriptions for Spirit Stone blocks
         registration.addItemStackInfo(

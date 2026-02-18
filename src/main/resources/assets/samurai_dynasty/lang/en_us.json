@@ -342,6 +342,11 @@
   "jei.samurai_dynasty.oni_horn.info": "Dropped by Oni. Used to craft Oni Katana and other items.",
   "jei.samurai_dynasty.akaname_tongue.info": "Dropped by Akaname. Used to craft Akaname Katana.",
   "jei.samurai_dynasty.jorogumo_eye.info": "Dropped by Jorogumo. Used to craft Jorogumo Katana.",
-  "jei.samurai_dynasty.spirit_flame.info": "Dropped by Onibi. Used to craft Onibi Katana."
+  "jei.samurai_dynasty.spirit_flame.info": "Dropped by Onibi. Used to craft Onibi Katana.",
+  "jei.samurai_dynasty.masakari.info": "A Japanese war axe. Crafted with steel and handles.",
+  "jei.samurai_dynasty.masakari_netherite.info": "Netherite upgrade of the Masakari. Smithing upgrade from Masakari.",
+  "jei.samurai_dynasty.kabutowari.info": "A dagger-like weapon used to break helmets. Crafted with steel.",
+  "jei.samurai_dynasty.kabutowari_netherite.info": "Netherite upgrade of the Kabutowari. Smithing upgrade from Kabutowari.",
+  "jei.samurai_dynasty.yumi.info": "A Japanese longbow. Crafted with bamboo and string."
 
 }
