@@ -27,13 +27,13 @@ public class YumiBow extends BowItem {
     }
 
     @Override
-    public void releaseUsing(ItemStack pStack, Level pLevel, LivingEntity pEntityLiving, int pTimeLeft) {
+    public boolean releaseUsing(ItemStack pStack, Level pLevel, LivingEntity pEntityLiving, int pTimeLeft) {
         if (pEntityLiving instanceof Player player) {
             ItemStack projectileStack = player.getProjectile(pStack);
             if (!projectileStack.isEmpty()) {
                 int charge = this.getUseDuration(pStack, pEntityLiving) - pTimeLeft;
                 charge = net.neoforged.neoforge.event.EventHooks.onArrowLoose(pStack, pLevel, player, charge, !projectileStack.isEmpty());
-                if (charge < 0) return;
+                if (charge < 0) return false;
                 float power = getPowerForTime(charge);
                 if (!((double) power < 0.1)) {
                     List<ItemStack> list = draw(pStack, projectileStack, player);
@@ -51,9 +51,11 @@ public class YumiBow extends BowItem {
                             1.0F / (pLevel.getRandom().nextFloat() * 0.4F + 1.2F) + power * 0.5F
                     );
                     player.awardStat(Stats.ITEM_USED.get(this));
+                    return true;
                 }
             }
         }
+        return false;
     }
 
     @Override

@@ -53,6 +53,16 @@ public class ItemsRegistry {
             props -> new ESWeaponItem(ItemMaterialsRegistry.SAMURAI_NETHERITE, 3.5f, -1.6f, props.fireResistant()));
     public static final DeferredItem<Item> KAMA_NETHERITE = ITEMS.registerItem("kama_netherite",
             props -> new ESWeaponItem(ItemMaterialsRegistry.SAMURAI_NETHERITE, 4.5f, -2.0f, props.fireResistant()));
+    public static final DeferredItem<Item> MASAKARI = ITEMS.registerItem("masakari",
+            props -> new MasakariItem(ItemMaterialsRegistry.SAMURAI, 2.0f, -1.8f, props));
+    public static final DeferredItem<Item> MASAKARI_NETHERITE = ITEMS.registerItem("masakari_netherite",
+            props -> new MasakariNetheriteItem(ItemMaterialsRegistry.SAMURAI_NETHERITE, 4.5f, -1.8f, props.fireResistant()));
+    public static final DeferredItem<Item> KABUTOWARI = ITEMS.registerItem("kabutowari",
+            props -> new KabutowariItem(ItemMaterialsRegistry.SAMURAI, 2.0f, -1.8f, props));
+    public static final DeferredItem<Item> KABUTOWARI_NETHERITE = ITEMS.registerItem("kabutowari_netherite",
+            props -> new KabutowariNetheriteItem(ItemMaterialsRegistry.SAMURAI_NETHERITE, 4.5f, -1.8f, props.fireResistant()));
+    public static final DeferredItem<Item> YUMI = ITEMS.registerItem("yumi",
+            props -> new YumiBow(props.durability(384)));
     // Special Katanas (with abilities)
     public static final DeferredItem<Item> KATANA_ONI = ITEMS.registerItem("katana_oni",
             props -> new OniKatanaItem(ItemMaterialsRegistry.SAMURAI_NETHERITE, 4.0f, -2.4f, props));
