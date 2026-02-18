@@ -16,8 +16,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /**
- * Hide the player head and hat when wearing a Samurai Dynasty helmet so only the 3D helmet shows.
- * We run inside the render method; entity comes from AzureLib context (set in extractRenderState).
+ * Hide only the hat layer (top-of-head overlay) when wearing a Samurai Dynasty helmet,
+ * so the top of the head doesn't show through. The main head (face) stays visible.
  */
 @Mixin(LivingEntityRenderer.class)
 public abstract class LivingEntityRendererHelmetMixin {
@@ -27,8 +27,6 @@ public abstract class LivingEntityRendererHelmetMixin {
 
     @Unique
     private static final ThreadLocal<Boolean> samuraiDynasty$savedHat = new ThreadLocal<>();
-    @Unique
-    private static final ThreadLocal<Boolean> samuraiDynasty$savedHead = new ThreadLocal<>();
 
     @Inject(
         method = "render(Lnet/minecraft/client/renderer/entity/state/LivingEntityRenderState;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;I)V",
@@ -49,9 +47,7 @@ public abstract class LivingEntityRendererHelmetMixin {
         EntityModel<?> model = getModel();
         if (model instanceof HumanoidModel<?> humanoid) {
             samuraiDynasty$savedHat.set(humanoid.hat.visible);
-            samuraiDynasty$savedHead.set(humanoid.head.visible);
             humanoid.hat.visible = false;
-            humanoid.head.visible = false;
         }
     }
 
@@ -67,14 +63,11 @@ public abstract class LivingEntityRendererHelmetMixin {
         CallbackInfo ci
     ) {
         Boolean savedHat = samuraiDynasty$savedHat.get();
-        Boolean savedHead = samuraiDynasty$savedHead.get();
-        if (savedHat == null && savedHead == null) return;
+        if (savedHat == null) return;
         EntityModel<?> model = getModel();
         if (model instanceof HumanoidModel<?> humanoid) {
-            if (savedHat != null) humanoid.hat.visible = savedHat;
-            if (savedHead != null) humanoid.head.visible = savedHead;
+            humanoid.hat.visible = savedHat;
         }
         samuraiDynasty$savedHat.remove();
-        samuraiDynasty$savedHead.remove();
     }
 }
