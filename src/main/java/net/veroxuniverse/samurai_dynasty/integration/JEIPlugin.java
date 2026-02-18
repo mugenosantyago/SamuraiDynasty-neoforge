@@ -2,18 +2,12 @@ package net.veroxuniverse.samurai_dynasty.integration;
 
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
-import mezz.jei.api.constants.RecipeTypes;
 import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.RecipeHolder;
-import net.minecraft.world.item.crafting.RecipeManager;
-import net.minecraft.world.item.crafting.SmithingTransformRecipe;
 import net.veroxuniverse.samurai_dynasty.SamuraiDynastyMod;
 import net.veroxuniverse.samurai_dynasty.registry.BlocksRegistry;
 import net.veroxuniverse.samurai_dynasty.registry.ItemsRegistry;
-
-import java.util.List;
 
 /**
  * JEI Plugin for Samurai Dynasty mod
