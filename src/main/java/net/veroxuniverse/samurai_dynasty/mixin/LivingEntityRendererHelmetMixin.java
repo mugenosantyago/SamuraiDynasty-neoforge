@@ -16,8 +16,10 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /**
- * Hide only the hat layer (top-of-head overlay) when wearing a Samurai Dynasty helmet,
- * so the top of the head doesn't show through. The main head (face) stays visible.
+ * Hide the hat layer when wearing a Samurai Dynasty helmet (removes the second-skin overlay on the head).
+ * The top of the head can still show because it is part of the same "head" mesh as the face;
+ * we cannot hide only the top in code. To avoid the top poking through, the helmet 3D geo model
+ * should fully cover the head (closed cap) so the helmet mesh hides it.
  */
 @Mixin(LivingEntityRenderer.class)
 public abstract class LivingEntityRendererHelmetMixin {
