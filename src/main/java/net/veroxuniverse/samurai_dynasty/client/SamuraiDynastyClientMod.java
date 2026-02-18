@@ -14,13 +14,23 @@ import net.veroxuniverse.samurai_dynasty.curios.model.KitsuneMaskModel;
 import net.veroxuniverse.samurai_dynasty.curios.model.OniMaskModel;
 import net.veroxuniverse.samurai_dynasty.entity.ModEntityTypes;
 import net.veroxuniverse.samurai_dynasty.particle.BlueFlame;
+import net.minecraft.resources.ResourceLocation;
+import net.veroxuniverse.samurai_dynasty.client.item.YumiPullProperty;
 import net.veroxuniverse.samurai_dynasty.registry.ParticlesInit;
+import net.neoforged.neoforge.client.event.RegisterRangeSelectItemModelPropertyEvent;
 
 @EventBusSubscriber(modid = SamuraiDynastyMod.MOD_ID, value = Dist.CLIENT)
 public class SamuraiDynastyClientMod {
 
     /** Helmet head/hat hiding is done in LivingEntityRendererHelmetMixin (port from 1.21.1). */
-    /** Yumi bow uses parent minecraft:item/bow; in 1.21.8 item model properties are defined in JSON (assets/.../items/yumi.json) if pull/pulling animation is needed. */
+
+    @SubscribeEvent
+    public static void registerItemModelProperties(final RegisterRangeSelectItemModelPropertyEvent event) {
+        event.register(
+                ResourceLocation.fromNamespaceAndPath(SamuraiDynastyMod.MOD_ID, "yumi_pull"),
+                YumiPullProperty.MAP_CODEC
+        );
+    }
 
     @SubscribeEvent
     public static void registerParticleFactories(final RegisterParticleProvidersEvent event) {
