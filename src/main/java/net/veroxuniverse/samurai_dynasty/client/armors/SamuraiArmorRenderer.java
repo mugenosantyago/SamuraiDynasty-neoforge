@@ -2,6 +2,7 @@ package net.veroxuniverse.samurai_dynasty.client.armors;
 
 import mod.azure.azurelib.common.render.armor.AzArmorRenderer;
 import mod.azure.azurelib.common.render.armor.AzArmorRendererConfig;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 import net.veroxuniverse.samurai_dynasty.SamuraiDynastyMod;
 
@@ -15,7 +16,12 @@ public class SamuraiArmorRenderer extends AzArmorRenderer {
     }
     
     private static AzArmorRendererConfig createConfig(ResourceLocation modelLocation, ResourceLocation textureLocation) {
+        // Use entitySolid so that ALL pixels — including areas where the texture is
+        // transparent — write to the depth buffer. armorCutoutNoCull discards transparent
+        // pixels from depth as well as colour, which lets the player's inner head skin
+        // show through any unpainted UV regions on the helmet cap.
         return AzArmorRendererConfig.builder(modelLocation, textureLocation)
+                .setRenderType(RenderType.entitySolid(textureLocation))
                 .build();
     }
     
