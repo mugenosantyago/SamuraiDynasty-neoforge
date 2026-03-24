@@ -57,8 +57,8 @@ public class ModConfiguredFeatures {
 
 
         List<OreConfiguration.TargetBlockState> overworldOnyxOres = List.of(OreConfiguration.target(stoneReplaceables,
-                        BlocksRegistry.RUBY_ORE.get().defaultBlockState()),
-                OreConfiguration.target(deepslateReplaceables, BlocksRegistry.DEEPSLATE_RUBY_ORE.get().defaultBlockState()));
+                        BlocksRegistry.ONYX_ORE.get().defaultBlockState()),
+                OreConfiguration.target(deepslateReplaceables, BlocksRegistry.DEEPSLATE_ONYX_ORE.get().defaultBlockState()));
 
 
         register(context, OVERWORLD_ONXY_ORE_KEY, Feature.ORE, new OreConfiguration(overworldOnyxOres, 9));
@@ -66,8 +66,8 @@ public class ModConfiguredFeatures {
 
 
         List<OreConfiguration.TargetBlockState> overworldAquamarineOres = List.of(OreConfiguration.target(stoneReplaceables,
-                        BlocksRegistry.RUBY_ORE.get().defaultBlockState()),
-                OreConfiguration.target(deepslateReplaceables, BlocksRegistry.DEEPSLATE_RUBY_ORE.get().defaultBlockState()));
+                        BlocksRegistry.AQUAMARINE_ORE.get().defaultBlockState()),
+                OreConfiguration.target(deepslateReplaceables, BlocksRegistry.DEEPSLATE_AQUAMARINE_ORE.get().defaultBlockState()));
 
 
         register(context, OVERWORLD_AQUAMARINE_ORE_KEY, Feature.ORE, new OreConfiguration(overworldAquamarineOres, 9));
