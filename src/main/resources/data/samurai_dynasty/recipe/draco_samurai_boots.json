@@ -1,0 +1,27 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "forbidden_arcanus"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "X": {
+      "item": "forbidden_arcanus:obsidian_ingot"
+    },
+    "Y": {
+      "item": "forbidden_arcanus:dragon_scale"
+    },
+    "S": {
+      "tag": "c:ingots/steel"
+    }
+  },
+  "pattern": [
+    "XSX",
+    "Y Y"
+  ],
+  "result": {
+    "id": "samurai_dynasty:draco_samurai_boots"
+  }
+}
