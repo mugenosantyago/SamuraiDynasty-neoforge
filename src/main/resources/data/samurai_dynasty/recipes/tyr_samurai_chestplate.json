@@ -1,0 +1,22 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "forbidden_arcanus"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "X": "forbidden_arcanus:aquatic_dragon_scale",
+    "Y": "forbidden_arcanus:golden_dragon_scale",
+    "S": "#c:ingots/steel"
+  },
+  "pattern": [
+    "Y Y",
+    "XYX",
+    "XSX"
+  ],
+  "result": {
+    "id": "samurai_dynasty:tyr_samurai_chestplate"
+  }
+}

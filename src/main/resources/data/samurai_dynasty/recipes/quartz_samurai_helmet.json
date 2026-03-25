@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "X": "samurai_dynasty:quartz_ingot",
+    "G": "#c:ingots/netherite",
+    "A": "#c:gems/amethyst"
+  },
+  "pattern": [
+    " G ",
+    "XAX",
+    "X X"
+  ],
+  "result": {
+    "id": "samurai_dynasty:quartz_samurai_helmet"
+  }
+}

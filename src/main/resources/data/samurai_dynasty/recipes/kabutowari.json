@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "S": "#c:ingots/steel",
+    "N": "#c:nuggets/steel",
+    "W": "samurai_dynasty:knive_handle"
+  },
+  "pattern": [
+    " S",
+    "NW",
+    "S "
+  ],
+  "result": {
+    "id": "samurai_dynasty:kabutowari"
+  }
+}

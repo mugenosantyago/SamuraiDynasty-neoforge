@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "#forge:gems/quartz",
+  "base": "#forge:ingots/steel",
+  "result": {
+    "id": "samurai_dynasty:quartz_ingot"
+  },
+  "template": "#forge:gems/quartz"
+}

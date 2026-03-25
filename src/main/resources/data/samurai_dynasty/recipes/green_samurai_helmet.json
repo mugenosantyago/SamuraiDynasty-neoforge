@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "S": "#c:ingots/steel",
+    "J": "#c:gems/ruby",
+    "X": "#c:gems/jade",
+    "G": "#c:ingots/gold"
+  },
+  "pattern": [
+    " G ",
+    "SJS",
+    "X X"
+  ],
+  "result": {
+    "id": "samurai_dynasty:green_samurai_helmet"
+  }
+}

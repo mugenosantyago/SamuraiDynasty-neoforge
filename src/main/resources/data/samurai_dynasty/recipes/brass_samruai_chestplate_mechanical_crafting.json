@@ -1,0 +1,24 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "type": "create:mechanical_crafting",
+  "acceptMirrored": false,
+  "key": {
+    "A": "create:andesite_alloy",
+    "B": "#c:ingots/brass",
+    "S": "#c:ingots/steel"
+  },
+  "pattern": [
+    "B B",
+    "SAS",
+    "BSB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "samurai_dynasty:brass_samurai_chestplate"
+  }
+}

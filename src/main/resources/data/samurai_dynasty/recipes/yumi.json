@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "B": "minecraft:bow",
+    "L": "#c:leathers",
+    "N": "#c:ingots/steel"
+  },
+  "pattern": [
+    " N ",
+    "LBL",
+    " N "
+  ],
+  "result": {
+    "id": "samurai_dynasty:yumi"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "S": "#c:ingots/steel",
+    "X": "#c:ingots/iron"
+  },
+  "pattern": [
+    "SSS",
+    "X X"
+  ],
+  "result": {
+    "id": "samurai_dynasty:iron_samurai_boots_master"
+  }
+}

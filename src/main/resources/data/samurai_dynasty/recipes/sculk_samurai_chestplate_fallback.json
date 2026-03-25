@@ -1,0 +1,24 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:mod_loaded",
+        "modid": "deeperdarker"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "N": "samurai_dynasty:netherite_samurai_chestplate",
+    "E": "minecraft:echo_shard"
+  },
+  "pattern": [
+    "E E",
+    "NNN",
+    "EEE"
+  ],
+  "result": {
+    "id": "samurai_dynasty:sculk_samurai_chestplate"
+  }
+}

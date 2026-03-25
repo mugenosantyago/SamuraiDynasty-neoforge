@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "S": "minecraft:stick",
+    "X": "#c:nuggets/steel"
+  },
+  "pattern": [
+    " X ",
+    " SX",
+    "X  "
+  ],
+  "result": {
+    "id": "samurai_dynasty:knive_handle"
+  }
+}

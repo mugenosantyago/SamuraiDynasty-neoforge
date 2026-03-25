@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "samurai_dynasty:kitsune_tail",
+  "base": "samurai_dynasty:katana_netherite",
+  "result": {
+    "id": "samurai_dynasty:katana_kitsune"
+  },
+  "template": "samurai_dynasty:spirit_upgrade_smithing_template"
+}

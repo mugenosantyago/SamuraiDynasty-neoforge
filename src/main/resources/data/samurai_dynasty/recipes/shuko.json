@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "S": "#c:ingots/steel",
+    "G": "#c:ingots/gold",
+    "I": "#c:nuggets/steel",
+    "W": "samurai_dynasty:katana_handle"
+  },
+  "pattern": [
+    "I I",
+    "S S",
+    "GWG"
+  ],
+  "result": {
+    "id": "samurai_dynasty:shuko"
+  }
+}

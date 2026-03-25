@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "S": "#c:ingots/steel",
+    "X": "#c:ingots/silver"
+  },
+  "pattern": [
+    "X X",
+    "SSS",
+    "XSX"
+  ],
+  "result": {
+    "id": "samurai_dynasty:white_samurai_chestplate"
+  }
+}

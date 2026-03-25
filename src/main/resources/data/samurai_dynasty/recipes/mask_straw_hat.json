@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    "samurai_dynasty:straw_hat",
+    "samurai_dynasty:oni_mask"
+  ],
+  "result": {
+    "id": "samurai_dynasty:mask_straw_hat"
+  }
+}

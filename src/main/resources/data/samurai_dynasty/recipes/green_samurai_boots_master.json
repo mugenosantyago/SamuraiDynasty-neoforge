@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "S": "#c:ingots/steel",
+    "X": "#c:gems/jade"
+  },
+  "pattern": [
+    "SSS",
+    "X X"
+  ],
+  "result": {
+    "id": "samurai_dynasty:green_samurai_boots_master"
+  }
+}

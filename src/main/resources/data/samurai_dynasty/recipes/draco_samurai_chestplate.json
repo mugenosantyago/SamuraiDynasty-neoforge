@@ -1,0 +1,22 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "forbidden_arcanus"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "X": "forbidden_arcanus:obsidian_ingot",
+    "Y": "forbidden_arcanus:dragon_scale",
+    "S": "#c:ingots/steel"
+  },
+  "pattern": [
+    "X X",
+    "SXS",
+    "YXY"
+  ],
+  "result": {
+    "id": "samurai_dynasty:draco_samurai_chestplate"
+  }
+}

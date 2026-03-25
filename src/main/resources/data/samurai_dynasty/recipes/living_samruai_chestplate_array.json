@@ -1,0 +1,16 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "bloodmagic"
+    }
+  ],
+  "type": "bloodmagic:array",
+  "addedinput": "samurai_dynasty:iron_samurai_chestplate",
+  "baseinput": "bloodmagic:reagentbinding",
+  "output": {
+    "item": "samurai_dynasty:living_samurai_chestplate",
+    "nbt": "{Damage:0}"
+  },
+  "texture": "bloodmagic:textures/models/alchemyarrays/bindingarray.png"
+}

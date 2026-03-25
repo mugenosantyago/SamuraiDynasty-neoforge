@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "S": "#c:ingots/steel",
+    "X": "#c:gems/onyx",
+    "G": "#c:ingots/gold"
+  },
+  "pattern": [
+    " G ",
+    "XXX",
+    "S S"
+  ],
+  "result": {
+    "id": "samurai_dynasty:gray_samurai_helmet_master"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "ars_nouveau"
+    }
+  ],
+  "type": "ars_nouveau:dye",
+  "ingredients": [
+    "#forge:dyes",
+    "samurai_dynasty:mage_samurai_helmet"
+  ],
+  "result": {
+    "id": "samurai_dynasty:mage_samurai_helmet"
+  }
+}

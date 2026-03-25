@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "S": "minecraft:stick",
+    "X": "samurai_dynasty:katana_handle"
+  },
+  "pattern": [
+    "  S",
+    " X ",
+    "S  "
+  ],
+  "result": {
+    "id": "samurai_dynasty:spear_handle"
+  }
+}

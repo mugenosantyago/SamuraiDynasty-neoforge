@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "X": "samurai_dynasty:cloth"
+  },
+  "pattern": [
+    "XX",
+    "XX"
+  ],
+  "result": {
+    "id": "minecraft:white_wool"
+  }
+}

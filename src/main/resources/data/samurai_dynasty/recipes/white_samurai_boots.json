@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "X": "#c:ingots/silver",
+    "G": "#c:ingots/steel"
+  },
+  "pattern": [
+    "XGX",
+    "X X"
+  ],
+  "result": {
+    "id": "samurai_dynasty:white_samurai_boots"
+  }
+}

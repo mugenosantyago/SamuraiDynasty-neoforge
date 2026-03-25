@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "cookingtime": 200,
+  "experience": 0.7,
+  "ingredient": "samurai_dynasty:raw_silver",
+  "result": {
+    "id": "samurai_dynasty:silver_ingot"
+  }
+}

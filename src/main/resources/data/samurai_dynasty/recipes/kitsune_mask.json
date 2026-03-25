@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "X": "samurai_dynasty:kitsune_hide",
+    "S": "#c:ingots/steel"
+  },
+  "pattern": [
+    "XSX",
+    "SSS"
+  ],
+  "result": {
+    "id": "samurai_dynasty:kitsune_mask"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "X": "samurai_dynasty:amethyst_ingot",
+    "G": "#c:ingots/netherite"
+  },
+  "pattern": [
+    "XGX",
+    "X X",
+    "X X"
+  ],
+  "result": {
+    "id": "samurai_dynasty:amethyst_samurai_leggings"
+  }
+}

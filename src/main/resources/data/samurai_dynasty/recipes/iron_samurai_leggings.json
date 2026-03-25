@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "X": "#c:ingots/iron",
+    "S": "#c:ingots/steel"
+  },
+  "pattern": [
+    "XXX",
+    "S S",
+    "X X"
+  ],
+  "result": {
+    "id": "samurai_dynasty:iron_samurai_leggings"
+  }
+}

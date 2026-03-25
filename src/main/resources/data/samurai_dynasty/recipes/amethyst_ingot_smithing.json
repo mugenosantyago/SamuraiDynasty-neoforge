@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "#forge:gems/amethyst",
+  "base": "#forge:ingots/steel",
+  "result": {
+    "id": "samurai_dynasty:amethyst_ingot"
+  },
+  "template": "#forge:gems/amethyst"
+}

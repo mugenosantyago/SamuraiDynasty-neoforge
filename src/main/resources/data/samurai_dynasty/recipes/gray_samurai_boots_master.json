@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "S": "#c:ingots/steel",
+    "X": "#c:gems/onyx"
+  },
+  "pattern": [
+    "SSS",
+    "X X"
+  ],
+  "result": {
+    "id": "samurai_dynasty:gray_samurai_boots_master"
+  }
+}

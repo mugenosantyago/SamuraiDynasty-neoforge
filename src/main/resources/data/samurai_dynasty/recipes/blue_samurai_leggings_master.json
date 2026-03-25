@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "S": "#c:ingots/steel",
+    "X": "#c:gems/aquamarine"
+  },
+  "pattern": [
+    "XSX",
+    "S S",
+    "X X"
+  ],
+  "result": {
+    "id": "samurai_dynasty:blue_samurai_leggings_master"
+  }
+}

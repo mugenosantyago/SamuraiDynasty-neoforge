@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "minecraft:netherite_ingot",
+  "base": "samurai_dynasty:naginata",
+  "result": {
+    "id": "samurai_dynasty:naginata_netherite"
+  },
+  "template": "minecraft:netherite_upgrade_smithing_template"
+}

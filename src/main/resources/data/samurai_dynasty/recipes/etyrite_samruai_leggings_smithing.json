@@ -1,0 +1,15 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "eldritch_end"
+    }
+  ],
+  "type": "minecraft:smithing_transform",
+  "addition": "eldritch_end:etyr_ingot",
+  "base": "samurai_dynasty:netherite_samurai_leggings",
+  "result": {
+    "id": "samurai_dynasty:etyrite_samurai_leggings"
+  },
+  "template": "eldritch_end:etyr_upgrade_pattern"
+}

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "X": "#c:gems/jade",
+    "G": "#c:ingots/gold"
+  },
+  "pattern": [
+    "XGX",
+    "X X"
+  ],
+  "result": {
+    "id": "samurai_dynasty:green_samurai_boots"
+  }
+}

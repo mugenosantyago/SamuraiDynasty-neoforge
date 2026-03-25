@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "X": "samurai_dynasty:amethyst_ingot",
+    "L": "#c:leathers"
+  },
+  "pattern": [
+    "XXX",
+    "X L",
+    "X L"
+  ],
+  "result": {
+    "id": "samurai_dynasty:mage_samurai_leggings"
+  }
+}

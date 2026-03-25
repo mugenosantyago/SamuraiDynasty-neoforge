@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "X": "#c:ingots/gold",
+    "S": "samurai_dynasty:cloth"
+  },
+  "pattern": [
+    "XXX",
+    "S S"
+  ],
+  "result": {
+    "id": "samurai_dynasty:gold_ninja_helmet"
+  }
+}

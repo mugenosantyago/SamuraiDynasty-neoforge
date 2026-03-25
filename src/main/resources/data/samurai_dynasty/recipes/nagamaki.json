@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "S": "samurai_dynasty:katana",
+    "G": "#c:nuggets/steel",
+    "W": "samurai_dynasty:spear_handle"
+  },
+  "pattern": [
+    "  G",
+    " S ",
+    "W  "
+  ],
+  "result": {
+    "id": "samurai_dynasty:nagamaki"
+  }
+}

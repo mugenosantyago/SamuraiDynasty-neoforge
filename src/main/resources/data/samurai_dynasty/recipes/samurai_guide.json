@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "S": "minecraft:paper",
+    "X": "#c:gems/ruby"
+  },
+  "pattern": [
+    "SSS",
+    "SXS",
+    "SSS"
+  ],
+  "result": {
+    "nbt": {
+      "patchouli:book": "samurai_dynasty:samurai_guide"
+    },
+    "id": "patchouli:guide_book"
+  }
+}

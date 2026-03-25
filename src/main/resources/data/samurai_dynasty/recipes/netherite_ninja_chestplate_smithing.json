@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "minecraft:netherite_ingot",
+  "base": "samurai_dynasty:diamond_ninja_chestplate",
+  "result": {
+    "id": "samurai_dynasty:netherite_ninja_chestplate"
+  },
+  "template": "minecraft:netherite_upgrade_smithing_template"
+}

@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "X": "#c:leathers",
+    "B": "#forge:ingots/brass"
+  },
+  "pattern": [
+    "BXB",
+    "BBB",
+    "BBB"
+  ],
+  "result": {
+    "id": "samurai_dynasty:brass_samurai_chestplate"
+  }
+}

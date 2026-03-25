@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "S": "#c:ingots/steel",
+    "N": "#c:nuggets/steel",
+    "W": "samurai_dynasty:knive_handle"
+  },
+  "pattern": [
+    "S",
+    "W",
+    "N"
+  ],
+  "result": {
+    "id": "samurai_dynasty:kunai"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "samurai_dynasty:jorogumo_eye",
+  "base": "samurai_dynasty:katana_netherite",
+  "result": {
+    "id": "samurai_dynasty:katana_jorogumo"
+  },
+  "template": "samurai_dynasty:spirit_upgrade_smithing_template"
+}

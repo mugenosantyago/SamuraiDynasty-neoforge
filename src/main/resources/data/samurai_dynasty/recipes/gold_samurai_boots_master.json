@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "S": "#c:ingots/steel",
+    "X": "#c:ingots/gold"
+  },
+  "pattern": [
+    "SSS",
+    "X X"
+  ],
+  "result": {
+    "id": "samurai_dynasty:gold_samurai_boots_master"
+  }
+}

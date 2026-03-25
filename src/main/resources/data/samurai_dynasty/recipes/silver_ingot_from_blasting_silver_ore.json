@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "cookingtime": 100,
+  "experience": 0.7,
+  "ingredient": "samurai_dynasty:silver_ore",
+  "result": {
+    "id": "samurai_dynasty:silver_ingot"
+  }
+}

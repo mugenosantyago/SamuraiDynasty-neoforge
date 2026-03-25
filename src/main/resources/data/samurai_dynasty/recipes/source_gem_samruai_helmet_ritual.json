@@ -1,0 +1,21 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "ars_nouveau"
+    }
+  ],
+  "type": "ars_nouveau:enchanting_apparatus",
+  "keepNbtOfReagent": true,
+  "output": "samurai_dynasty:mage_samurai_helmet",
+  "pedestalItems": [
+    "ars_nouveau:magebloom_fiber",
+    "ars_nouveau:magebloom_fiber",
+    "ars_nouveau:magebloom_fiber",
+    "ars_nouveau:magebloom_fiber"
+  ],
+  "reagent": [
+    "#samurai_dynasty:armors/gem_samurai_armor_helmet"
+  ],
+  "sourceCost": 2500
+}

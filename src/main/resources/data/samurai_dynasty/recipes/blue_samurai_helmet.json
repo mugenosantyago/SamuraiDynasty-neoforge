@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "S": "#c:ingots/steel",
+    "J": "#c:gems/jade",
+    "X": "#c:gems/aquamarine"
+  },
+  "pattern": [
+    " S ",
+    "SJS",
+    "X X"
+  ],
+  "result": {
+    "id": "samurai_dynasty:blue_samurai_helmet"
+  }
+}

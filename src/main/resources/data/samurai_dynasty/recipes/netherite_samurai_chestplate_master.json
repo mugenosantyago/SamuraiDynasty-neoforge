@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "minecraft:netherite_ingot",
+  "base": "#samurai_dynasty:armors/gem_samurai_armor_chestplate_master",
+  "result": "samurai_dynasty:netherite_samurai_chestplate_master",
+  "template": "minecraft:netherite_upgrade_smithing_template"
+}

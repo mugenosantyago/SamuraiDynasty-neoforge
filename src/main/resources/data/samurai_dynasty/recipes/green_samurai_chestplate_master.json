@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "S": "#c:ingots/steel",
+    "X": "#c:gems/jade",
+    "G": "#c:ingots/gold"
+  },
+  "pattern": [
+    "S S",
+    "XSX",
+    "XGX"
+  ],
+  "result": {
+    "id": "samurai_dynasty:green_samurai_chestplate_master"
+  }
+}

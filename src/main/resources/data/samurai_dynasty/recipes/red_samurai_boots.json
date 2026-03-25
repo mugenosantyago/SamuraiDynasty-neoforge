@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "X": "#c:gems/ruby",
+    "G": "#c:ingots/gold"
+  },
+  "pattern": [
+    "XGX",
+    "X X"
+  ],
+  "result": {
+    "id": "samurai_dynasty:red_samurai_boots"
+  }
+}

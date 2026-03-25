@@ -1,1 +1,0 @@
-{"type":"minecraft:crafting_shaped","key":{"B":{"type":"minecraft:item","item":"minecraft:bow"},"L":{"type":"minecraft:tag","tag":"c:leathers"},"N":{"type":"minecraft:tag","tag":"c:ingots/steel"}},"pattern":[" N ","LBL"," N "],"result":{"id":"samurai_dynasty:yumi"}}

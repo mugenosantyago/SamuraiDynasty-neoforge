@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "X": "#c:gems/diamond",
+    "S": "#c:ingots/steel"
+  },
+  "pattern": [
+    "XSX",
+    "X X"
+  ],
+  "result": {
+    "id": "samurai_dynasty:diamond_samurai_boots"
+  }
+}
